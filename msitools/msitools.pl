@@ -1,11 +1,8 @@
 #!/usr/bin/env perl
 
-# TODO:
-#  make flank_size a command line arg
-#  use a better perl argument parsing library
-#  fix the field indeces in the parsing at the end of the script.  (i.e.,
-#  since I added the mapQ value to the line, everything needs to shift over
-#  by one.)
+# TODO: TEST! compare against previous output.  will not be identical
+# due to fixing the negative flanking index bug as well as removing all
+# lines for repeats that have no supporting reads.
 
 use strict;
 use warnings;
