@@ -1,3 +1,10 @@
+# TODO:
+#  make flank_size a command line arg
+#  use a better perl argument parsing library
+#  fix the field indeces in the parsing at the end of the script.  (i.e.,
+#  since I added the mapQ value to the line, everything needs to shift over
+#  by one.)
+
 chomp $ARGV[0];
 $filename = $ARGV[0];
 chomp $ARGV[1];
@@ -99,21 +106,21 @@ close output20; close output21; close outputX; close outputY;
 $chrSeq = (); 
 foreach $chr (@chrarray) {
 	print "reading chromosome $chr .. \n";
-	open (data, "/groups/park/tmkim/hg19Refseq_fasta,index/hg19_chromosome_seq/chr".$chr.".fa") or die;
+	open (data, "/scratch/ljl11/neuron/msitools/hg19_chromosome_seq/chr".$chr.".fa") or die;
 	$null = <data>;	while ($line = <data>) {chomp $line; $chrSeq{"chr".$chr} .= $line;}
 	close data; 
 }
 
-open (output, ">SUMMARY_wgsCalls_".$ARGV[0].".txt");
+open (output, ">SUMMARY_wgsCalls_".$filename.".txt");
 print output "index\tchr\tstart\tend\trepArray\n";
-open (SUPPREADS, ">SUPPORT_reads_".$ARGV[0].".txt");
+open (SUPPREADS, ">SUPPORT_reads_".$filename.".txt");
 print SUPPREADS "chr\tstart\tend\tSTRlen\treadinfo\n";
 
 $flank_size = 10;
 
 foreach $chr (@chrarray) {
 	@repeatStart = (); @repeatEnd = (); @repeatSeq = (); @repeatFlank1 = (); @repeatFlank2 = (); @repeatType = (); $repeatno = 0;
-	open (data, "/groups/park/tmkim/TOOLS/msi_tools/WGRef_7892585MS_withGENEcategory_FINAL_withMSTYPE_hg19.txt") or die;
+	open (data, "/scratch/ljl11/neuron/msitools/WGRef_7892585MS_withGENEcategory_FINAL_withMSTYPE_hg19.txt") or die;
 	while ($line = <data>) {
 		chomp $line; @element = split("\t", $line); 
 		if ($element[0] eq "chr".$chr) {
@@ -127,8 +134,8 @@ foreach $chr (@chrarray) {
 	}
 	close data;
 
-	print "Chr $chr - $ARGV[0] - WGS .. \n";	@foundRead = (); 
-	open (data, "SPUTNIK_".$ARGV[0]."_".$chr.".txt") or die;
+	print "Chr $chr - $filename - WGS .. \n";	@foundRead = (); 
+	open (data, "SPUTNIK_".$filename."_".$chr.".txt") or die;
 	$indexPos = 0; @lenArray = (); $flag_direction = "forward";
 	while (<data>) {
 		chomp; @element = split(" "); 
@@ -168,7 +175,7 @@ foreach $chr (@chrarray) {
 	for ($i = 0; $i < $repeatno; ++$i) {
 		print output $i."\t$chr\t$repeatStart[$i]\t$repeatEnd[$i]\t$lenArray[$i]\n";
 	}
-	#unlink "SPUTNIK_".$ARGV[0]."_".$chr.".txt";
+	#unlink "SPUTNIK_".$filename."_".$chr.".txt";
 } # End of chromosome loop
 close output;
 
