@@ -1,0 +1,1 @@
+chr start   end str.repeat  period  ref allelotype  coverage    obs.depth   conflicting.depth   alleles score   allele1.score   allele2.score   partial.depth   partial.alleles stitched.depth

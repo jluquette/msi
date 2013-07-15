@@ -1,0 +1,1334 @@
+[Sun Jun 16 18:18:21 EDT 2013] net.sf.picard.sam.MarkDuplicates INPUT=[neuron_6.bam] OUTPUT=neuron_6.rmdup.bam METRICS_FILE=neuron_6.markdup_metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT    MAX_SEQUENCES_FOR_DISK_READ_ENDS_MAP=50000 MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=8000 SORTING_COLLECTION_SIZE_RATIO=0.25 READ_NAME_REGEX=[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).* OPTICAL_DUPLICATE_PIXEL_DISTANCE=100 VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false
+[Sun Jun 16 18:18:21 EDT 2013] Executing as ljl11@flute000-179 on Linux 3.2.41-bpo.4-ritg1-amd64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.6.0_26-b03; Picard version: 1.69(1209)
+INFO	2013-06-16 18:18:21	MarkDuplicates	Start of doWork freeMemory: 504439392; totalMemory: 507379712; maxMemory: 11453267968
+INFO	2013-06-16 18:18:21	MarkDuplicates	Reading input file and constructing read end information.
+INFO	2013-06-16 18:18:21	MarkDuplicates	Will retain up to 45449476 data points before spilling to disk.
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00470
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00520
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00483
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00484
+INFO	2013-06-16 18:18:34	MarkDuplicates	Read 1000000 records. Tracking 21080 as yet unmatched pairs. 1651 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:18:45	MarkDuplicates	Read 2000000 records. Tracking 41532 as yet unmatched pairs. 3383 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:18:56	MarkDuplicates	Read 3000000 records. Tracking 61078 as yet unmatched pairs. 5033 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:19:05	MarkDuplicates	Read 4000000 records. Tracking 81350 as yet unmatched pairs. 6589 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:19:16	MarkDuplicates	Read 5000000 records. Tracking 102576 as yet unmatched pairs. 8124 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:19:25	MarkDuplicates	Read 6000000 records. Tracking 123290 as yet unmatched pairs. 9638 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:19:35	MarkDuplicates	Read 7000000 records. Tracking 144274 as yet unmatched pairs. 10953 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:19:44	MarkDuplicates	Read 8000000 records. Tracking 166046 as yet unmatched pairs. 12341 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:19:57	MarkDuplicates	Read 9000000 records. Tracking 187242 as yet unmatched pairs. 13759 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:20:05	MarkDuplicates	Read 10000000 records. Tracking 207040 as yet unmatched pairs. 14956 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:20:15	MarkDuplicates	Read 11000000 records. Tracking 226586 as yet unmatched pairs. 16148 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:20:24	MarkDuplicates	Read 12000000 records. Tracking 246212 as yet unmatched pairs. 17256 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:20:32	MarkDuplicates	Read 13000000 records. Tracking 266232 as yet unmatched pairs. 18316 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:20:41	MarkDuplicates	Read 14000000 records. Tracking 284862 as yet unmatched pairs. 19267 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:20:55	MarkDuplicates	Read 15000000 records. Tracking 304098 as yet unmatched pairs. 20261 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:21:04	MarkDuplicates	Read 16000000 records. Tracking 323174 as yet unmatched pairs. 21253 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:21:12	MarkDuplicates	Read 17000000 records. Tracking 343338 as yet unmatched pairs. 22306 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:21:22	MarkDuplicates	Read 18000000 records. Tracking 362460 as yet unmatched pairs. 23181 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:21:32	MarkDuplicates	Read 19000000 records. Tracking 379324 as yet unmatched pairs. 24051 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:21:47	MarkDuplicates	Read 20000000 records. Tracking 397378 as yet unmatched pairs. 24785 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:21:56	MarkDuplicates	Read 21000000 records. Tracking 417010 as yet unmatched pairs. 25630 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:22:05	MarkDuplicates	Read 22000000 records. Tracking 436336 as yet unmatched pairs. 26434 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:22:14	MarkDuplicates	Read 23000000 records. Tracking 453916 as yet unmatched pairs. 27071 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:22:24	MarkDuplicates	Read 24000000 records. Tracking 471144 as yet unmatched pairs. 27763 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:22:33	MarkDuplicates	Read 25000000 records. Tracking 489248 as yet unmatched pairs. 28443 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:22:43	MarkDuplicates	Read 26000000 records. Tracking 507838 as yet unmatched pairs. 29006 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:23:00	MarkDuplicates	Read 27000000 records. Tracking 527118 as yet unmatched pairs. 29709 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:23:08	MarkDuplicates	Read 28000000 records. Tracking 545968 as yet unmatched pairs. 30290 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:23:17	MarkDuplicates	Read 29000000 records. Tracking 565304 as yet unmatched pairs. 30834 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:23:26	MarkDuplicates	Read 30000000 records. Tracking 584640 as yet unmatched pairs. 31323 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:23:34	MarkDuplicates	Read 31000000 records. Tracking 603554 as yet unmatched pairs. 31754 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:23:44	MarkDuplicates	Read 32000000 records. Tracking 620536 as yet unmatched pairs. 32059 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:23:53	MarkDuplicates	Read 33000000 records. Tracking 639168 as yet unmatched pairs. 32356 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:24:03	MarkDuplicates	Read 34000000 records. Tracking 658336 as yet unmatched pairs. 32631 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:24:11	MarkDuplicates	Read 35000000 records. Tracking 675752 as yet unmatched pairs. 32872 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:24:31	MarkDuplicates	Read 36000000 records. Tracking 693728 as yet unmatched pairs. 33137 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:24:40	MarkDuplicates	Read 37000000 records. Tracking 710892 as yet unmatched pairs. 33420 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:24:48	MarkDuplicates	Read 38000000 records. Tracking 729216 as yet unmatched pairs. 33417 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:24:57	MarkDuplicates	Read 39000000 records. Tracking 748200 as yet unmatched pairs. 33648 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:25:06	MarkDuplicates	Read 40000000 records. Tracking 767490 as yet unmatched pairs. 33832 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:25:16	MarkDuplicates	Read 41000000 records. Tracking 786696 as yet unmatched pairs. 33807 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:25:24	MarkDuplicates	Read 42000000 records. Tracking 806412 as yet unmatched pairs. 33881 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:25:34	MarkDuplicates	Read 43000000 records. Tracking 827822 as yet unmatched pairs. 34970 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:25:43	MarkDuplicates	Read 44000000 records. Tracking 846956 as yet unmatched pairs. 35125 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:26:02	MarkDuplicates	Read 45000000 records. Tracking 865804 as yet unmatched pairs. 34105 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:27:14	MarkDuplicates	Read 46000000 records. Tracking 884678 as yet unmatched pairs. 33698 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:27:23	MarkDuplicates	Read 47000000 records. Tracking 904512 as yet unmatched pairs. 33624 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:27:32	MarkDuplicates	Read 48000000 records. Tracking 923468 as yet unmatched pairs. 33301 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:27:41	MarkDuplicates	Read 49000000 records. Tracking 942746 as yet unmatched pairs. 33150 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:27:51	MarkDuplicates	Read 50000000 records. Tracking 960926 as yet unmatched pairs. 32756 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:28:00	MarkDuplicates	Read 51000000 records. Tracking 979586 as yet unmatched pairs. 32424 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:28:10	MarkDuplicates	Read 52000000 records. Tracking 998318 as yet unmatched pairs. 32062 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:28:18	MarkDuplicates	Read 53000000 records. Tracking 1016862 as yet unmatched pairs. 31622 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:28:28	MarkDuplicates	Read 54000000 records. Tracking 1035258 as yet unmatched pairs. 31120 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:28:37	MarkDuplicates	Read 55000000 records. Tracking 1053414 as yet unmatched pairs. 30671 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:28:56	MarkDuplicates	Read 56000000 records. Tracking 1072302 as yet unmatched pairs. 30173 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:29:05	MarkDuplicates	Read 57000000 records. Tracking 1090924 as yet unmatched pairs. 29628 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:29:13	MarkDuplicates	Read 58000000 records. Tracking 1109552 as yet unmatched pairs. 28924 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:29:22	MarkDuplicates	Read 59000000 records. Tracking 1127096 as yet unmatched pairs. 28183 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:29:32	MarkDuplicates	Read 60000000 records. Tracking 1144482 as yet unmatched pairs. 27580 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:29:41	MarkDuplicates	Read 61000000 records. Tracking 1161366 as yet unmatched pairs. 26922 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:29:49	MarkDuplicates	Read 62000000 records. Tracking 1176816 as yet unmatched pairs. 26327 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:29:58	MarkDuplicates	Read 63000000 records. Tracking 1192558 as yet unmatched pairs. 25648 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:30:07	MarkDuplicates	Read 64000000 records. Tracking 1209308 as yet unmatched pairs. 24813 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:30:16	MarkDuplicates	Read 65000000 records. Tracking 1225352 as yet unmatched pairs. 24074 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:30:24	MarkDuplicates	Read 66000000 records. Tracking 1241696 as yet unmatched pairs. 23241 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:30:33	MarkDuplicates	Read 67000000 records. Tracking 1258032 as yet unmatched pairs. 22509 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:30:54	MarkDuplicates	Read 68000000 records. Tracking 1275172 as yet unmatched pairs. 21489 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:31:03	MarkDuplicates	Read 69000000 records. Tracking 1292054 as yet unmatched pairs. 20061 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:31:12	MarkDuplicates	Read 70000000 records. Tracking 1309770 as yet unmatched pairs. 19142 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:31:21	MarkDuplicates	Read 71000000 records. Tracking 1327966 as yet unmatched pairs. 18087 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:31:31	MarkDuplicates	Read 72000000 records. Tracking 1345812 as yet unmatched pairs. 16937 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:31:41	MarkDuplicates	Read 73000000 records. Tracking 1361818 as yet unmatched pairs. 15833 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:31:49	MarkDuplicates	Read 74000000 records. Tracking 1377992 as yet unmatched pairs. 14769 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:31:58	MarkDuplicates	Read 75000000 records. Tracking 1395042 as yet unmatched pairs. 13533 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:32:09	MarkDuplicates	Read 76000000 records. Tracking 1411920 as yet unmatched pairs. 12297 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:32:18	MarkDuplicates	Read 77000000 records. Tracking 1429976 as yet unmatched pairs. 10823 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:32:27	MarkDuplicates	Read 78000000 records. Tracking 1447304 as yet unmatched pairs. 9570 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:32:35	MarkDuplicates	Read 79000000 records. Tracking 1464744 as yet unmatched pairs. 8181 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:32:59	MarkDuplicates	Read 80000000 records. Tracking 1481874 as yet unmatched pairs. 6733 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:33:08	MarkDuplicates	Read 81000000 records. Tracking 1497970 as yet unmatched pairs. 5388 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:33:17	MarkDuplicates	Read 82000000 records. Tracking 1514758 as yet unmatched pairs. 3962 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:33:25	MarkDuplicates	Read 83000000 records. Tracking 1531312 as yet unmatched pairs. 2412 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:33:35	MarkDuplicates	Read 84000000 records. Tracking 1548662 as yet unmatched pairs. 798 records in RAM.  Last sequence index: 0
+INFO	2013-06-16 18:33:48	MarkDuplicates	Read 85000000 records. Tracking 1565920 as yet unmatched pairs. 151848 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:33:57	MarkDuplicates	Read 86000000 records. Tracking 1582492 as yet unmatched pairs. 152004 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:34:07	MarkDuplicates	Read 87000000 records. Tracking 1597988 as yet unmatched pairs. 151954 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:34:14	MarkDuplicates	Read 88000000 records. Tracking 1614406 as yet unmatched pairs. 152067 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:34:24	MarkDuplicates	Read 89000000 records. Tracking 1630530 as yet unmatched pairs. 152145 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:34:33	MarkDuplicates	Read 90000000 records. Tracking 1647060 as yet unmatched pairs. 152127 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:34:42	MarkDuplicates	Read 91000000 records. Tracking 1663746 as yet unmatched pairs. 152163 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:35:55	MarkDuplicates	Read 92000000 records. Tracking 1680550 as yet unmatched pairs. 152181 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:36:13	MarkDuplicates	Read 93000000 records. Tracking 1696994 as yet unmatched pairs. 152106 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:37:38	MarkDuplicates	Read 94000000 records. Tracking 1713380 as yet unmatched pairs. 151852 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:37:47	MarkDuplicates	Read 95000000 records. Tracking 1729708 as yet unmatched pairs. 151663 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:37:57	MarkDuplicates	Read 96000000 records. Tracking 1746970 as yet unmatched pairs. 151408 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:38:06	MarkDuplicates	Read 97000000 records. Tracking 1763630 as yet unmatched pairs. 151313 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:38:16	MarkDuplicates	Read 98000000 records. Tracking 1779906 as yet unmatched pairs. 150823 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:38:26	MarkDuplicates	Read 99000000 records. Tracking 1796126 as yet unmatched pairs. 150506 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:38:35	MarkDuplicates	Read 100000000 records. Tracking 1811374 as yet unmatched pairs. 150123 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:38:45	MarkDuplicates	Read 101000000 records. Tracking 1827246 as yet unmatched pairs. 149802 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:38:55	MarkDuplicates	Read 102000000 records. Tracking 1843720 as yet unmatched pairs. 149320 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:39:03	MarkDuplicates	Read 103000000 records. Tracking 1858968 as yet unmatched pairs. 148990 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:39:12	MarkDuplicates	Read 104000000 records. Tracking 1874182 as yet unmatched pairs. 148561 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:39:21	MarkDuplicates	Read 105000000 records. Tracking 1890254 as yet unmatched pairs. 148029 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:39:30	MarkDuplicates	Read 106000000 records. Tracking 1905780 as yet unmatched pairs. 147486 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:39:45	MarkDuplicates	Read 107000000 records. Tracking 1921056 as yet unmatched pairs. 146771 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:39:53	MarkDuplicates	Read 108000000 records. Tracking 1936950 as yet unmatched pairs. 146271 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:40:01	MarkDuplicates	Read 109000000 records. Tracking 1953644 as yet unmatched pairs. 146009 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:40:10	MarkDuplicates	Read 110000000 records. Tracking 1969092 as yet unmatched pairs. 144864 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:40:19	MarkDuplicates	Read 111000000 records. Tracking 1985652 as yet unmatched pairs. 143980 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:40:28	MarkDuplicates	Read 112000000 records. Tracking 2001454 as yet unmatched pairs. 143257 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:40:37	MarkDuplicates	Read 113000000 records. Tracking 2017930 as yet unmatched pairs. 142402 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:40:45	MarkDuplicates	Read 114000000 records. Tracking 2034442 as yet unmatched pairs. 141405 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:40:54	MarkDuplicates	Read 115000000 records. Tracking 2049472 as yet unmatched pairs. 140459 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:41:03	MarkDuplicates	Read 116000000 records. Tracking 2064274 as yet unmatched pairs. 139689 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:41:12	MarkDuplicates	Read 117000000 records. Tracking 2079408 as yet unmatched pairs. 138706 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:41:20	MarkDuplicates	Read 118000000 records. Tracking 2094006 as yet unmatched pairs. 137755 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:41:29	MarkDuplicates	Read 119000000 records. Tracking 2108442 as yet unmatched pairs. 136671 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:41:38	MarkDuplicates	Read 120000000 records. Tracking 2124685 as yet unmatched pairs. 136071 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:41:48	MarkDuplicates	Read 121000000 records. Tracking 2140666 as yet unmatched pairs. 134925 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:41:58	MarkDuplicates	Read 122000000 records. Tracking 2156156 as yet unmatched pairs. 133777 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:42:07	MarkDuplicates	Read 123000000 records. Tracking 2172136 as yet unmatched pairs. 132625 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:42:26	MarkDuplicates	Read 124000000 records. Tracking 2187224 as yet unmatched pairs. 131334 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:42:35	MarkDuplicates	Read 125000000 records. Tracking 2201830 as yet unmatched pairs. 130032 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:42:44	MarkDuplicates	Read 126000000 records. Tracking 2216726 as yet unmatched pairs. 128778 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:42:52	MarkDuplicates	Read 127000000 records. Tracking 2232350 as yet unmatched pairs. 127177 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:43:01	MarkDuplicates	Read 128000000 records. Tracking 2247632 as yet unmatched pairs. 125305 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:43:11	MarkDuplicates	Read 129000000 records. Tracking 2262096 as yet unmatched pairs. 123963 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:43:19	MarkDuplicates	Read 130000000 records. Tracking 2278016 as yet unmatched pairs. 122293 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:43:29	MarkDuplicates	Read 131000000 records. Tracking 2293410 as yet unmatched pairs. 120637 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:43:38	MarkDuplicates	Read 132000000 records. Tracking 2308490 as yet unmatched pairs. 119206 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:43:48	MarkDuplicates	Read 133000000 records. Tracking 2323598 as yet unmatched pairs. 117669 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:43:56	MarkDuplicates	Read 134000000 records. Tracking 2338614 as yet unmatched pairs. 116018 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:44:06	MarkDuplicates	Read 135000000 records. Tracking 2354592 as yet unmatched pairs. 114394 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:44:15	MarkDuplicates	Read 136000000 records. Tracking 2369272 as yet unmatched pairs. 112600 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:44:24	MarkDuplicates	Read 137000000 records. Tracking 2384200 as yet unmatched pairs. 110801 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:45:34	MarkDuplicates	Read 138000000 records. Tracking 2398488 as yet unmatched pairs. 109249 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:45:43	MarkDuplicates	Read 139000000 records. Tracking 2411570 as yet unmatched pairs. 107423 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:45:53	MarkDuplicates	Read 140000000 records. Tracking 2424676 as yet unmatched pairs. 105741 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:46:02	MarkDuplicates	Read 141000000 records. Tracking 2437914 as yet unmatched pairs. 104154 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:46:18	MarkDuplicates	Read 142000000 records. Tracking 2451684 as yet unmatched pairs. 102372 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:46:26	MarkDuplicates	Read 143000000 records. Tracking 2466550 as yet unmatched pairs. 100391 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:46:36	MarkDuplicates	Read 144000000 records. Tracking 2480942 as yet unmatched pairs. 98449 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:46:45	MarkDuplicates	Read 145000000 records. Tracking 2495352 as yet unmatched pairs. 96629 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:46:54	MarkDuplicates	Read 146000000 records. Tracking 2508452 as yet unmatched pairs. 94757 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:47:03	MarkDuplicates	Read 147000000 records. Tracking 2521850 as yet unmatched pairs. 92857 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:47:11	MarkDuplicates	Read 148000000 records. Tracking 2536624 as yet unmatched pairs. 90649 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:47:21	MarkDuplicates	Read 149000000 records. Tracking 2551000 as yet unmatched pairs. 88571 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:47:30	MarkDuplicates	Read 150000000 records. Tracking 2563720 as yet unmatched pairs. 86569 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:47:38	MarkDuplicates	Read 151000000 records. Tracking 2577022 as yet unmatched pairs. 84523 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:47:47	MarkDuplicates	Read 152000000 records. Tracking 2590262 as yet unmatched pairs. 82405 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:47:56	MarkDuplicates	Read 153000000 records. Tracking 2604506 as yet unmatched pairs. 80062 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:48:06	MarkDuplicates	Read 154000000 records. Tracking 2618340 as yet unmatched pairs. 77640 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:48:14	MarkDuplicates	Read 155000000 records. Tracking 2632122 as yet unmatched pairs. 75356 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:48:23	MarkDuplicates	Read 156000000 records. Tracking 2645746 as yet unmatched pairs. 73063 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:48:32	MarkDuplicates	Read 157000000 records. Tracking 2659662 as yet unmatched pairs. 70714 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:48:40	MarkDuplicates	Read 158000000 records. Tracking 2672792 as yet unmatched pairs. 68399 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:48:49	MarkDuplicates	Read 159000000 records. Tracking 2686090 as yet unmatched pairs. 65808 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:49:06	MarkDuplicates	Read 160000000 records. Tracking 2699350 as yet unmatched pairs. 63581 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:49:14	MarkDuplicates	Read 161000000 records. Tracking 2712710 as yet unmatched pairs. 60980 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:49:23	MarkDuplicates	Read 162000000 records. Tracking 2725942 as yet unmatched pairs. 58620 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:49:33	MarkDuplicates	Read 163000000 records. Tracking 2739444 as yet unmatched pairs. 56408 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:49:41	MarkDuplicates	Read 164000000 records. Tracking 2751668 as yet unmatched pairs. 53620 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:49:51	MarkDuplicates	Read 165000000 records. Tracking 2763612 as yet unmatched pairs. 51141 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:50:00	MarkDuplicates	Read 166000000 records. Tracking 2777313 as yet unmatched pairs. 48527 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:50:09	MarkDuplicates	Read 167000000 records. Tracking 2790980 as yet unmatched pairs. 45779 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:50:17	MarkDuplicates	Read 168000000 records. Tracking 2804600 as yet unmatched pairs. 42842 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:50:28	MarkDuplicates	Read 169000000 records. Tracking 2818324 as yet unmatched pairs. 39962 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:50:38	MarkDuplicates	Read 170000000 records. Tracking 2831202 as yet unmatched pairs. 37073 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:50:49	MarkDuplicates	Read 171000000 records. Tracking 2845084 as yet unmatched pairs. 34138 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:50:58	MarkDuplicates	Read 172000000 records. Tracking 2858590 as yet unmatched pairs. 31011 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:51:08	MarkDuplicates	Read 173000000 records. Tracking 2870956 as yet unmatched pairs. 28376 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:51:16	MarkDuplicates	Read 174000000 records. Tracking 2883628 as yet unmatched pairs. 25399 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:51:25	MarkDuplicates	Read 175000000 records. Tracking 2897146 as yet unmatched pairs. 22396 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:51:34	MarkDuplicates	Read 176000000 records. Tracking 2911242 as yet unmatched pairs. 19437 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:51:44	MarkDuplicates	Read 177000000 records. Tracking 2924128 as yet unmatched pairs. 16261 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:51:54	MarkDuplicates	Read 178000000 records. Tracking 2937420 as yet unmatched pairs. 13168 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:52:16	MarkDuplicates	Read 179000000 records. Tracking 2950168 as yet unmatched pairs. 9904 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:52:26	MarkDuplicates	Read 180000000 records. Tracking 2963454 as yet unmatched pairs. 6605 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:52:34	MarkDuplicates	Read 181000000 records. Tracking 2977350 as yet unmatched pairs. 3248 records in RAM.  Last sequence index: 1
+INFO	2013-06-16 18:52:50	MarkDuplicates	Read 182000000 records. Tracking 2990538 as yet unmatched pairs. 284215 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:52:59	MarkDuplicates	Read 183000000 records. Tracking 3003100 as yet unmatched pairs. 282688 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:54:14	MarkDuplicates	Read 184000000 records. Tracking 3015956 as yet unmatched pairs. 281002 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:54:23	MarkDuplicates	Read 185000000 records. Tracking 3029318 as yet unmatched pairs. 279159 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:54:32	MarkDuplicates	Read 186000000 records. Tracking 3041426 as yet unmatched pairs. 277165 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:54:42	MarkDuplicates	Read 187000000 records. Tracking 3054896 as yet unmatched pairs. 275125 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:56:09	MarkDuplicates	Read 188000000 records. Tracking 3068764 as yet unmatched pairs. 273036 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:56:19	MarkDuplicates	Read 189000000 records. Tracking 3081420 as yet unmatched pairs. 271200 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:56:29	MarkDuplicates	Read 190000000 records. Tracking 3094862 as yet unmatched pairs. 269063 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:56:38	MarkDuplicates	Read 191000000 records. Tracking 3107378 as yet unmatched pairs. 267012 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:56:47	MarkDuplicates	Read 192000000 records. Tracking 3120558 as yet unmatched pairs. 264864 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:56:56	MarkDuplicates	Read 193000000 records. Tracking 3132794 as yet unmatched pairs. 262935 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:57:06	MarkDuplicates	Read 194000000 records. Tracking 3146336 as yet unmatched pairs. 260544 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:57:15	MarkDuplicates	Read 195000000 records. Tracking 3158750 as yet unmatched pairs. 258306 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:57:24	MarkDuplicates	Read 196000000 records. Tracking 3170716 as yet unmatched pairs. 255968 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:57:34	MarkDuplicates	Read 197000000 records. Tracking 3183538 as yet unmatched pairs. 253604 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:57:43	MarkDuplicates	Read 198000000 records. Tracking 3196044 as yet unmatched pairs. 251311 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:57:54	MarkDuplicates	Read 199000000 records. Tracking 3208864 as yet unmatched pairs. 248823 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:58:11	MarkDuplicates	Read 200000000 records. Tracking 3222192 as yet unmatched pairs. 246043 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:58:20	MarkDuplicates	Read 201000000 records. Tracking 3235208 as yet unmatched pairs. 243382 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:58:28	MarkDuplicates	Read 202000000 records. Tracking 3247818 as yet unmatched pairs. 240787 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:58:38	MarkDuplicates	Read 203000000 records. Tracking 3261302 as yet unmatched pairs. 237965 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:58:48	MarkDuplicates	Read 204000000 records. Tracking 3273810 as yet unmatched pairs. 235289 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:58:56	MarkDuplicates	Read 205000000 records. Tracking 3286170 as yet unmatched pairs. 232233 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:59:05	MarkDuplicates	Read 206000000 records. Tracking 3298384 as yet unmatched pairs. 229501 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:59:14	MarkDuplicates	Read 207000000 records. Tracking 3310050 as yet unmatched pairs. 226849 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:59:22	MarkDuplicates	Read 208000000 records. Tracking 3322322 as yet unmatched pairs. 224073 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:59:31	MarkDuplicates	Read 209000000 records. Tracking 3334538 as yet unmatched pairs. 221296 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:59:41	MarkDuplicates	Read 210000000 records. Tracking 3346530 as yet unmatched pairs. 218579 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:59:50	MarkDuplicates	Read 211000000 records. Tracking 3357978 as yet unmatched pairs. 215742 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 18:59:58	MarkDuplicates	Read 212000000 records. Tracking 3370238 as yet unmatched pairs. 212932 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:00:07	MarkDuplicates	Read 213000000 records. Tracking 3380490 as yet unmatched pairs. 210382 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:00:16	MarkDuplicates	Read 214000000 records. Tracking 3391446 as yet unmatched pairs. 207904 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:00:24	MarkDuplicates	Read 215000000 records. Tracking 3401764 as yet unmatched pairs. 205225 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:00:33	MarkDuplicates	Read 216000000 records. Tracking 3412656 as yet unmatched pairs. 202460 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:00:42	MarkDuplicates	Read 217000000 records. Tracking 3423236 as yet unmatched pairs. 200041 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:00:50	MarkDuplicates	Read 218000000 records. Tracking 3434260 as yet unmatched pairs. 196967 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:01:00	MarkDuplicates	Read 219000000 records. Tracking 3445664 as yet unmatched pairs. 193918 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:01:09	MarkDuplicates	Read 220000000 records. Tracking 3457296 as yet unmatched pairs. 190845 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:01:17	MarkDuplicates	Read 221000000 records. Tracking 3467976 as yet unmatched pairs. 187916 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:01:26	MarkDuplicates	Read 222000000 records. Tracking 3479212 as yet unmatched pairs. 184742 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:01:48	MarkDuplicates	Read 223000000 records. Tracking 3491432 as yet unmatched pairs. 181493 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:01:58	MarkDuplicates	Read 224000000 records. Tracking 3503274 as yet unmatched pairs. 178096 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:02:06	MarkDuplicates	Read 225000000 records. Tracking 3514328 as yet unmatched pairs. 175229 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:02:15	MarkDuplicates	Read 226000000 records. Tracking 3524794 as yet unmatched pairs. 172121 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:02:24	MarkDuplicates	Read 227000000 records. Tracking 3535738 as yet unmatched pairs. 168829 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:02:32	MarkDuplicates	Read 228000000 records. Tracking 3547068 as yet unmatched pairs. 165365 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:03:43	MarkDuplicates	Read 229000000 records. Tracking 3558494 as yet unmatched pairs. 161574 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:03:52	MarkDuplicates	Read 230000000 records. Tracking 3570816 as yet unmatched pairs. 157970 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:04:01	MarkDuplicates	Read 231000000 records. Tracking 3581532 as yet unmatched pairs. 154444 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:04:11	MarkDuplicates	Read 232000000 records. Tracking 3592342 as yet unmatched pairs. 150902 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:04:21	MarkDuplicates	Read 233000000 records. Tracking 3603284 as yet unmatched pairs. 147240 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:04:29	MarkDuplicates	Read 234000000 records. Tracking 3614974 as yet unmatched pairs. 143370 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:04:40	MarkDuplicates	Read 235000000 records. Tracking 3627098 as yet unmatched pairs. 139465 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:04:49	MarkDuplicates	Read 236000000 records. Tracking 3638484 as yet unmatched pairs. 135596 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:04:59	MarkDuplicates	Read 237000000 records. Tracking 3650208 as yet unmatched pairs. 131772 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:05:08	MarkDuplicates	Read 238000000 records. Tracking 3661670 as yet unmatched pairs. 127821 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:05:18	MarkDuplicates	Read 239000000 records. Tracking 3672928 as yet unmatched pairs. 123669 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:05:27	MarkDuplicates	Read 240000000 records. Tracking 3684656 as yet unmatched pairs. 119206 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:05:35	MarkDuplicates	Read 241000000 records. Tracking 3696574 as yet unmatched pairs. 114961 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:05:45	MarkDuplicates	Read 242000000 records. Tracking 3707936 as yet unmatched pairs. 110631 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:05:54	MarkDuplicates	Read 243000000 records. Tracking 3718604 as yet unmatched pairs. 106614 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:06:01	MarkDuplicates	Read 244000000 records. Tracking 3728996 as yet unmatched pairs. 103108 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:06:11	MarkDuplicates	Read 245000000 records. Tracking 3739100 as yet unmatched pairs. 99137 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:06:20	MarkDuplicates	Read 246000000 records. Tracking 3749430 as yet unmatched pairs. 95148 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:06:28	MarkDuplicates	Read 247000000 records. Tracking 3759950 as yet unmatched pairs. 91255 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:06:50	MarkDuplicates	Read 248000000 records. Tracking 3770456 as yet unmatched pairs. 87173 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:07:01	MarkDuplicates	Read 249000000 records. Tracking 3781868 as yet unmatched pairs. 82845 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:07:10	MarkDuplicates	Read 250000000 records. Tracking 3792708 as yet unmatched pairs. 78442 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:07:18	MarkDuplicates	Read 251000000 records. Tracking 3803076 as yet unmatched pairs. 74074 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:07:27	MarkDuplicates	Read 252000000 records. Tracking 3813262 as yet unmatched pairs. 69795 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:07:36	MarkDuplicates	Read 253000000 records. Tracking 3823356 as yet unmatched pairs. 65820 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:07:44	MarkDuplicates	Read 254000000 records. Tracking 3832536 as yet unmatched pairs. 61834 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:07:53	MarkDuplicates	Read 255000000 records. Tracking 3842438 as yet unmatched pairs. 57390 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:08:02	MarkDuplicates	Read 256000000 records. Tracking 3851586 as yet unmatched pairs. 53246 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:08:10	MarkDuplicates	Read 257000000 records. Tracking 3862180 as yet unmatched pairs. 48707 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:08:19	MarkDuplicates	Read 258000000 records. Tracking 3872072 as yet unmatched pairs. 44541 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:08:28	MarkDuplicates	Read 259000000 records. Tracking 3881022 as yet unmatched pairs. 40456 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:08:38	MarkDuplicates	Read 260000000 records. Tracking 3891474 as yet unmatched pairs. 35877 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:08:47	MarkDuplicates	Read 261000000 records. Tracking 3902000 as yet unmatched pairs. 31068 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:08:56	MarkDuplicates	Read 262000000 records. Tracking 3912066 as yet unmatched pairs. 26338 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:09:06	MarkDuplicates	Read 263000000 records. Tracking 3921932 as yet unmatched pairs. 21636 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:09:17	MarkDuplicates	Read 264000000 records. Tracking 3932406 as yet unmatched pairs. 16724 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:09:27	MarkDuplicates	Read 265000000 records. Tracking 3942154 as yet unmatched pairs. 12087 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:09:35	MarkDuplicates	Read 266000000 records. Tracking 3951768 as yet unmatched pairs. 7292 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:09:45	MarkDuplicates	Read 267000000 records. Tracking 3961652 as yet unmatched pairs. 2193 records in RAM.  Last sequence index: 2
+INFO	2013-06-16 19:10:03	MarkDuplicates	Read 268000000 records. Tracking 3972128 as yet unmatched pairs. 424821 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:10:13	MarkDuplicates	Read 269000000 records. Tracking 3982430 as yet unmatched pairs. 421170 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:10:21	MarkDuplicates	Read 270000000 records. Tracking 3992482 as yet unmatched pairs. 417893 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:10:43	MarkDuplicates	Read 271000000 records. Tracking 4002576 as yet unmatched pairs. 414089 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:10:52	MarkDuplicates	Read 272000000 records. Tracking 4012996 as yet unmatched pairs. 410635 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:11:01	MarkDuplicates	Read 273000000 records. Tracking 4023278 as yet unmatched pairs. 407194 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:11:10	MarkDuplicates	Read 274000000 records. Tracking 4032694 as yet unmatched pairs. 403814 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:12:23	MarkDuplicates	Read 275000000 records. Tracking 4042125 as yet unmatched pairs. 400214 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:12:33	MarkDuplicates	Read 276000000 records. Tracking 4051468 as yet unmatched pairs. 396643 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:12:43	MarkDuplicates	Read 277000000 records. Tracking 4061388 as yet unmatched pairs. 392910 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:12:52	MarkDuplicates	Read 278000000 records. Tracking 4069864 as yet unmatched pairs. 389540 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:13:01	MarkDuplicates	Read 279000000 records. Tracking 4078256 as yet unmatched pairs. 386424 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:13:10	MarkDuplicates	Read 280000000 records. Tracking 4086292 as yet unmatched pairs. 382997 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:14:37	MarkDuplicates	Read 281000000 records. Tracking 4094706 as yet unmatched pairs. 379624 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:14:47	MarkDuplicates	Read 282000000 records. Tracking 4103224 as yet unmatched pairs. 376065 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:14:56	MarkDuplicates	Read 283000000 records. Tracking 4112540 as yet unmatched pairs. 372015 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:15:05	MarkDuplicates	Read 284000000 records. Tracking 4121844 as yet unmatched pairs. 368164 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:15:13	MarkDuplicates	Read 285000000 records. Tracking 4131226 as yet unmatched pairs. 364612 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:15:22	MarkDuplicates	Read 286000000 records. Tracking 4140404 as yet unmatched pairs. 361079 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:15:31	MarkDuplicates	Read 287000000 records. Tracking 4149324 as yet unmatched pairs. 357263 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:15:39	MarkDuplicates	Read 288000000 records. Tracking 4159110 as yet unmatched pairs. 352970 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:15:48	MarkDuplicates	Read 289000000 records. Tracking 4169392 as yet unmatched pairs. 348542 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:15:57	MarkDuplicates	Read 290000000 records. Tracking 4179370 as yet unmatched pairs. 344220 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:16:06	MarkDuplicates	Read 291000000 records. Tracking 4188562 as yet unmatched pairs. 340165 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:16:15	MarkDuplicates	Read 292000000 records. Tracking 4196950 as yet unmatched pairs. 336253 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:16:23	MarkDuplicates	Read 293000000 records. Tracking 4205496 as yet unmatched pairs. 332657 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:16:32	MarkDuplicates	Read 294000000 records. Tracking 4213432 as yet unmatched pairs. 328785 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:16:40	MarkDuplicates	Read 295000000 records. Tracking 4221602 as yet unmatched pairs. 325207 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:16:50	MarkDuplicates	Read 296000000 records. Tracking 4229806 as yet unmatched pairs. 321104 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:17:00	MarkDuplicates	Read 297000000 records. Tracking 4239060 as yet unmatched pairs. 316752 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:17:08	MarkDuplicates	Read 298000000 records. Tracking 4247738 as yet unmatched pairs. 312763 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:17:17	MarkDuplicates	Read 299000000 records. Tracking 4256852 as yet unmatched pairs. 308490 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:17:35	MarkDuplicates	Read 300000000 records. Tracking 4265740 as yet unmatched pairs. 304150 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:17:43	MarkDuplicates	Read 301000000 records. Tracking 4274898 as yet unmatched pairs. 299380 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:17:51	MarkDuplicates	Read 302000000 records. Tracking 4283622 as yet unmatched pairs. 295031 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:18:01	MarkDuplicates	Read 303000000 records. Tracking 4291900 as yet unmatched pairs. 290550 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:18:11	MarkDuplicates	Read 304000000 records. Tracking 4300698 as yet unmatched pairs. 285671 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:18:20	MarkDuplicates	Read 305000000 records. Tracking 4309292 as yet unmatched pairs. 281243 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:18:28	MarkDuplicates	Read 306000000 records. Tracking 4317672 as yet unmatched pairs. 276815 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:18:37	MarkDuplicates	Read 307000000 records. Tracking 4326212 as yet unmatched pairs. 271907 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:18:45	MarkDuplicates	Read 308000000 records. Tracking 4333876 as yet unmatched pairs. 267519 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:18:54	MarkDuplicates	Read 309000000 records. Tracking 4341668 as yet unmatched pairs. 263132 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:19:03	MarkDuplicates	Read 310000000 records. Tracking 4349874 as yet unmatched pairs. 258440 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:19:11	MarkDuplicates	Read 311000000 records. Tracking 4357772 as yet unmatched pairs. 253995 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:19:20	MarkDuplicates	Read 312000000 records. Tracking 4366594 as yet unmatched pairs. 249056 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:19:29	MarkDuplicates	Read 313000000 records. Tracking 4374740 as yet unmatched pairs. 244115 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:19:39	MarkDuplicates	Read 314000000 records. Tracking 4383396 as yet unmatched pairs. 239069 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:19:48	MarkDuplicates	Read 315000000 records. Tracking 4391890 as yet unmatched pairs. 233731 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:19:58	MarkDuplicates	Read 316000000 records. Tracking 4400004 as yet unmatched pairs. 228630 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:20:06	MarkDuplicates	Read 317000000 records. Tracking 4407902 as yet unmatched pairs. 223631 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:20:16	MarkDuplicates	Read 318000000 records. Tracking 4416200 as yet unmatched pairs. 218552 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:20:25	MarkDuplicates	Read 319000000 records. Tracking 4424278 as yet unmatched pairs. 213787 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:20:33	MarkDuplicates	Read 320000000 records. Tracking 4431332 as yet unmatched pairs. 209121 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:21:44	MarkDuplicates	Read 321000000 records. Tracking 4438708 as yet unmatched pairs. 204250 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:21:52	MarkDuplicates	Read 322000000 records. Tracking 4446424 as yet unmatched pairs. 199049 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:22:02	MarkDuplicates	Read 323000000 records. Tracking 4454500 as yet unmatched pairs. 193974 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:22:12	MarkDuplicates	Read 324000000 records. Tracking 4462130 as yet unmatched pairs. 188699 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:22:23	MarkDuplicates	Read 325000000 records. Tracking 4469462 as yet unmatched pairs. 183852 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:22:33	MarkDuplicates	Read 326000000 records. Tracking 4477124 as yet unmatched pairs. 178733 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:22:43	MarkDuplicates	Read 327000000 records. Tracking 4485226 as yet unmatched pairs. 173441 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:22:53	MarkDuplicates	Read 328000000 records. Tracking 4492328 as yet unmatched pairs. 168521 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:23:04	MarkDuplicates	Read 329000000 records. Tracking 4499780 as yet unmatched pairs. 163924 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:23:23	MarkDuplicates	Read 330000000 records. Tracking 4507118 as yet unmatched pairs. 158936 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:23:31	MarkDuplicates	Read 331000000 records. Tracking 4513508 as yet unmatched pairs. 153997 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:23:40	MarkDuplicates	Read 332000000 records. Tracking 4520274 as yet unmatched pairs. 148857 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:23:49	MarkDuplicates	Read 333000000 records. Tracking 4527716 as yet unmatched pairs. 143159 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:23:58	MarkDuplicates	Read 334000000 records. Tracking 4535566 as yet unmatched pairs. 137588 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:24:07	MarkDuplicates	Read 335000000 records. Tracking 4543378 as yet unmatched pairs. 131752 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:24:17	MarkDuplicates	Read 336000000 records. Tracking 4551104 as yet unmatched pairs. 125774 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:24:25	MarkDuplicates	Read 337000000 records. Tracking 4558870 as yet unmatched pairs. 120025 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:24:34	MarkDuplicates	Read 338000000 records. Tracking 4566484 as yet unmatched pairs. 114259 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:24:44	MarkDuplicates	Read 339000000 records. Tracking 4573672 as yet unmatched pairs. 108543 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:24:52	MarkDuplicates	Read 340000000 records. Tracking 4580972 as yet unmatched pairs. 102547 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:25:01	MarkDuplicates	Read 341000000 records. Tracking 4587764 as yet unmatched pairs. 96807 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:25:10	MarkDuplicates	Read 342000000 records. Tracking 4594160 as yet unmatched pairs. 91297 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:25:19	MarkDuplicates	Read 343000000 records. Tracking 4601472 as yet unmatched pairs. 85024 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:25:28	MarkDuplicates	Read 344000000 records. Tracking 4608102 as yet unmatched pairs. 79358 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:25:37	MarkDuplicates	Read 345000000 records. Tracking 4614640 as yet unmatched pairs. 73845 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:25:47	MarkDuplicates	Read 346000000 records. Tracking 4621716 as yet unmatched pairs. 67814 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:25:54	MarkDuplicates	Read 347000000 records. Tracking 4628136 as yet unmatched pairs. 61708 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:26:04	MarkDuplicates	Read 348000000 records. Tracking 4635360 as yet unmatched pairs. 55493 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:26:13	MarkDuplicates	Read 349000000 records. Tracking 4641838 as yet unmatched pairs. 49502 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:26:21	MarkDuplicates	Read 350000000 records. Tracking 4648766 as yet unmatched pairs. 43485 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:26:31	MarkDuplicates	Read 351000000 records. Tracking 4655260 as yet unmatched pairs. 37460 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:26:40	MarkDuplicates	Read 352000000 records. Tracking 4661532 as yet unmatched pairs. 31416 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:26:48	MarkDuplicates	Read 353000000 records. Tracking 4667874 as yet unmatched pairs. 25704 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:26:57	MarkDuplicates	Read 354000000 records. Tracking 4674244 as yet unmatched pairs. 19886 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:27:08	MarkDuplicates	Read 355000000 records. Tracking 4680748 as yet unmatched pairs. 13904 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:27:18	MarkDuplicates	Read 356000000 records. Tracking 4687598 as yet unmatched pairs. 7565 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:27:27	MarkDuplicates	Read 357000000 records. Tracking 4693814 as yet unmatched pairs. 1367 records in RAM.  Last sequence index: 3
+INFO	2013-06-16 19:27:46	MarkDuplicates	Read 358000000 records. Tracking 4700988 as yet unmatched pairs. 465550 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:28:08	MarkDuplicates	Read 359000000 records. Tracking 4707846 as yet unmatched pairs. 460245 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:28:19	MarkDuplicates	Read 360000000 records. Tracking 4714342 as yet unmatched pairs. 454729 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:28:29	MarkDuplicates	Read 361000000 records. Tracking 4720492 as yet unmatched pairs. 449626 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:28:39	MarkDuplicates	Read 362000000 records. Tracking 4726796 as yet unmatched pairs. 444507 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:28:47	MarkDuplicates	Read 363000000 records. Tracking 4733448 as yet unmatched pairs. 438985 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:28:57	MarkDuplicates	Read 364000000 records. Tracking 4739336 as yet unmatched pairs. 433860 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:29:08	MarkDuplicates	Read 365000000 records. Tracking 4745344 as yet unmatched pairs. 429158 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:29:18	MarkDuplicates	Read 366000000 records. Tracking 4751362 as yet unmatched pairs. 424615 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:30:34	MarkDuplicates	Read 367000000 records. Tracking 4757240 as yet unmatched pairs. 419336 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:30:43	MarkDuplicates	Read 368000000 records. Tracking 4763250 as yet unmatched pairs. 414650 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:30:52	MarkDuplicates	Read 369000000 records. Tracking 4768810 as yet unmatched pairs. 409433 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:31:00	MarkDuplicates	Read 370000000 records. Tracking 4774472 as yet unmatched pairs. 404159 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:31:11	MarkDuplicates	Read 371000000 records. Tracking 4781084 as yet unmatched pairs. 398226 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:31:21	MarkDuplicates	Read 372000000 records. Tracking 4787566 as yet unmatched pairs. 392400 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:31:31	MarkDuplicates	Read 373000000 records. Tracking 4793690 as yet unmatched pairs. 386795 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:33:03	MarkDuplicates	Read 374000000 records. Tracking 4799800 as yet unmatched pairs. 381152 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:33:15	MarkDuplicates	Read 375000000 records. Tracking 4805948 as yet unmatched pairs. 374976 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:33:24	MarkDuplicates	Read 376000000 records. Tracking 4811934 as yet unmatched pairs. 368950 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:33:33	MarkDuplicates	Read 377000000 records. Tracking 4817854 as yet unmatched pairs. 363311 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:33:44	MarkDuplicates	Read 378000000 records. Tracking 4824168 as yet unmatched pairs. 357208 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:33:53	MarkDuplicates	Read 379000000 records. Tracking 4829934 as yet unmatched pairs. 351370 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:34:03	MarkDuplicates	Read 380000000 records. Tracking 4835904 as yet unmatched pairs. 345208 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:34:11	MarkDuplicates	Read 381000000 records. Tracking 4842104 as yet unmatched pairs. 338915 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:34:21	MarkDuplicates	Read 382000000 records. Tracking 4848112 as yet unmatched pairs. 332566 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:34:33	MarkDuplicates	Read 383000000 records. Tracking 4853906 as yet unmatched pairs. 326371 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:34:43	MarkDuplicates	Read 384000000 records. Tracking 4859768 as yet unmatched pairs. 319792 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:34:54	MarkDuplicates	Read 385000000 records. Tracking 4865922 as yet unmatched pairs. 313548 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:35:05	MarkDuplicates	Read 386000000 records. Tracking 4871710 as yet unmatched pairs. 307262 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:35:13	MarkDuplicates	Read 387000000 records. Tracking 4877220 as yet unmatched pairs. 301211 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:35:23	MarkDuplicates	Read 388000000 records. Tracking 4882162 as yet unmatched pairs. 295506 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:35:33	MarkDuplicates	Read 389000000 records. Tracking 4887602 as yet unmatched pairs. 289404 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:35:43	MarkDuplicates	Read 390000000 records. Tracking 4892686 as yet unmatched pairs. 283352 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:35:52	MarkDuplicates	Read 391000000 records. Tracking 4897990 as yet unmatched pairs. 277137 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:36:02	MarkDuplicates	Read 392000000 records. Tracking 4902998 as yet unmatched pairs. 271120 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:36:21	MarkDuplicates	Read 393000000 records. Tracking 4908332 as yet unmatched pairs. 264704 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:36:30	MarkDuplicates	Read 394000000 records. Tracking 4913908 as yet unmatched pairs. 257832 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:36:41	MarkDuplicates	Read 395000000 records. Tracking 4919022 as yet unmatched pairs. 251524 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:36:51	MarkDuplicates	Read 396000000 records. Tracking 4923838 as yet unmatched pairs. 245179 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:36:59	MarkDuplicates	Read 397000000 records. Tracking 4928684 as yet unmatched pairs. 238584 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:37:08	MarkDuplicates	Read 398000000 records. Tracking 4933530 as yet unmatched pairs. 232676 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:37:17	MarkDuplicates	Read 399000000 records. Tracking 4938208 as yet unmatched pairs. 226490 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:37:26	MarkDuplicates	Read 400000000 records. Tracking 4942936 as yet unmatched pairs. 220055 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:37:35	MarkDuplicates	Read 401000000 records. Tracking 4948230 as yet unmatched pairs. 213374 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:37:44	MarkDuplicates	Read 402000000 records. Tracking 4952960 as yet unmatched pairs. 206287 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:37:53	MarkDuplicates	Read 403000000 records. Tracking 4958260 as yet unmatched pairs. 199307 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:38:01	MarkDuplicates	Read 404000000 records. Tracking 4963214 as yet unmatched pairs. 192051 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:38:13	MarkDuplicates	Read 405000000 records. Tracking 4968028 as yet unmatched pairs. 185541 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:38:24	MarkDuplicates	Read 406000000 records. Tracking 4973508 as yet unmatched pairs. 178273 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:38:32	MarkDuplicates	Read 407000000 records. Tracking 4978226 as yet unmatched pairs. 171524 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:38:42	MarkDuplicates	Read 408000000 records. Tracking 4983336 as yet unmatched pairs. 164548 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:38:52	MarkDuplicates	Read 409000000 records. Tracking 4988088 as yet unmatched pairs. 157441 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:39:01	MarkDuplicates	Read 410000000 records. Tracking 4993122 as yet unmatched pairs. 150103 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:39:10	MarkDuplicates	Read 411000000 records. Tracking 4997882 as yet unmatched pairs. 143067 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:40:24	MarkDuplicates	Read 412000000 records. Tracking 5002610 as yet unmatched pairs. 135398 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:40:33	MarkDuplicates	Read 413000000 records. Tracking 5008032 as yet unmatched pairs. 127925 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:40:42	MarkDuplicates	Read 414000000 records. Tracking 5013166 as yet unmatched pairs. 120377 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:40:52	MarkDuplicates	Read 415000000 records. Tracking 5018040 as yet unmatched pairs. 113508 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:41:01	MarkDuplicates	Read 416000000 records. Tracking 5022900 as yet unmatched pairs. 106167 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:41:09	MarkDuplicates	Read 417000000 records. Tracking 5027372 as yet unmatched pairs. 98412 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:41:19	MarkDuplicates	Read 418000000 records. Tracking 5031952 as yet unmatched pairs. 90906 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:41:29	MarkDuplicates	Read 419000000 records. Tracking 5036688 as yet unmatched pairs. 83040 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:41:39	MarkDuplicates	Read 420000000 records. Tracking 5041380 as yet unmatched pairs. 75018 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:41:49	MarkDuplicates	Read 421000000 records. Tracking 5046072 as yet unmatched pairs. 67381 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:41:58	MarkDuplicates	Read 422000000 records. Tracking 5050604 as yet unmatched pairs. 59800 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:42:06	MarkDuplicates	Read 423000000 records. Tracking 5055236 as yet unmatched pairs. 52188 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:42:15	MarkDuplicates	Read 424000000 records. Tracking 5059258 as yet unmatched pairs. 44757 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:42:24	MarkDuplicates	Read 425000000 records. Tracking 5063168 as yet unmatched pairs. 36920 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:42:32	MarkDuplicates	Read 426000000 records. Tracking 5067106 as yet unmatched pairs. 29759 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:42:42	MarkDuplicates	Read 427000000 records. Tracking 5071306 as yet unmatched pairs. 22424 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:43:02	MarkDuplicates	Read 428000000 records. Tracking 5075618 as yet unmatched pairs. 14623 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:43:11	MarkDuplicates	Read 429000000 records. Tracking 5080200 as yet unmatched pairs. 6550 records in RAM.  Last sequence index: 4
+INFO	2013-06-16 19:43:31	MarkDuplicates	Read 430000000 records. Tracking 5084526 as yet unmatched pairs. 590111 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:43:40	MarkDuplicates	Read 431000000 records. Tracking 5088380 as yet unmatched pairs. 583558 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:43:49	MarkDuplicates	Read 432000000 records. Tracking 5092664 as yet unmatched pairs. 576767 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:43:57	MarkDuplicates	Read 433000000 records. Tracking 5096720 as yet unmatched pairs. 570401 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:44:06	MarkDuplicates	Read 434000000 records. Tracking 5100618 as yet unmatched pairs. 563756 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:44:15	MarkDuplicates	Read 435000000 records. Tracking 5104754 as yet unmatched pairs. 557197 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:44:28	MarkDuplicates	Read 436000000 records. Tracking 5108806 as yet unmatched pairs. 550271 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:44:35	MarkDuplicates	Read 437000000 records. Tracking 5113034 as yet unmatched pairs. 543603 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:44:45	MarkDuplicates	Read 438000000 records. Tracking 5117176 as yet unmatched pairs. 537009 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:44:55	MarkDuplicates	Read 439000000 records. Tracking 5120938 as yet unmatched pairs. 530350 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:45:04	MarkDuplicates	Read 440000000 records. Tracking 5124736 as yet unmatched pairs. 523425 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:45:14	MarkDuplicates	Read 441000000 records. Tracking 5128906 as yet unmatched pairs. 516832 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:45:23	MarkDuplicates	Read 442000000 records. Tracking 5132696 as yet unmatched pairs. 509033 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:45:32	MarkDuplicates	Read 443000000 records. Tracking 5136604 as yet unmatched pairs. 501846 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:45:40	MarkDuplicates	Read 444000000 records. Tracking 5140432 as yet unmatched pairs. 494924 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:45:50	MarkDuplicates	Read 445000000 records. Tracking 5144718 as yet unmatched pairs. 487920 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:46:00	MarkDuplicates	Read 446000000 records. Tracking 5148278 as yet unmatched pairs. 480881 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:46:09	MarkDuplicates	Read 447000000 records. Tracking 5151394 as yet unmatched pairs. 473813 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:46:18	MarkDuplicates	Read 448000000 records. Tracking 5154490 as yet unmatched pairs. 467082 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:46:27	MarkDuplicates	Read 449000000 records. Tracking 5158126 as yet unmatched pairs. 460023 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:46:35	MarkDuplicates	Read 450000000 records. Tracking 5161336 as yet unmatched pairs. 452928 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:46:44	MarkDuplicates	Read 451000000 records. Tracking 5164209 as yet unmatched pairs. 445778 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:46:55	MarkDuplicates	Read 452000000 records. Tracking 5167860 as yet unmatched pairs. 438245 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:47:05	MarkDuplicates	Read 453000000 records. Tracking 5171056 as yet unmatched pairs. 431430 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:47:14	MarkDuplicates	Read 454000000 records. Tracking 5173838 as yet unmatched pairs. 424528 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:47:24	MarkDuplicates	Read 455000000 records. Tracking 5176766 as yet unmatched pairs. 417829 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:47:33	MarkDuplicates	Read 456000000 records. Tracking 5179572 as yet unmatched pairs. 410835 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:47:41	MarkDuplicates	Read 457000000 records. Tracking 5182440 as yet unmatched pairs. 403705 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:48:56	MarkDuplicates	Read 458000000 records. Tracking 5185402 as yet unmatched pairs. 396351 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:49:05	MarkDuplicates	Read 459000000 records. Tracking 5188888 as yet unmatched pairs. 388537 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:49:15	MarkDuplicates	Read 460000000 records. Tracking 5191822 as yet unmatched pairs. 380813 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:49:24	MarkDuplicates	Read 461000000 records. Tracking 5194508 as yet unmatched pairs. 372698 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:49:33	MarkDuplicates	Read 462000000 records. Tracking 5197514 as yet unmatched pairs. 365067 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:49:53	MarkDuplicates	Read 463000000 records. Tracking 5200486 as yet unmatched pairs. 357140 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:50:01	MarkDuplicates	Read 464000000 records. Tracking 5203598 as yet unmatched pairs. 349346 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:50:09	MarkDuplicates	Read 465000000 records. Tracking 5206488 as yet unmatched pairs. 341002 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:50:18	MarkDuplicates	Read 466000000 records. Tracking 5209564 as yet unmatched pairs. 332332 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:51:51	MarkDuplicates	Read 467000000 records. Tracking 5212194 as yet unmatched pairs. 324388 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:52:01	MarkDuplicates	Read 468000000 records. Tracking 5215048 as yet unmatched pairs. 316798 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:52:10	MarkDuplicates	Read 469000000 records. Tracking 5217282 as yet unmatched pairs. 309344 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:52:19	MarkDuplicates	Read 470000000 records. Tracking 5219548 as yet unmatched pairs. 302377 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:52:27	MarkDuplicates	Read 471000000 records. Tracking 5222038 as yet unmatched pairs. 294713 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:52:37	MarkDuplicates	Read 472000000 records. Tracking 5224500 as yet unmatched pairs. 286886 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:52:46	MarkDuplicates	Read 473000000 records. Tracking 5226584 as yet unmatched pairs. 279170 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:52:54	MarkDuplicates	Read 474000000 records. Tracking 5228942 as yet unmatched pairs. 271186 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:53:03	MarkDuplicates	Read 475000000 records. Tracking 5230896 as yet unmatched pairs. 263536 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:53:13	MarkDuplicates	Read 476000000 records. Tracking 5232932 as yet unmatched pairs. 255427 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:53:21	MarkDuplicates	Read 477000000 records. Tracking 5235520 as yet unmatched pairs. 247340 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:53:30	MarkDuplicates	Read 478000000 records. Tracking 5238098 as yet unmatched pairs. 239003 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:53:40	MarkDuplicates	Read 479000000 records. Tracking 5240356 as yet unmatched pairs. 230696 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:53:48	MarkDuplicates	Read 480000000 records. Tracking 5242462 as yet unmatched pairs. 222625 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:53:57	MarkDuplicates	Read 481000000 records. Tracking 5244550 as yet unmatched pairs. 214179 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:54:07	MarkDuplicates	Read 482000000 records. Tracking 5246642 as yet unmatched pairs. 205575 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:54:16	MarkDuplicates	Read 483000000 records. Tracking 5248492 as yet unmatched pairs. 197177 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:54:24	MarkDuplicates	Read 484000000 records. Tracking 5250434 as yet unmatched pairs. 188781 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:54:34	MarkDuplicates	Read 485000000 records. Tracking 5252340 as yet unmatched pairs. 180316 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:54:43	MarkDuplicates	Read 486000000 records. Tracking 5254276 as yet unmatched pairs. 172320 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:54:52	MarkDuplicates	Read 487000000 records. Tracking 5256290 as yet unmatched pairs. 163928 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:55:01	MarkDuplicates	Read 488000000 records. Tracking 5258090 as yet unmatched pairs. 155991 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:55:12	MarkDuplicates	Read 489000000 records. Tracking 5259608 as yet unmatched pairs. 147692 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:55:19	MarkDuplicates	Read 490000000 records. Tracking 5261370 as yet unmatched pairs. 138940 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:55:28	MarkDuplicates	Read 491000000 records. Tracking 5263334 as yet unmatched pairs. 130554 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:55:38	MarkDuplicates	Read 492000000 records. Tracking 5264896 as yet unmatched pairs. 121854 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:55:46	MarkDuplicates	Read 493000000 records. Tracking 5266786 as yet unmatched pairs. 112844 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:55:55	MarkDuplicates	Read 494000000 records. Tracking 5268182 as yet unmatched pairs. 104555 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:56:04	MarkDuplicates	Read 495000000 records. Tracking 5269690 as yet unmatched pairs. 95962 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:56:13	MarkDuplicates	Read 496000000 records. Tracking 5271710 as yet unmatched pairs. 87100 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:56:21	MarkDuplicates	Read 497000000 records. Tracking 5273036 as yet unmatched pairs. 77984 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:56:30	MarkDuplicates	Read 498000000 records. Tracking 5274918 as yet unmatched pairs. 69396 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:56:40	MarkDuplicates	Read 499000000 records. Tracking 5277146 as yet unmatched pairs. 60743 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:56:49	MarkDuplicates	Read 500000000 records. Tracking 5278374 as yet unmatched pairs. 51815 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:56:59	MarkDuplicates	Read 501000000 records. Tracking 5279964 as yet unmatched pairs. 42975 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:57:24	MarkDuplicates	Read 502000000 records. Tracking 5281758 as yet unmatched pairs. 33909 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:57:32	MarkDuplicates	Read 503000000 records. Tracking 5283334 as yet unmatched pairs. 24664 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:58:46	MarkDuplicates	Read 504000000 records. Tracking 5284882 as yet unmatched pairs. 16274 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:58:55	MarkDuplicates	Read 505000000 records. Tracking 5286152 as yet unmatched pairs. 7211 records in RAM.  Last sequence index: 5
+INFO	2013-06-16 19:59:14	MarkDuplicates	Read 506000000 records. Tracking 5287594 as yet unmatched pairs. 534862 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 19:59:24	MarkDuplicates	Read 507000000 records. Tracking 5289282 as yet unmatched pairs. 526893 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 19:59:34	MarkDuplicates	Read 508000000 records. Tracking 5290420 as yet unmatched pairs. 518759 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 19:59:42	MarkDuplicates	Read 509000000 records. Tracking 5291640 as yet unmatched pairs. 510880 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 19:59:50	MarkDuplicates	Read 510000000 records. Tracking 5292450 as yet unmatched pairs. 503006 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 19:59:59	MarkDuplicates	Read 511000000 records. Tracking 5293490 as yet unmatched pairs. 495151 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:00:08	MarkDuplicates	Read 512000000 records. Tracking 5294384 as yet unmatched pairs. 487487 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:00:16	MarkDuplicates	Read 513000000 records. Tracking 5295624 as yet unmatched pairs. 479628 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:00:25	MarkDuplicates	Read 514000000 records. Tracking 5296522 as yet unmatched pairs. 471627 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:00:34	MarkDuplicates	Read 515000000 records. Tracking 5297618 as yet unmatched pairs. 463614 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:00:44	MarkDuplicates	Read 516000000 records. Tracking 5298504 as yet unmatched pairs. 454702 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:00:52	MarkDuplicates	Read 517000000 records. Tracking 5299622 as yet unmatched pairs. 446217 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:01:01	MarkDuplicates	Read 518000000 records. Tracking 5300702 as yet unmatched pairs. 437787 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:01:10	MarkDuplicates	Read 519000000 records. Tracking 5302284 as yet unmatched pairs. 429415 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:01:18	MarkDuplicates	Read 520000000 records. Tracking 5303240 as yet unmatched pairs. 420688 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:01:26	MarkDuplicates	Read 521000000 records. Tracking 5304292 as yet unmatched pairs. 412163 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:01:35	MarkDuplicates	Read 522000000 records. Tracking 5304870 as yet unmatched pairs. 403486 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:01:44	MarkDuplicates	Read 523000000 records. Tracking 5305654 as yet unmatched pairs. 395053 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:01:53	MarkDuplicates	Read 524000000 records. Tracking 5306648 as yet unmatched pairs. 386035 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:02:01	MarkDuplicates	Read 525000000 records. Tracking 5307510 as yet unmatched pairs. 377055 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:02:10	MarkDuplicates	Read 526000000 records. Tracking 5308328 as yet unmatched pairs. 368621 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:02:18	MarkDuplicates	Read 527000000 records. Tracking 5308694 as yet unmatched pairs. 359688 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:02:27	MarkDuplicates	Read 528000000 records. Tracking 5308840 as yet unmatched pairs. 350851 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:02:36	MarkDuplicates	Read 529000000 records. Tracking 5310172 as yet unmatched pairs. 341661 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:02:47	MarkDuplicates	Read 530000000 records. Tracking 5311110 as yet unmatched pairs. 332526 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:02:55	MarkDuplicates	Read 531000000 records. Tracking 5311822 as yet unmatched pairs. 323187 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:03:05	MarkDuplicates	Read 532000000 records. Tracking 5312248 as yet unmatched pairs. 314115 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:03:14	MarkDuplicates	Read 533000000 records. Tracking 5312562 as yet unmatched pairs. 305672 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:03:21	MarkDuplicates	Read 534000000 records. Tracking 5312758 as yet unmatched pairs. 297760 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:03:30	MarkDuplicates	Read 535000000 records. Tracking 5312818 as yet unmatched pairs. 289374 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:03:39	MarkDuplicates	Read 536000000 records. Tracking 5313088 as yet unmatched pairs. 280258 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:03:47	MarkDuplicates	Read 537000000 records. Tracking 5313234 as yet unmatched pairs. 271431 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:03:56	MarkDuplicates	Read 538000000 records. Tracking 5313350 as yet unmatched pairs. 261757 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:04:05	MarkDuplicates	Read 539000000 records. Tracking 5313264 as yet unmatched pairs. 252539 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:04:13	MarkDuplicates	Read 540000000 records. Tracking 5313494 as yet unmatched pairs. 243253 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:04:22	MarkDuplicates	Read 541000000 records. Tracking 5313784 as yet unmatched pairs. 233459 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:04:48	MarkDuplicates	Read 542000000 records. Tracking 5314062 as yet unmatched pairs. 223464 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:04:57	MarkDuplicates	Read 543000000 records. Tracking 5314140 as yet unmatched pairs. 213918 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:05:05	MarkDuplicates	Read 544000000 records. Tracking 5314098 as yet unmatched pairs. 204223 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:05:14	MarkDuplicates	Read 545000000 records. Tracking 5313726 as yet unmatched pairs. 194902 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:05:23	MarkDuplicates	Read 546000000 records. Tracking 5313716 as yet unmatched pairs. 185649 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:05:30	MarkDuplicates	Read 547000000 records. Tracking 5313338 as yet unmatched pairs. 176346 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:05:39	MarkDuplicates	Read 548000000 records. Tracking 5312838 as yet unmatched pairs. 167408 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:05:48	MarkDuplicates	Read 549000000 records. Tracking 5312542 as yet unmatched pairs. 158102 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:07:03	MarkDuplicates	Read 550000000 records. Tracking 5311844 as yet unmatched pairs. 148476 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:07:12	MarkDuplicates	Read 551000000 records. Tracking 5311726 as yet unmatched pairs. 139525 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:07:21	MarkDuplicates	Read 552000000 records. Tracking 5311540 as yet unmatched pairs. 130241 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:07:30	MarkDuplicates	Read 553000000 records. Tracking 5311192 as yet unmatched pairs. 120614 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:07:37	MarkDuplicates	Read 554000000 records. Tracking 5310820 as yet unmatched pairs. 111173 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:07:46	MarkDuplicates	Read 555000000 records. Tracking 5310432 as yet unmatched pairs. 101144 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:07:55	MarkDuplicates	Read 556000000 records. Tracking 5310224 as yet unmatched pairs. 91038 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:08:03	MarkDuplicates	Read 557000000 records. Tracking 5309600 as yet unmatched pairs. 81092 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:08:11	MarkDuplicates	Read 558000000 records. Tracking 5308958 as yet unmatched pairs. 71097 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:09:38	MarkDuplicates	Read 559000000 records. Tracking 5308310 as yet unmatched pairs. 60460 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:09:47	MarkDuplicates	Read 560000000 records. Tracking 5307922 as yet unmatched pairs. 50077 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:09:55	MarkDuplicates	Read 561000000 records. Tracking 5306914 as yet unmatched pairs. 39800 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:10:04	MarkDuplicates	Read 562000000 records. Tracking 5306176 as yet unmatched pairs. 30076 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:10:12	MarkDuplicates	Read 563000000 records. Tracking 5306066 as yet unmatched pairs. 19890 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:10:22	MarkDuplicates	Read 564000000 records. Tracking 5305294 as yet unmatched pairs. 9316 records in RAM.  Last sequence index: 6
+INFO	2013-06-16 20:10:44	MarkDuplicates	Read 565000000 records. Tracking 5304722 as yet unmatched pairs. 615825 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:10:54	MarkDuplicates	Read 566000000 records. Tracking 5303824 as yet unmatched pairs. 606879 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:11:02	MarkDuplicates	Read 567000000 records. Tracking 5302926 as yet unmatched pairs. 598459 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:11:11	MarkDuplicates	Read 568000000 records. Tracking 5302246 as yet unmatched pairs. 589296 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:11:19	MarkDuplicates	Read 569000000 records. Tracking 5301068 as yet unmatched pairs. 579736 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:11:27	MarkDuplicates	Read 570000000 records. Tracking 5300098 as yet unmatched pairs. 571131 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:11:35	MarkDuplicates	Read 571000000 records. Tracking 5299006 as yet unmatched pairs. 562209 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:11:45	MarkDuplicates	Read 572000000 records. Tracking 5298140 as yet unmatched pairs. 553019 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:11:54	MarkDuplicates	Read 573000000 records. Tracking 5297316 as yet unmatched pairs. 543464 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:12:02	MarkDuplicates	Read 574000000 records. Tracking 5296366 as yet unmatched pairs. 533717 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:12:11	MarkDuplicates	Read 575000000 records. Tracking 5294948 as yet unmatched pairs. 523791 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:12:20	MarkDuplicates	Read 576000000 records. Tracking 5293872 as yet unmatched pairs. 514387 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:12:30	MarkDuplicates	Read 577000000 records. Tracking 5292682 as yet unmatched pairs. 505139 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:12:38	MarkDuplicates	Read 578000000 records. Tracking 5291320 as yet unmatched pairs. 495467 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:12:47	MarkDuplicates	Read 579000000 records. Tracking 5289678 as yet unmatched pairs. 485192 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:12:56	MarkDuplicates	Read 580000000 records. Tracking 5288376 as yet unmatched pairs. 475148 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:13:04	MarkDuplicates	Read 581000000 records. Tracking 5287400 as yet unmatched pairs. 465311 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:13:13	MarkDuplicates	Read 582000000 records. Tracking 5285822 as yet unmatched pairs. 454924 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:13:35	MarkDuplicates	Read 583000000 records. Tracking 5284542 as yet unmatched pairs. 445580 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:13:43	MarkDuplicates	Read 584000000 records. Tracking 5283100 as yet unmatched pairs. 435698 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:13:52	MarkDuplicates	Read 585000000 records. Tracking 5281528 as yet unmatched pairs. 425526 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:14:01	MarkDuplicates	Read 586000000 records. Tracking 5280034 as yet unmatched pairs. 415326 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:14:11	MarkDuplicates	Read 587000000 records. Tracking 5278384 as yet unmatched pairs. 405769 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:14:18	MarkDuplicates	Read 588000000 records. Tracking 5277014 as yet unmatched pairs. 395644 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:14:27	MarkDuplicates	Read 589000000 records. Tracking 5275016 as yet unmatched pairs. 385755 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:14:36	MarkDuplicates	Read 590000000 records. Tracking 5273318 as yet unmatched pairs. 375807 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:14:44	MarkDuplicates	Read 591000000 records. Tracking 5271842 as yet unmatched pairs. 365750 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:14:52	MarkDuplicates	Read 592000000 records. Tracking 5269844 as yet unmatched pairs. 355560 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:15:01	MarkDuplicates	Read 593000000 records. Tracking 5267778 as yet unmatched pairs. 344794 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:15:10	MarkDuplicates	Read 594000000 records. Tracking 5266164 as yet unmatched pairs. 334506 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:16:23	MarkDuplicates	Read 595000000 records. Tracking 5264272 as yet unmatched pairs. 325109 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:16:32	MarkDuplicates	Read 596000000 records. Tracking 5262526 as yet unmatched pairs. 315660 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:16:41	MarkDuplicates	Read 597000000 records. Tracking 5260168 as yet unmatched pairs. 305240 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:16:49	MarkDuplicates	Read 598000000 records. Tracking 5257910 as yet unmatched pairs. 294613 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:16:58	MarkDuplicates	Read 599000000 records. Tracking 5255734 as yet unmatched pairs. 284986 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:17:07	MarkDuplicates	Read 600000000 records. Tracking 5253960 as yet unmatched pairs. 274785 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:17:14	MarkDuplicates	Read 601000000 records. Tracking 5251810 as yet unmatched pairs. 264795 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:17:23	MarkDuplicates	Read 602000000 records. Tracking 5249248 as yet unmatched pairs. 254206 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:17:32	MarkDuplicates	Read 603000000 records. Tracking 5247330 as yet unmatched pairs. 244251 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:17:41	MarkDuplicates	Read 604000000 records. Tracking 5244492 as yet unmatched pairs. 233686 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:17:49	MarkDuplicates	Read 605000000 records. Tracking 5242158 as yet unmatched pairs. 222606 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:17:57	MarkDuplicates	Read 606000000 records. Tracking 5239692 as yet unmatched pairs. 211299 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:18:07	MarkDuplicates	Read 607000000 records. Tracking 5237474 as yet unmatched pairs. 200391 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:18:14	MarkDuplicates	Read 608000000 records. Tracking 5235294 as yet unmatched pairs. 189592 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:18:23	MarkDuplicates	Read 609000000 records. Tracking 5233038 as yet unmatched pairs. 179262 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:18:31	MarkDuplicates	Read 610000000 records. Tracking 5230438 as yet unmatched pairs. 168992 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:18:39	MarkDuplicates	Read 611000000 records. Tracking 5228236 as yet unmatched pairs. 158479 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:18:47	MarkDuplicates	Read 612000000 records. Tracking 5225800 as yet unmatched pairs. 148387 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:18:56	MarkDuplicates	Read 613000000 records. Tracking 5223144 as yet unmatched pairs. 138503 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:19:04	MarkDuplicates	Read 614000000 records. Tracking 5220660 as yet unmatched pairs. 128807 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:19:12	MarkDuplicates	Read 615000000 records. Tracking 5218132 as yet unmatched pairs. 118670 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:19:21	MarkDuplicates	Read 616000000 records. Tracking 5215636 as yet unmatched pairs. 107797 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:19:31	MarkDuplicates	Read 617000000 records. Tracking 5212850 as yet unmatched pairs. 96426 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:19:38	MarkDuplicates	Read 618000000 records. Tracking 5210122 as yet unmatched pairs. 85310 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:19:47	MarkDuplicates	Read 619000000 records. Tracking 5207534 as yet unmatched pairs. 74298 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:19:56	MarkDuplicates	Read 620000000 records. Tracking 5204606 as yet unmatched pairs. 62446 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:20:04	MarkDuplicates	Read 621000000 records. Tracking 5201616 as yet unmatched pairs. 50654 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:20:13	MarkDuplicates	Read 622000000 records. Tracking 5198658 as yet unmatched pairs. 38929 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:20:21	MarkDuplicates	Read 623000000 records. Tracking 5195600 as yet unmatched pairs. 27095 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:20:29	MarkDuplicates	Read 624000000 records. Tracking 5192718 as yet unmatched pairs. 15755 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:20:38	MarkDuplicates	Read 625000000 records. Tracking 5190166 as yet unmatched pairs. 4470 records in RAM.  Last sequence index: 7
+INFO	2013-06-16 20:21:14	MarkDuplicates	Read 626000000 records. Tracking 5186908 as yet unmatched pairs. 510746 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:21:22	MarkDuplicates	Read 627000000 records. Tracking 5183696 as yet unmatched pairs. 499969 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:21:30	MarkDuplicates	Read 628000000 records. Tracking 5180444 as yet unmatched pairs. 488710 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:21:39	MarkDuplicates	Read 629000000 records. Tracking 5177554 as yet unmatched pairs. 477777 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:21:48	MarkDuplicates	Read 630000000 records. Tracking 5174518 as yet unmatched pairs. 467582 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:21:55	MarkDuplicates	Read 631000000 records. Tracking 5171454 as yet unmatched pairs. 457751 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:22:04	MarkDuplicates	Read 632000000 records. Tracking 5168240 as yet unmatched pairs. 447687 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:22:12	MarkDuplicates	Read 633000000 records. Tracking 5165026 as yet unmatched pairs. 437269 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:22:20	MarkDuplicates	Read 634000000 records. Tracking 5161784 as yet unmatched pairs. 426486 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:22:28	MarkDuplicates	Read 635000000 records. Tracking 5158470 as yet unmatched pairs. 415821 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:22:37	MarkDuplicates	Read 636000000 records. Tracking 5155002 as yet unmatched pairs. 404588 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:22:45	MarkDuplicates	Read 637000000 records. Tracking 5151388 as yet unmatched pairs. 393281 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:22:53	MarkDuplicates	Read 638000000 records. Tracking 5147904 as yet unmatched pairs. 382426 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:23:01	MarkDuplicates	Read 639000000 records. Tracking 5144442 as yet unmatched pairs. 371686 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:23:10	MarkDuplicates	Read 640000000 records. Tracking 5140818 as yet unmatched pairs. 360657 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:24:26	MarkDuplicates	Read 641000000 records. Tracking 5137288 as yet unmatched pairs. 350197 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:24:34	MarkDuplicates	Read 642000000 records. Tracking 5133894 as yet unmatched pairs. 339734 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:24:42	MarkDuplicates	Read 643000000 records. Tracking 5130302 as yet unmatched pairs. 328343 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:24:51	MarkDuplicates	Read 644000000 records. Tracking 5126642 as yet unmatched pairs. 316643 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:24:59	MarkDuplicates	Read 645000000 records. Tracking 5125564 as yet unmatched pairs. 307621 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:25:08	MarkDuplicates	Read 646000000 records. Tracking 5123826 as yet unmatched pairs. 297546 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:25:17	MarkDuplicates	Read 647000000 records. Tracking 5119402 as yet unmatched pairs. 284358 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:25:27	MarkDuplicates	Read 648000000 records. Tracking 5114964 as yet unmatched pairs. 271316 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:25:34	MarkDuplicates	Read 649000000 records. Tracking 5111494 as yet unmatched pairs. 260174 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:25:43	MarkDuplicates	Read 650000000 records. Tracking 5107842 as yet unmatched pairs. 249263 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:27:14	MarkDuplicates	Read 651000000 records. Tracking 5104076 as yet unmatched pairs. 237882 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:27:22	MarkDuplicates	Read 652000000 records. Tracking 5100026 as yet unmatched pairs. 226376 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:27:31	MarkDuplicates	Read 653000000 records. Tracking 5095924 as yet unmatched pairs. 214822 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:27:40	MarkDuplicates	Read 654000000 records. Tracking 5091714 as yet unmatched pairs. 203061 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:27:48	MarkDuplicates	Read 655000000 records. Tracking 5087378 as yet unmatched pairs. 191055 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:27:57	MarkDuplicates	Read 656000000 records. Tracking 5083408 as yet unmatched pairs. 179187 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:28:05	MarkDuplicates	Read 657000000 records. Tracking 5079302 as yet unmatched pairs. 167371 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:28:15	MarkDuplicates	Read 658000000 records. Tracking 5075128 as yet unmatched pairs. 155276 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:28:23	MarkDuplicates	Read 659000000 records. Tracking 5070964 as yet unmatched pairs. 143067 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:28:33	MarkDuplicates	Read 660000000 records. Tracking 5066338 as yet unmatched pairs. 130708 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:28:42	MarkDuplicates	Read 661000000 records. Tracking 5062164 as yet unmatched pairs. 119538 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:28:49	MarkDuplicates	Read 662000000 records. Tracking 5057712 as yet unmatched pairs. 107822 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:28:59	MarkDuplicates	Read 663000000 records. Tracking 5053060 as yet unmatched pairs. 95150 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:29:08	MarkDuplicates	Read 664000000 records. Tracking 5048492 as yet unmatched pairs. 82695 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:29:15	MarkDuplicates	Read 665000000 records. Tracking 5044274 as yet unmatched pairs. 70849 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:29:23	MarkDuplicates	Read 666000000 records. Tracking 5040088 as yet unmatched pairs. 58771 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:29:33	MarkDuplicates	Read 667000000 records. Tracking 5035474 as yet unmatched pairs. 46448 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:29:41	MarkDuplicates	Read 668000000 records. Tracking 5030746 as yet unmatched pairs. 33939 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:29:50	MarkDuplicates	Read 669000000 records. Tracking 5026026 as yet unmatched pairs. 21254 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:29:59	MarkDuplicates	Read 670000000 records. Tracking 5022050 as yet unmatched pairs. 9451 records in RAM.  Last sequence index: 8
+INFO	2013-06-16 20:30:20	MarkDuplicates	Read 671000000 records. Tracking 5017568 as yet unmatched pairs. 554377 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:30:28	MarkDuplicates	Read 672000000 records. Tracking 5013274 as yet unmatched pairs. 543804 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:30:49	MarkDuplicates	Read 673000000 records. Tracking 5008796 as yet unmatched pairs. 532112 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:30:57	MarkDuplicates	Read 674000000 records. Tracking 5004300 as yet unmatched pairs. 521200 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:31:05	MarkDuplicates	Read 675000000 records. Tracking 4999546 as yet unmatched pairs. 509865 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:31:13	MarkDuplicates	Read 676000000 records. Tracking 4994898 as yet unmatched pairs. 498398 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:31:22	MarkDuplicates	Read 677000000 records. Tracking 4990282 as yet unmatched pairs. 487069 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:31:31	MarkDuplicates	Read 678000000 records. Tracking 4985308 as yet unmatched pairs. 475486 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:31:38	MarkDuplicates	Read 679000000 records. Tracking 4980406 as yet unmatched pairs. 463637 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:31:47	MarkDuplicates	Read 680000000 records. Tracking 4975234 as yet unmatched pairs. 451522 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:31:56	MarkDuplicates	Read 681000000 records. Tracking 4970384 as yet unmatched pairs. 440017 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:32:04	MarkDuplicates	Read 682000000 records. Tracking 4965440 as yet unmatched pairs. 428160 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:32:12	MarkDuplicates	Read 683000000 records. Tracking 4960388 as yet unmatched pairs. 416372 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:32:21	MarkDuplicates	Read 684000000 records. Tracking 4955160 as yet unmatched pairs. 403507 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:32:30	MarkDuplicates	Read 685000000 records. Tracking 4950996 as yet unmatched pairs. 392043 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:32:37	MarkDuplicates	Read 686000000 records. Tracking 4945726 as yet unmatched pairs. 380337 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:33:49	MarkDuplicates	Read 687000000 records. Tracking 4940590 as yet unmatched pairs. 368598 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:33:58	MarkDuplicates	Read 688000000 records. Tracking 4935566 as yet unmatched pairs. 357273 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:34:08	MarkDuplicates	Read 689000000 records. Tracking 4930686 as yet unmatched pairs. 346435 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:34:15	MarkDuplicates	Read 690000000 records. Tracking 4925642 as yet unmatched pairs. 335317 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:34:24	MarkDuplicates	Read 691000000 records. Tracking 4920234 as yet unmatched pairs. 323359 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:34:33	MarkDuplicates	Read 692000000 records. Tracking 4914828 as yet unmatched pairs. 311413 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:34:41	MarkDuplicates	Read 693000000 records. Tracking 4909294 as yet unmatched pairs. 299439 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:34:51	MarkDuplicates	Read 694000000 records. Tracking 4904016 as yet unmatched pairs. 287810 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:35:00	MarkDuplicates	Read 695000000 records. Tracking 4898516 as yet unmatched pairs. 276073 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:35:08	MarkDuplicates	Read 696000000 records. Tracking 4892980 as yet unmatched pairs. 263698 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:35:20	MarkDuplicates	Read 697000000 records. Tracking 4887558 as yet unmatched pairs. 251416 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:35:29	MarkDuplicates	Read 698000000 records. Tracking 4881702 as yet unmatched pairs. 238676 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:35:38	MarkDuplicates	Read 699000000 records. Tracking 4876408 as yet unmatched pairs. 226270 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:35:46	MarkDuplicates	Read 700000000 records. Tracking 4870680 as yet unmatched pairs. 213957 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:35:54	MarkDuplicates	Read 701000000 records. Tracking 4864656 as yet unmatched pairs. 201118 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:36:03	MarkDuplicates	Read 702000000 records. Tracking 4858798 as yet unmatched pairs. 188246 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:36:11	MarkDuplicates	Read 703000000 records. Tracking 4853038 as yet unmatched pairs. 176118 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:36:19	MarkDuplicates	Read 704000000 records. Tracking 4846414 as yet unmatched pairs. 162693 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:36:28	MarkDuplicates	Read 705000000 records. Tracking 4840848 as yet unmatched pairs. 150101 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:36:35	MarkDuplicates	Read 706000000 records. Tracking 4834456 as yet unmatched pairs. 136214 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:36:44	MarkDuplicates	Read 707000000 records. Tracking 4828206 as yet unmatched pairs. 122544 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:36:53	MarkDuplicates	Read 708000000 records. Tracking 4822378 as yet unmatched pairs. 109759 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:37:02	MarkDuplicates	Read 709000000 records. Tracking 4816766 as yet unmatched pairs. 97368 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:37:10	MarkDuplicates	Read 710000000 records. Tracking 4810852 as yet unmatched pairs. 85074 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:37:19	MarkDuplicates	Read 711000000 records. Tracking 4804450 as yet unmatched pairs. 71796 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:37:27	MarkDuplicates	Read 712000000 records. Tracking 4798344 as yet unmatched pairs. 59030 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:37:35	MarkDuplicates	Read 713000000 records. Tracking 4792270 as yet unmatched pairs. 46518 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:37:44	MarkDuplicates	Read 714000000 records. Tracking 4785984 as yet unmatched pairs. 33729 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:37:53	MarkDuplicates	Read 715000000 records. Tracking 4779958 as yet unmatched pairs. 21025 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:38:01	MarkDuplicates	Read 716000000 records. Tracking 4774012 as yet unmatched pairs. 8087 records in RAM.  Last sequence index: 9
+INFO	2013-06-16 20:38:25	MarkDuplicates	Read 717000000 records. Tracking 4768006 as yet unmatched pairs. 678082 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:38:34	MarkDuplicates	Read 718000000 records. Tracking 4761090 as yet unmatched pairs. 665095 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:38:42	MarkDuplicates	Read 719000000 records. Tracking 4754366 as yet unmatched pairs. 652229 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:39:07	MarkDuplicates	Read 720000000 records. Tracking 4747440 as yet unmatched pairs. 638863 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:39:15	MarkDuplicates	Read 721000000 records. Tracking 4740812 as yet unmatched pairs. 626421 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:39:24	MarkDuplicates	Read 722000000 records. Tracking 4733660 as yet unmatched pairs. 613063 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:39:33	MarkDuplicates	Read 723000000 records. Tracking 4727366 as yet unmatched pairs. 600956 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:39:41	MarkDuplicates	Read 724000000 records. Tracking 4720526 as yet unmatched pairs. 588169 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:39:51	MarkDuplicates	Read 725000000 records. Tracking 4713806 as yet unmatched pairs. 575885 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:39:58	MarkDuplicates	Read 726000000 records. Tracking 4707060 as yet unmatched pairs. 563573 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:40:07	MarkDuplicates	Read 727000000 records. Tracking 4700709 as yet unmatched pairs. 551596 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:40:15	MarkDuplicates	Read 728000000 records. Tracking 4693964 as yet unmatched pairs. 539335 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:40:24	MarkDuplicates	Read 729000000 records. Tracking 4687184 as yet unmatched pairs. 526992 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:40:32	MarkDuplicates	Read 730000000 records. Tracking 4680734 as yet unmatched pairs. 515038 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:40:41	MarkDuplicates	Read 731000000 records. Tracking 4673758 as yet unmatched pairs. 502142 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:40:50	MarkDuplicates	Read 732000000 records. Tracking 4666690 as yet unmatched pairs. 489189 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:42:00	MarkDuplicates	Read 733000000 records. Tracking 4659962 as yet unmatched pairs. 477172 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:42:08	MarkDuplicates	Read 734000000 records. Tracking 4653148 as yet unmatched pairs. 464856 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:42:17	MarkDuplicates	Read 735000000 records. Tracking 4645850 as yet unmatched pairs. 451724 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:42:26	MarkDuplicates	Read 736000000 records. Tracking 4638432 as yet unmatched pairs. 438237 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:42:34	MarkDuplicates	Read 737000000 records. Tracking 4631396 as yet unmatched pairs. 425269 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:42:43	MarkDuplicates	Read 738000000 records. Tracking 4624338 as yet unmatched pairs. 412255 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:42:51	MarkDuplicates	Read 739000000 records. Tracking 4616848 as yet unmatched pairs. 398688 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:43:00	MarkDuplicates	Read 740000000 records. Tracking 4608824 as yet unmatched pairs. 384160 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:43:08	MarkDuplicates	Read 741000000 records. Tracking 4601216 as yet unmatched pairs. 370392 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:43:17	MarkDuplicates	Read 742000000 records. Tracking 4593908 as yet unmatched pairs. 356810 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:44:49	MarkDuplicates	Read 743000000 records. Tracking 4586516 as yet unmatched pairs. 343457 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:44:57	MarkDuplicates	Read 744000000 records. Tracking 4578884 as yet unmatched pairs. 330165 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:45:06	MarkDuplicates	Read 745000000 records. Tracking 4571732 as yet unmatched pairs. 317810 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:45:14	MarkDuplicates	Read 746000000 records. Tracking 4563756 as yet unmatched pairs. 304034 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:45:22	MarkDuplicates	Read 747000000 records. Tracking 4555986 as yet unmatched pairs. 290496 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:45:31	MarkDuplicates	Read 748000000 records. Tracking 4548010 as yet unmatched pairs. 276553 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:45:39	MarkDuplicates	Read 749000000 records. Tracking 4540410 as yet unmatched pairs. 263533 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:45:48	MarkDuplicates	Read 750000000 records. Tracking 4533070 as yet unmatched pairs. 250723 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:45:55	MarkDuplicates	Read 751000000 records. Tracking 4525338 as yet unmatched pairs. 237325 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:46:04	MarkDuplicates	Read 752000000 records. Tracking 4517094 as yet unmatched pairs. 223227 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:46:13	MarkDuplicates	Read 753000000 records. Tracking 4509220 as yet unmatched pairs. 209742 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:46:21	MarkDuplicates	Read 754000000 records. Tracking 4501824 as yet unmatched pairs. 197124 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:46:29	MarkDuplicates	Read 755000000 records. Tracking 4494192 as yet unmatched pairs. 183948 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:46:38	MarkDuplicates	Read 756000000 records. Tracking 4486316 as yet unmatched pairs. 170401 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:46:46	MarkDuplicates	Read 757000000 records. Tracking 4478618 as yet unmatched pairs. 157206 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:46:58	MarkDuplicates	Read 758000000 records. Tracking 4471060 as yet unmatched pairs. 144399 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:47:07	MarkDuplicates	Read 759000000 records. Tracking 4463224 as yet unmatched pairs. 130624 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:47:14	MarkDuplicates	Read 760000000 records. Tracking 4454644 as yet unmatched pairs. 115955 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:47:23	MarkDuplicates	Read 761000000 records. Tracking 4446210 as yet unmatched pairs. 101598 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:47:32	MarkDuplicates	Read 762000000 records. Tracking 4438408 as yet unmatched pairs. 87956 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:47:41	MarkDuplicates	Read 763000000 records. Tracking 4430210 as yet unmatched pairs. 73633 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:47:48	MarkDuplicates	Read 764000000 records. Tracking 4422006 as yet unmatched pairs. 59614 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:47:57	MarkDuplicates	Read 765000000 records. Tracking 4413714 as yet unmatched pairs. 45213 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:48:07	MarkDuplicates	Read 766000000 records. Tracking 4405430 as yet unmatched pairs. 31096 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:48:15	MarkDuplicates	Read 767000000 records. Tracking 4396878 as yet unmatched pairs. 16555 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:48:26	MarkDuplicates	Read 768000000 records. Tracking 4388434 as yet unmatched pairs. 2073 records in RAM.  Last sequence index: 10
+INFO	2013-06-16 20:49:05	MarkDuplicates	Read 769000000 records. Tracking 4380246 as yet unmatched pairs. 693662 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:49:12	MarkDuplicates	Read 770000000 records. Tracking 4371426 as yet unmatched pairs. 679748 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:49:21	MarkDuplicates	Read 771000000 records. Tracking 4362546 as yet unmatched pairs. 665710 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:49:31	MarkDuplicates	Read 772000000 records. Tracking 4354196 as yet unmatched pairs. 652452 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:49:40	MarkDuplicates	Read 773000000 records. Tracking 4345222 as yet unmatched pairs. 638380 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:49:47	MarkDuplicates	Read 774000000 records. Tracking 4337036 as yet unmatched pairs. 625519 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:49:56	MarkDuplicates	Read 775000000 records. Tracking 4328448 as yet unmatched pairs. 612363 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:50:05	MarkDuplicates	Read 776000000 records. Tracking 4319962 as yet unmatched pairs. 599404 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:50:13	MarkDuplicates	Read 777000000 records. Tracking 4311504 as yet unmatched pairs. 586000 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:50:21	MarkDuplicates	Read 778000000 records. Tracking 4302724 as yet unmatched pairs. 572522 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:51:34	MarkDuplicates	Read 779000000 records. Tracking 4294764 as yet unmatched pairs. 560120 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:51:43	MarkDuplicates	Read 780000000 records. Tracking 4286278 as yet unmatched pairs. 546919 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:51:51	MarkDuplicates	Read 781000000 records. Tracking 4277406 as yet unmatched pairs. 533320 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:52:00	MarkDuplicates	Read 782000000 records. Tracking 4268578 as yet unmatched pairs. 519396 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:52:10	MarkDuplicates	Read 783000000 records. Tracking 4259374 as yet unmatched pairs. 505076 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:52:18	MarkDuplicates	Read 784000000 records. Tracking 4250324 as yet unmatched pairs. 491133 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:52:26	MarkDuplicates	Read 785000000 records. Tracking 4241722 as yet unmatched pairs. 478082 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:52:35	MarkDuplicates	Read 786000000 records. Tracking 4232324 as yet unmatched pairs. 463761 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:52:45	MarkDuplicates	Read 787000000 records. Tracking 4223202 as yet unmatched pairs. 449845 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:52:52	MarkDuplicates	Read 788000000 records. Tracking 4213716 as yet unmatched pairs. 435160 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:53:01	MarkDuplicates	Read 789000000 records. Tracking 4204420 as yet unmatched pairs. 420481 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:53:10	MarkDuplicates	Read 790000000 records. Tracking 4194280 as yet unmatched pairs. 404919 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:53:17	MarkDuplicates	Read 791000000 records. Tracking 4184772 as yet unmatched pairs. 390312 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:53:26	MarkDuplicates	Read 792000000 records. Tracking 4176210 as yet unmatched pairs. 377426 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:53:34	MarkDuplicates	Read 793000000 records. Tracking 4166962 as yet unmatched pairs. 363202 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:53:43	MarkDuplicates	Read 794000000 records. Tracking 4157702 as yet unmatched pairs. 348997 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:53:52	MarkDuplicates	Read 795000000 records. Tracking 4148260 as yet unmatched pairs. 334637 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:54:02	MarkDuplicates	Read 796000000 records. Tracking 4138714 as yet unmatched pairs. 320169 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:54:11	MarkDuplicates	Read 797000000 records. Tracking 4129092 as yet unmatched pairs. 305697 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:54:18	MarkDuplicates	Read 798000000 records. Tracking 4119956 as yet unmatched pairs. 291956 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:54:27	MarkDuplicates	Read 799000000 records. Tracking 4110750 as yet unmatched pairs. 278358 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:54:36	MarkDuplicates	Read 800000000 records. Tracking 4101658 as yet unmatched pairs. 264640 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:54:45	MarkDuplicates	Read 801000000 records. Tracking 4092776 as yet unmatched pairs. 251472 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:54:53	MarkDuplicates	Read 802000000 records. Tracking 4083444 as yet unmatched pairs. 237682 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:55:02	MarkDuplicates	Read 803000000 records. Tracking 4074082 as yet unmatched pairs. 223601 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:55:10	MarkDuplicates	Read 804000000 records. Tracking 4065496 as yet unmatched pairs. 210856 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:55:18	MarkDuplicates	Read 805000000 records. Tracking 4056606 as yet unmatched pairs. 197505 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:55:27	MarkDuplicates	Read 806000000 records. Tracking 4046950 as yet unmatched pairs. 183153 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:55:36	MarkDuplicates	Read 807000000 records. Tracking 4037920 as yet unmatched pairs. 169716 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:55:43	MarkDuplicates	Read 808000000 records. Tracking 4028184 as yet unmatched pairs. 155335 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:55:52	MarkDuplicates	Read 809000000 records. Tracking 4018426 as yet unmatched pairs. 140499 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:56:01	MarkDuplicates	Read 810000000 records. Tracking 4008414 as yet unmatched pairs. 125616 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:56:08	MarkDuplicates	Read 811000000 records. Tracking 3998250 as yet unmatched pairs. 110615 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:56:17	MarkDuplicates	Read 812000000 records. Tracking 3988484 as yet unmatched pairs. 95888 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:56:25	MarkDuplicates	Read 813000000 records. Tracking 3978594 as yet unmatched pairs. 81055 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:56:34	MarkDuplicates	Read 814000000 records. Tracking 3968230 as yet unmatched pairs. 65558 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:56:44	MarkDuplicates	Read 815000000 records. Tracking 3958266 as yet unmatched pairs. 50575 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:56:52	MarkDuplicates	Read 816000000 records. Tracking 3948388 as yet unmatched pairs. 35577 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:57:02	MarkDuplicates	Read 817000000 records. Tracking 3938398 as yet unmatched pairs. 20379 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:57:10	MarkDuplicates	Read 818000000 records. Tracking 3928544 as yet unmatched pairs. 5489 records in RAM.  Last sequence index: 11
+INFO	2013-06-16 20:57:32	MarkDuplicates	Read 819000000 records. Tracking 3918918 as yet unmatched pairs. 599457 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 20:57:41	MarkDuplicates	Read 820000000 records. Tracking 3909076 as yet unmatched pairs. 585634 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 20:57:49	MarkDuplicates	Read 821000000 records. Tracking 3898882 as yet unmatched pairs. 571216 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 20:58:18	MarkDuplicates	Read 822000000 records. Tracking 3888124 as yet unmatched pairs. 556130 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 20:58:26	MarkDuplicates	Read 823000000 records. Tracking 3877724 as yet unmatched pairs. 541559 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 20:59:39	MarkDuplicates	Read 824000000 records. Tracking 3867456 as yet unmatched pairs. 527417 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 20:59:47	MarkDuplicates	Read 825000000 records. Tracking 3857646 as yet unmatched pairs. 513776 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 20:59:55	MarkDuplicates	Read 826000000 records. Tracking 3847624 as yet unmatched pairs. 499795 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:00:05	MarkDuplicates	Read 827000000 records. Tracking 3837270 as yet unmatched pairs. 485608 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:00:13	MarkDuplicates	Read 828000000 records. Tracking 3826562 as yet unmatched pairs. 470712 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:00:22	MarkDuplicates	Read 829000000 records. Tracking 3815853 as yet unmatched pairs. 456022 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:00:31	MarkDuplicates	Read 830000000 records. Tracking 3805444 as yet unmatched pairs. 441505 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:00:40	MarkDuplicates	Read 831000000 records. Tracking 3794302 as yet unmatched pairs. 425955 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:00:48	MarkDuplicates	Read 832000000 records. Tracking 3783600 as yet unmatched pairs. 411077 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:00:57	MarkDuplicates	Read 833000000 records. Tracking 3773214 as yet unmatched pairs. 396849 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:02:24	MarkDuplicates	Read 834000000 records. Tracking 3763422 as yet unmatched pairs. 383516 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:02:32	MarkDuplicates	Read 835000000 records. Tracking 3753590 as yet unmatched pairs. 370030 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:02:42	MarkDuplicates	Read 836000000 records. Tracking 3743040 as yet unmatched pairs. 355583 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:02:51	MarkDuplicates	Read 837000000 records. Tracking 3732742 as yet unmatched pairs. 341577 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:02:59	MarkDuplicates	Read 838000000 records. Tracking 3723580 as yet unmatched pairs. 329098 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:03:07	MarkDuplicates	Read 839000000 records. Tracking 3713390 as yet unmatched pairs. 315446 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:03:17	MarkDuplicates	Read 840000000 records. Tracking 3703990 as yet unmatched pairs. 302656 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:03:25	MarkDuplicates	Read 841000000 records. Tracking 3694676 as yet unmatched pairs. 289863 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:03:33	MarkDuplicates	Read 842000000 records. Tracking 3684914 as yet unmatched pairs. 276607 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:03:42	MarkDuplicates	Read 843000000 records. Tracking 3674742 as yet unmatched pairs. 262773 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:03:50	MarkDuplicates	Read 844000000 records. Tracking 3664138 as yet unmatched pairs. 248227 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:03:58	MarkDuplicates	Read 845000000 records. Tracking 3653062 as yet unmatched pairs. 233289 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:04:06	MarkDuplicates	Read 846000000 records. Tracking 3641972 as yet unmatched pairs. 218321 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:04:15	MarkDuplicates	Read 847000000 records. Tracking 3630988 as yet unmatched pairs. 203212 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:04:25	MarkDuplicates	Read 848000000 records. Tracking 3620526 as yet unmatched pairs. 188937 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:04:32	MarkDuplicates	Read 849000000 records. Tracking 3611054 as yet unmatched pairs. 175763 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:04:40	MarkDuplicates	Read 850000000 records. Tracking 3600968 as yet unmatched pairs. 162196 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:04:48	MarkDuplicates	Read 851000000 records. Tracking 3590798 as yet unmatched pairs. 148594 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:04:56	MarkDuplicates	Read 852000000 records. Tracking 3580996 as yet unmatched pairs. 135321 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:05:05	MarkDuplicates	Read 853000000 records. Tracking 3570270 as yet unmatched pairs. 120792 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:05:14	MarkDuplicates	Read 854000000 records. Tracking 3559418 as yet unmatched pairs. 106172 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:05:21	MarkDuplicates	Read 855000000 records. Tracking 3548052 as yet unmatched pairs. 90752 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:05:30	MarkDuplicates	Read 856000000 records. Tracking 3536540 as yet unmatched pairs. 74990 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:05:38	MarkDuplicates	Read 857000000 records. Tracking 3525502 as yet unmatched pairs. 59925 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:05:46	MarkDuplicates	Read 858000000 records. Tracking 3514660 as yet unmatched pairs. 45343 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:05:55	MarkDuplicates	Read 859000000 records. Tracking 3504028 as yet unmatched pairs. 31127 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:06:04	MarkDuplicates	Read 860000000 records. Tracking 3492582 as yet unmatched pairs. 15790 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:06:13	MarkDuplicates	Read 861000000 records. Tracking 3481822 as yet unmatched pairs. 1056 records in RAM.  Last sequence index: 12
+INFO	2013-06-16 21:06:33	MarkDuplicates	Read 862000000 records. Tracking 3471136 as yet unmatched pairs. 542145 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:06:42	MarkDuplicates	Read 863000000 records. Tracking 3458452 as yet unmatched pairs. 525767 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:07:09	MarkDuplicates	Read 864000000 records. Tracking 3446930 as yet unmatched pairs. 510967 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:07:16	MarkDuplicates	Read 865000000 records. Tracking 3435842 as yet unmatched pairs. 496701 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:07:25	MarkDuplicates	Read 866000000 records. Tracking 3424852 as yet unmatched pairs. 482473 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:07:33	MarkDuplicates	Read 867000000 records. Tracking 3412854 as yet unmatched pairs. 467022 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:07:42	MarkDuplicates	Read 868000000 records. Tracking 3401398 as yet unmatched pairs. 452130 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:07:52	MarkDuplicates	Read 869000000 records. Tracking 3388998 as yet unmatched pairs. 436148 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:09:01	MarkDuplicates	Read 870000000 records. Tracking 3376934 as yet unmatched pairs. 420640 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:09:09	MarkDuplicates	Read 871000000 records. Tracking 3363912 as yet unmatched pairs. 404169 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:09:17	MarkDuplicates	Read 872000000 records. Tracking 3352702 as yet unmatched pairs. 389807 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:09:26	MarkDuplicates	Read 873000000 records. Tracking 3341636 as yet unmatched pairs. 375560 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:09:35	MarkDuplicates	Read 874000000 records. Tracking 3329280 as yet unmatched pairs. 359964 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:09:44	MarkDuplicates	Read 875000000 records. Tracking 3317288 as yet unmatched pairs. 344767 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:09:51	MarkDuplicates	Read 876000000 records. Tracking 3305286 as yet unmatched pairs. 329641 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:10:00	MarkDuplicates	Read 877000000 records. Tracking 3292952 as yet unmatched pairs. 313779 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:10:11	MarkDuplicates	Read 878000000 records. Tracking 3280362 as yet unmatched pairs. 297734 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:10:20	MarkDuplicates	Read 879000000 records. Tracking 3267952 as yet unmatched pairs. 281738 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:10:28	MarkDuplicates	Read 880000000 records. Tracking 3255406 as yet unmatched pairs. 265748 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:10:36	MarkDuplicates	Read 881000000 records. Tracking 3242736 as yet unmatched pairs. 249391 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:10:45	MarkDuplicates	Read 882000000 records. Tracking 3230006 as yet unmatched pairs. 233309 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:10:52	MarkDuplicates	Read 883000000 records. Tracking 3217598 as yet unmatched pairs. 217405 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:11:01	MarkDuplicates	Read 884000000 records. Tracking 3204770 as yet unmatched pairs. 201171 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:11:10	MarkDuplicates	Read 885000000 records. Tracking 3192096 as yet unmatched pairs. 184842 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:11:17	MarkDuplicates	Read 886000000 records. Tracking 3179126 as yet unmatched pairs. 168256 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:11:25	MarkDuplicates	Read 887000000 records. Tracking 3166622 as yet unmatched pairs. 152263 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:11:35	MarkDuplicates	Read 888000000 records. Tracking 3154306 as yet unmatched pairs. 136570 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:11:43	MarkDuplicates	Read 889000000 records. Tracking 3141356 as yet unmatched pairs. 120233 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:11:55	MarkDuplicates	Read 890000000 records. Tracking 3129606 as yet unmatched pairs. 105598 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:12:04	MarkDuplicates	Read 891000000 records. Tracking 3117836 as yet unmatched pairs. 90844 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:12:11	MarkDuplicates	Read 892000000 records. Tracking 3105182 as yet unmatched pairs. 74989 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:12:19	MarkDuplicates	Read 893000000 records. Tracking 3092204 as yet unmatched pairs. 58538 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:12:28	MarkDuplicates	Read 894000000 records. Tracking 3079360 as yet unmatched pairs. 42093 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:12:36	MarkDuplicates	Read 895000000 records. Tracking 3066508 as yet unmatched pairs. 25841 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:12:44	MarkDuplicates	Read 896000000 records. Tracking 3054316 as yet unmatched pairs. 10162 records in RAM.  Last sequence index: 13
+INFO	2013-06-16 21:13:02	MarkDuplicates	Read 897000000 records. Tracking 3042416 as yet unmatched pairs. 464760 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:13:11	MarkDuplicates	Read 898000000 records. Tracking 3030150 as yet unmatched pairs. 449375 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:13:19	MarkDuplicates	Read 899000000 records. Tracking 3017252 as yet unmatched pairs. 433506 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:13:29	MarkDuplicates	Read 900000000 records. Tracking 3004186 as yet unmatched pairs. 417629 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:13:38	MarkDuplicates	Read 901000000 records. Tracking 2990226 as yet unmatched pairs. 400680 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:13:46	MarkDuplicates	Read 902000000 records. Tracking 2977032 as yet unmatched pairs. 384691 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:13:54	MarkDuplicates	Read 903000000 records. Tracking 2964224 as yet unmatched pairs. 369154 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:14:03	MarkDuplicates	Read 904000000 records. Tracking 2950514 as yet unmatched pairs. 352668 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:14:11	MarkDuplicates	Read 905000000 records. Tracking 2937036 as yet unmatched pairs. 336195 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:14:18	MarkDuplicates	Read 906000000 records. Tracking 2923210 as yet unmatched pairs. 319240 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:14:27	MarkDuplicates	Read 907000000 records. Tracking 2909886 as yet unmatched pairs. 303107 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:14:39	MarkDuplicates	Read 908000000 records. Tracking 2896612 as yet unmatched pairs. 286968 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:14:47	MarkDuplicates	Read 909000000 records. Tracking 2882966 as yet unmatched pairs. 270279 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:14:55	MarkDuplicates	Read 910000000 records. Tracking 2869594 as yet unmatched pairs. 254094 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:15:03	MarkDuplicates	Read 911000000 records. Tracking 2854760 as yet unmatched pairs. 236170 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:15:12	MarkDuplicates	Read 912000000 records. Tracking 2841470 as yet unmatched pairs. 220047 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:15:19	MarkDuplicates	Read 913000000 records. Tracking 2828502 as yet unmatched pairs. 204245 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:15:28	MarkDuplicates	Read 914000000 records. Tracking 2815252 as yet unmatched pairs. 188059 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:15:37	MarkDuplicates	Read 915000000 records. Tracking 2801952 as yet unmatched pairs. 171785 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:16:47	MarkDuplicates	Read 916000000 records. Tracking 2788022 as yet unmatched pairs. 154882 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:16:55	MarkDuplicates	Read 917000000 records. Tracking 2773828 as yet unmatched pairs. 137529 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:17:03	MarkDuplicates	Read 918000000 records. Tracking 2759726 as yet unmatched pairs. 120200 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:17:12	MarkDuplicates	Read 919000000 records. Tracking 2745566 as yet unmatched pairs. 102979 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:17:20	MarkDuplicates	Read 920000000 records. Tracking 2731444 as yet unmatched pairs. 85718 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:17:28	MarkDuplicates	Read 921000000 records. Tracking 2716652 as yet unmatched pairs. 67956 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:17:37	MarkDuplicates	Read 922000000 records. Tracking 2702316 as yet unmatched pairs. 50548 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:17:44	MarkDuplicates	Read 923000000 records. Tracking 2688512 as yet unmatched pairs. 33886 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:18:07	MarkDuplicates	Read 924000000 records. Tracking 2674874 as yet unmatched pairs. 17482 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:19:35	MarkDuplicates	Read 925000000 records. Tracking 2660996 as yet unmatched pairs. 648 records in RAM.  Last sequence index: 14
+INFO	2013-06-16 21:19:51	MarkDuplicates	Read 926000000 records. Tracking 2646852 as yet unmatched pairs. 318609 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:20:00	MarkDuplicates	Read 927000000 records. Tracking 2632250 as yet unmatched pairs. 301212 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:20:10	MarkDuplicates	Read 928000000 records. Tracking 2618360 as yet unmatched pairs. 284716 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:20:19	MarkDuplicates	Read 929000000 records. Tracking 2603892 as yet unmatched pairs. 267511 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:20:27	MarkDuplicates	Read 930000000 records. Tracking 2589206 as yet unmatched pairs. 250192 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:20:36	MarkDuplicates	Read 931000000 records. Tracking 2573828 as yet unmatched pairs. 232021 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:20:44	MarkDuplicates	Read 932000000 records. Tracking 2559028 as yet unmatched pairs. 213892 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:20:52	MarkDuplicates	Read 933000000 records. Tracking 2543962 as yet unmatched pairs. 196165 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:21:00	MarkDuplicates	Read 934000000 records. Tracking 2529550 as yet unmatched pairs. 179284 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:21:09	MarkDuplicates	Read 935000000 records. Tracking 2515474 as yet unmatched pairs. 162571 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:21:18	MarkDuplicates	Read 936000000 records. Tracking 2501138 as yet unmatched pairs. 145713 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:21:25	MarkDuplicates	Read 937000000 records. Tracking 2487448 as yet unmatched pairs. 129547 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:21:33	MarkDuplicates	Read 938000000 records. Tracking 2473600 as yet unmatched pairs. 113372 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:21:44	MarkDuplicates	Read 939000000 records. Tracking 2460054 as yet unmatched pairs. 97554 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:21:52	MarkDuplicates	Read 940000000 records. Tracking 2445116 as yet unmatched pairs. 79746 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:22:00	MarkDuplicates	Read 941000000 records. Tracking 2430550 as yet unmatched pairs. 62269 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:22:08	MarkDuplicates	Read 942000000 records. Tracking 2415746 as yet unmatched pairs. 44831 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:22:17	MarkDuplicates	Read 943000000 records. Tracking 2401952 as yet unmatched pairs. 28690 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:22:24	MarkDuplicates	Read 944000000 records. Tracking 2386832 as yet unmatched pairs. 11010 records in RAM.  Last sequence index: 15
+INFO	2013-06-16 21:22:38	MarkDuplicates	Read 945000000 records. Tracking 2371792 as yet unmatched pairs. 281580 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:22:47	MarkDuplicates	Read 946000000 records. Tracking 2355564 as yet unmatched pairs. 262897 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:22:55	MarkDuplicates	Read 947000000 records. Tracking 2340290 as yet unmatched pairs. 245323 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:23:04	MarkDuplicates	Read 948000000 records. Tracking 2325568 as yet unmatched pairs. 228391 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:23:12	MarkDuplicates	Read 949000000 records. Tracking 2310308 as yet unmatched pairs. 210545 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:23:24	MarkDuplicates	Read 950000000 records. Tracking 2295412 as yet unmatched pairs. 193427 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:23:31	MarkDuplicates	Read 951000000 records. Tracking 2279118 as yet unmatched pairs. 174778 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:23:42	MarkDuplicates	Read 952000000 records. Tracking 2264058 as yet unmatched pairs. 157542 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:23:51	MarkDuplicates	Read 953000000 records. Tracking 2248994 as yet unmatched pairs. 140083 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:23:59	MarkDuplicates	Read 954000000 records. Tracking 2233980 as yet unmatched pairs. 122787 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:24:08	MarkDuplicates	Read 955000000 records. Tracking 2219152 as yet unmatched pairs. 105809 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:24:16	MarkDuplicates	Read 956000000 records. Tracking 2203818 as yet unmatched pairs. 88175 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:24:25	MarkDuplicates	Read 957000000 records. Tracking 2188850 as yet unmatched pairs. 71036 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:24:33	MarkDuplicates	Read 958000000 records. Tracking 2173426 as yet unmatched pairs. 53423 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:24:41	MarkDuplicates	Read 959000000 records. Tracking 2158230 as yet unmatched pairs. 35988 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:24:50	MarkDuplicates	Read 960000000 records. Tracking 2143700 as yet unmatched pairs. 19503 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:24:57	MarkDuplicates	Read 961000000 records. Tracking 2128044 as yet unmatched pairs. 1431 records in RAM.  Last sequence index: 16
+INFO	2013-06-16 21:26:25	MarkDuplicates	Read 962000000 records. Tracking 2112488 as yet unmatched pairs. 523420 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:26:34	MarkDuplicates	Read 963000000 records. Tracking 2097212 as yet unmatched pairs. 506553 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:26:42	MarkDuplicates	Read 964000000 records. Tracking 2080998 as yet unmatched pairs. 488665 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:26:50	MarkDuplicates	Read 965000000 records. Tracking 2065444 as yet unmatched pairs. 471463 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:00	MarkDuplicates	Read 966000000 records. Tracking 2050328 as yet unmatched pairs. 454696 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:11	MarkDuplicates	Read 967000000 records. Tracking 2035444 as yet unmatched pairs. 437601 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:20	MarkDuplicates	Read 968000000 records. Tracking 2018966 as yet unmatched pairs. 419315 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:27	MarkDuplicates	Read 969000000 records. Tracking 2003768 as yet unmatched pairs. 402559 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:36	MarkDuplicates	Read 970000000 records. Tracking 1988038 as yet unmatched pairs. 385261 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:44	MarkDuplicates	Read 971000000 records. Tracking 1973380 as yet unmatched pairs. 369121 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:51	MarkDuplicates	Read 972000000 records. Tracking 1958884 as yet unmatched pairs. 353164 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:27:59	MarkDuplicates	Read 973000000 records. Tracking 1943176 as yet unmatched pairs. 335818 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:28:07	MarkDuplicates	Read 974000000 records. Tracking 1928314 as yet unmatched pairs. 319308 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:28:16	MarkDuplicates	Read 975000000 records. Tracking 1911954 as yet unmatched pairs. 301171 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:28:23	MarkDuplicates	Read 976000000 records. Tracking 1897118 as yet unmatched pairs. 284735 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:28:32	MarkDuplicates	Read 977000000 records. Tracking 1882390 as yet unmatched pairs. 268533 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:28:40	MarkDuplicates	Read 978000000 records. Tracking 1866866 as yet unmatched pairs. 251456 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:28:47	MarkDuplicates	Read 979000000 records. Tracking 1850784 as yet unmatched pairs. 233725 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:28:55	MarkDuplicates	Read 980000000 records. Tracking 1834524 as yet unmatched pairs. 215831 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:29:17	MarkDuplicates	Read 981000000 records. Tracking 1818232 as yet unmatched pairs. 197919 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:29:24	MarkDuplicates	Read 982000000 records. Tracking 1803056 as yet unmatched pairs. 181210 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:29:32	MarkDuplicates	Read 983000000 records. Tracking 1787514 as yet unmatched pairs. 164086 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:29:40	MarkDuplicates	Read 984000000 records. Tracking 1771398 as yet unmatched pairs. 146378 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:29:49	MarkDuplicates	Read 985000000 records. Tracking 1755300 as yet unmatched pairs. 128735 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:29:56	MarkDuplicates	Read 986000000 records. Tracking 1739110 as yet unmatched pairs. 110887 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:30:05	MarkDuplicates	Read 987000000 records. Tracking 1723824 as yet unmatched pairs. 94105 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:30:13	MarkDuplicates	Read 988000000 records. Tracking 1709642 as yet unmatched pairs. 78576 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:30:22	MarkDuplicates	Read 989000000 records. Tracking 1695006 as yet unmatched pairs. 62506 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:30:30	MarkDuplicates	Read 990000000 records. Tracking 1679718 as yet unmatched pairs. 45643 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:30:40	MarkDuplicates	Read 991000000 records. Tracking 1664780 as yet unmatched pairs. 29144 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:30:47	MarkDuplicates	Read 992000000 records. Tracking 1649326 as yet unmatched pairs. 12100 records in RAM.  Last sequence index: 17
+INFO	2013-06-16 21:30:59	MarkDuplicates	Read 993000000 records. Tracking 1632158 as yet unmatched pairs. 147823 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:31:08	MarkDuplicates	Read 994000000 records. Tracking 1614156 as yet unmatched pairs. 128046 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:31:16	MarkDuplicates	Read 995000000 records. Tracking 1597576 as yet unmatched pairs. 109823 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:31:24	MarkDuplicates	Read 996000000 records. Tracking 1580222 as yet unmatched pairs. 90690 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:31:36	MarkDuplicates	Read 997000000 records. Tracking 1563490 as yet unmatched pairs. 72492 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:31:44	MarkDuplicates	Read 998000000 records. Tracking 1545518 as yet unmatched pairs. 52923 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:31:53	MarkDuplicates	Read 999000000 records. Tracking 1527280 as yet unmatched pairs. 32988 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:32:03	MarkDuplicates	Read 1000000000 records. Tracking 1509342 as yet unmatched pairs. 13522 records in RAM.  Last sequence index: 18
+INFO	2013-06-16 21:32:19	MarkDuplicates	Read 1001000000 records. Tracking 1491328 as yet unmatched pairs. 301084 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:32:27	MarkDuplicates	Read 1002000000 records. Tracking 1473174 as yet unmatched pairs. 281612 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:32:35	MarkDuplicates	Read 1003000000 records. Tracking 1456628 as yet unmatched pairs. 263912 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:32:44	MarkDuplicates	Read 1004000000 records. Tracking 1440674 as yet unmatched pairs. 246854 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:32:53	MarkDuplicates	Read 1005000000 records. Tracking 1423778 as yet unmatched pairs. 228816 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:33:01	MarkDuplicates	Read 1006000000 records. Tracking 1406682 as yet unmatched pairs. 210488 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:34:17	MarkDuplicates	Read 1007000000 records. Tracking 1390418 as yet unmatched pairs. 193083 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:34:27	MarkDuplicates	Read 1008000000 records. Tracking 1372210 as yet unmatched pairs. 173610 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:34:34	MarkDuplicates	Read 1009000000 records. Tracking 1354698 as yet unmatched pairs. 154951 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:34:43	MarkDuplicates	Read 1010000000 records. Tracking 1336952 as yet unmatched pairs. 135872 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:34:51	MarkDuplicates	Read 1011000000 records. Tracking 1319862 as yet unmatched pairs. 116977 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:35:00	MarkDuplicates	Read 1012000000 records. Tracking 1301944 as yet unmatched pairs. 97830 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:35:07	MarkDuplicates	Read 1013000000 records. Tracking 1284310 as yet unmatched pairs. 78956 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:35:15	MarkDuplicates	Read 1014000000 records. Tracking 1266130 as yet unmatched pairs. 59643 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:35:23	MarkDuplicates	Read 1015000000 records. Tracking 1248456 as yet unmatched pairs. 40804 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:36:58	MarkDuplicates	Read 1016000000 records. Tracking 1231146 as yet unmatched pairs. 22344 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:37:08	MarkDuplicates	Read 1017000000 records. Tracking 1214056 as yet unmatched pairs. 4125 records in RAM.  Last sequence index: 19
+INFO	2013-06-16 21:37:22	MarkDuplicates	Read 1018000000 records. Tracking 1198572 as yet unmatched pairs. 207769 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:37:30	MarkDuplicates	Read 1019000000 records. Tracking 1182140 as yet unmatched pairs. 189928 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:37:37	MarkDuplicates	Read 1020000000 records. Tracking 1164950 as yet unmatched pairs. 171753 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:37:46	MarkDuplicates	Read 1021000000 records. Tracking 1148798 as yet unmatched pairs. 154779 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:37:54	MarkDuplicates	Read 1022000000 records. Tracking 1133748 as yet unmatched pairs. 138882 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:38:01	MarkDuplicates	Read 1023000000 records. Tracking 1118244 as yet unmatched pairs. 122526 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:38:10	MarkDuplicates	Read 1024000000 records. Tracking 1101670 as yet unmatched pairs. 105078 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:38:18	MarkDuplicates	Read 1025000000 records. Tracking 1084840 as yet unmatched pairs. 87372 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:38:25	MarkDuplicates	Read 1026000000 records. Tracking 1068086 as yet unmatched pairs. 69751 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:38:33	MarkDuplicates	Read 1027000000 records. Tracking 1050136 as yet unmatched pairs. 50859 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:38:42	MarkDuplicates	Read 1028000000 records. Tracking 1032094 as yet unmatched pairs. 31902 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:38:50	MarkDuplicates	Read 1029000000 records. Tracking 1014274 as yet unmatched pairs. 13187 records in RAM.  Last sequence index: 20
+INFO	2013-06-16 21:39:00	MarkDuplicates	Read 1030000000 records. Tracking 995541 as yet unmatched pairs. 97363 records in RAM.  Last sequence index: 21
+INFO	2013-06-16 21:39:09	MarkDuplicates	Read 1031000000 records. Tracking 976884 as yet unmatched pairs. 77794 records in RAM.  Last sequence index: 21
+INFO	2013-06-16 21:39:17	MarkDuplicates	Read 1032000000 records. Tracking 958298 as yet unmatched pairs. 58372 records in RAM.  Last sequence index: 21
+INFO	2013-06-16 21:39:24	MarkDuplicates	Read 1033000000 records. Tracking 939442 as yet unmatched pairs. 38649 records in RAM.  Last sequence index: 21
+INFO	2013-06-16 21:39:32	MarkDuplicates	Read 1034000000 records. Tracking 920890 as yet unmatched pairs. 19252 records in RAM.  Last sequence index: 21
+INFO	2013-06-16 21:39:40	MarkDuplicates	Read 1035000000 records. Tracking 903118 as yet unmatched pairs. 709 records in RAM.  Last sequence index: 21
+INFO	2013-06-16 21:40:03	MarkDuplicates	Read 1036000000 records. Tracking 883448 as yet unmatched pairs. 631202 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:40:10	MarkDuplicates	Read 1037000000 records. Tracking 864124 as yet unmatched pairs. 611646 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:40:18	MarkDuplicates	Read 1038000000 records. Tracking 843798 as yet unmatched pairs. 591022 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:40:27	MarkDuplicates	Read 1039000000 records. Tracking 824336 as yet unmatched pairs. 571316 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:40:49	MarkDuplicates	Read 1040000000 records. Tracking 805994 as yet unmatched pairs. 552731 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:40:56	MarkDuplicates	Read 1041000000 records. Tracking 788446 as yet unmatched pairs. 534979 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:41:05	MarkDuplicates	Read 1042000000 records. Tracking 768288 as yet unmatched pairs. 514590 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:41:13	MarkDuplicates	Read 1043000000 records. Tracking 747758 as yet unmatched pairs. 493823 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:41:21	MarkDuplicates	Read 1044000000 records. Tracking 725422 as yet unmatched pairs. 471213 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:41:29	MarkDuplicates	Read 1045000000 records. Tracking 703348 as yet unmatched pairs. 448726 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:41:38	MarkDuplicates	Read 1046000000 records. Tracking 681146 as yet unmatched pairs. 426133 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:41:46	MarkDuplicates	Read 1047000000 records. Tracking 657794 as yet unmatched pairs. 402410 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:41:55	MarkDuplicates	Read 1048000000 records. Tracking 635082 as yet unmatched pairs. 379395 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:42:03	MarkDuplicates	Read 1049000000 records. Tracking 610300 as yet unmatched pairs. 354216 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:42:12	MarkDuplicates	Read 1050000000 records. Tracking 588058 as yet unmatched pairs. 331642 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:42:19	MarkDuplicates	Read 1051000000 records. Tracking 566908 as yet unmatched pairs. 310143 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:42:27	MarkDuplicates	Read 1052000000 records. Tracking 547000 as yet unmatched pairs. 289452 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:43:40	MarkDuplicates	Read 1053000000 records. Tracking 524934 as yet unmatched pairs. 266476 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:43:49	MarkDuplicates	Read 1054000000 records. Tracking 501978 as yet unmatched pairs. 243184 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:43:57	MarkDuplicates	Read 1055000000 records. Tracking 480702 as yet unmatched pairs. 221622 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:44:05	MarkDuplicates	Read 1056000000 records. Tracking 457584 as yet unmatched pairs. 198207 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:44:14	MarkDuplicates	Read 1057000000 records. Tracking 436314 as yet unmatched pairs. 176658 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:44:23	MarkDuplicates	Read 1058000000 records. Tracking 414382 as yet unmatched pairs. 154436 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:44:31	MarkDuplicates	Read 1059000000 records. Tracking 393374 as yet unmatched pairs. 133163 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:44:39	MarkDuplicates	Read 1060000000 records. Tracking 371144 as yet unmatched pairs. 110656 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:44:47	MarkDuplicates	Read 1061000000 records. Tracking 350124 as yet unmatched pairs. 89377 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:44:55	MarkDuplicates	Read 1062000000 records. Tracking 328792 as yet unmatched pairs. 67779 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:45:03	MarkDuplicates	Read 1063000000 records. Tracking 308202 as yet unmatched pairs. 46954 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:45:11	MarkDuplicates	Read 1064000000 records. Tracking 287002 as yet unmatched pairs. 25487 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:45:18	MarkDuplicates	Read 1065000000 records. Tracking 264424 as yet unmatched pairs. 2624 records in RAM.  Last sequence index: 22
+INFO	2013-06-16 21:45:29	MarkDuplicates	Read 1066000000 records. Tracking 243974 as yet unmatched pairs. 83313 records in RAM.  Last sequence index: 23
+INFO	2013-06-16 21:45:37	MarkDuplicates	Read 1067000000 records. Tracking 223102 as yet unmatched pairs. 61871 records in RAM.  Last sequence index: 23
+INFO	2013-06-16 21:45:47	MarkDuplicates	Read 1068000000 records. Tracking 201830 as yet unmatched pairs. 40430 records in RAM.  Last sequence index: 23
+INFO	2013-06-16 21:45:55	MarkDuplicates	Read 1069000000 records. Tracking 180429 as yet unmatched pairs. 18824 records in RAM.  Last sequence index: 23
+Ignoring SAM validation error: ERROR: Record 1069894362, Read name HSQ700642:188:C0U39ACXX:8:2309:6391:34886, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894363, Read name HSQ700642:188:C0U39ACXX:2:2305:1915:85531, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894364, Read name HSQ700642:188:C0U39ACXX:6:1109:6100:62212, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894365, Read name HSQ700642:188:C0U39ACXX:3:1213:2934:31405, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894366, Read name HSQ700642:188:C0U39ACXX:6:2207:15917:67134, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894367, Read name HSQ700642:188:C0U39ACXX:6:2102:17983:47348, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894368, Read name HSQ700642:188:C0U39ACXX:1:1107:3714:92022, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894369, Read name HSQ700642:188:C0U39ACXX:3:1202:15717:79487, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894370, Read name HSQ700642:191:D18JJACXX:7:2213:4739:78769, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894371, Read name HSQ700642:188:C0U39ACXX:5:2115:15529:30264, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894372, Read name HSQ700642:188:C0U39ACXX:3:2107:6769:46986, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894373, Read name HSQ700642:188:C0U39ACXX:8:2312:18475:4491, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894374, Read name HSQ700642:188:C0U39ACXX:6:2303:14738:63092, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894375, Read name HSQ700642:188:C0U39ACXX:6:2303:13784:53285, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894376, Read name HSQ700642:188:C0U39ACXX:7:2314:8025:86452, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894377, Read name HSQ700642:188:C0U39ACXX:2:1311:13476:23687, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894378, Read name HSQ700642:192:C13FVACXX:7:1112:19554:41894, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894379, Read name HSQ700642:192:C13FVACXX:7:1305:18817:67751, MAPQ should be 0 for unmapped read.
+INFO	2013-06-16 21:46:05	MarkDuplicates	Read 1070000000 records. Tracking 159898 as yet unmatched pairs. 442 records in RAM.  Last sequence index: 39
+Ignoring SAM validation error: ERROR: Record 1070041586, Read name HSQ700642:191:D18JJACXX:7:1102:3171:21185, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070041587, Read name HSQ700642:208:D1D6WACXX:7:2112:3190:62271, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070041588, Read name HSQ700642:191:D18JJACXX:7:1214:18141:66677, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070041589, Read name HSQ700642:188:C0U39ACXX:6:2309:18525:74690, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094023, Read name HSQ700642:188:C0U39ACXX:5:1111:15878:91101, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094024, Read name HSQ700642:208:D1D6WACXX:7:1101:8450:10213, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094025, Read name HSQ700642:208:D1D6WACXX:7:1109:5398:60413, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094026, Read name HSQ700642:192:C13FVACXX:7:1114:17824:36782, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094027, Read name HSQ700642:192:C13FVACXX:7:2202:5327:57760, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070135119, Read name HSQ700642:188:C0U39ACXX:2:2210:5921:21271, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070135120, Read name HSQ700642:188:C0U39ACXX:3:2104:11511:6787, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070135121, Read name HSQ700642:188:C0U39ACXX:3:2307:10452:50097, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070169642, Read name HSQ700642:191:D18JJACXX:7:1304:9201:55637, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070169643, Read name HSQ700642:192:C13FVACXX:7:1216:3718:77185, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070250099, Read name HSQ700642:208:D1D6WACXX:7:2314:9173:4251, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070490333, Read name HSQ700642:192:C13FVACXX:7:1113:13948:3638, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070760729, Read name HSQ700642:188:C0U39ACXX:2:1115:7323:94014, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070815437, Read name HSQ700642:188:C0U39ACXX:7:1308:4988:56625, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070904078, Read name HSQ700642:188:C0U39ACXX:2:1310:13154:16269, MAPQ should be 0 for unmapped read.
+INFO	2013-06-16 21:46:15	MarkDuplicates	Read 1071000000 records. Tracking 139400 as yet unmatched pairs. 1159 records in RAM.  Last sequence index: 72
+Ignoring SAM validation error: ERROR: Record 1071220897, Read name HSQ700642:208:D1D6WACXX:7:1310:17023:38275, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071331490, Read name HSQ700642:188:C0U39ACXX:3:2313:8084:45068, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071552307, Read name HSQ700642:208:D1D6WACXX:7:1201:8438:59148, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716300, Read name HSQ700642:188:C0U39ACXX:6:1206:17269:89020, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716301, Read name HSQ700642:188:C0U39ACXX:3:1212:17154:29983, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716303, Read name HSQ700642:191:D18JJACXX:7:1316:20876:61720, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716304, Read name HSQ700642:191:D18JJACXX:7:2112:12961:84068, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716305, Read name HSQ700642:191:D18JJACXX:7:2114:8240:6888, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716306, Read name HSQ700642:192:C13FVACXX:7:1211:7892:82993, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716308, Read name HSQ700642:192:C13FVACXX:7:2107:13459:44613, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716309, Read name HSQ700642:192:C13FVACXX:7:2108:20956:33477, MAPQ should be 0 for unmapped read.
+INFO	2013-06-16 21:46:24	MarkDuplicates	Read 1072000000 records. Tracking 119310 as yet unmatched pairs. 3351 records in RAM.  Last sequence index: 83
+INFO	2013-06-16 21:46:36	MarkDuplicates	Read 1073000000 records. Tracking 98010 as yet unmatched pairs. 97959 records in RAM.  Last sequence index: 85
+INFO	2013-06-16 21:46:44	MarkDuplicates	Read 1074000000 records. Tracking 71766 as yet unmatched pairs. 71715 records in RAM.  Last sequence index: 85
+INFO	2013-06-16 21:46:51	MarkDuplicates	Read 1075000000 records. Tracking 44002 as yet unmatched pairs. 43950 records in RAM.  Last sequence index: 85
+INFO	2013-06-16 21:46:59	MarkDuplicates	Read 1076000000 records. Tracking 18573 as yet unmatched pairs. 18521 records in RAM.  Last sequence index: 85
+INFO	2013-06-16 21:47:03	MarkDuplicates	Read 1076517644 records. 52 pairs never matched.
+INFO	2013-06-16 21:48:30	MarkDuplicates	After buildSortedReadEndLists freeMemory: 11940295120; totalMemory: 12390498304; maxMemory: 12390498304
+INFO	2013-06-16 21:48:30	MarkDuplicates	Will retain up to 387203072 duplicate indices before spilling to disk.
+INFO	2013-06-16 21:48:31	MarkDuplicates	Traversing read pair information and detecting duplicates.
+INFO	2013-06-16 21:56:50	MarkDuplicates	Traversing fragment information and detecting duplicates.
+INFO	2013-06-16 22:09:58	MarkDuplicates	Sorting list of duplicate records.
+INFO	2013-06-16 22:10:15	MarkDuplicates	After generateDuplicateIndexes freeMemory: 8969176336; totalMemory: 12523929600; maxMemory: 12523929600
+INFO	2013-06-16 22:10:15	MarkDuplicates	Marking 122436971 records as duplicates.
+INFO	2013-06-16 22:10:15	MarkDuplicates	Found 9566093 optical duplicate clusters.
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00470
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00520
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00483
+Ignoring SAM validation error: ERROR: File /files/.retain-snapshots.d14d-w60d/CBMI/ParkLabUnreplicated/joe/neuron/bams/neuron_6.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:FC_00484
+INFO	2013-06-16 22:14:01	MarkDuplicates	Written 10000000 records.
+INFO	2013-06-16 22:17:42	MarkDuplicates	Written 20000000 records.
+INFO	2013-06-16 22:21:20	MarkDuplicates	Written 30000000 records.
+INFO	2013-06-16 22:25:01	MarkDuplicates	Written 40000000 records.
+INFO	2013-06-16 22:28:41	MarkDuplicates	Written 50000000 records.
+INFO	2013-06-16 22:32:18	MarkDuplicates	Written 60000000 records.
+INFO	2013-06-16 22:36:02	MarkDuplicates	Written 70000000 records.
+INFO	2013-06-16 22:39:41	MarkDuplicates	Written 80000000 records.
+INFO	2013-06-16 22:43:22	MarkDuplicates	Written 90000000 records.
+INFO	2013-06-16 22:47:02	MarkDuplicates	Written 100000000 records.
+INFO	2013-06-16 22:50:42	MarkDuplicates	Written 110000000 records.
+INFO	2013-06-16 22:54:23	MarkDuplicates	Written 120000000 records.
+INFO	2013-06-16 22:58:03	MarkDuplicates	Written 130000000 records.
+INFO	2013-06-16 23:01:42	MarkDuplicates	Written 140000000 records.
+INFO	2013-06-16 23:05:19	MarkDuplicates	Written 150000000 records.
+INFO	2013-06-16 23:09:00	MarkDuplicates	Written 160000000 records.
+INFO	2013-06-16 23:12:41	MarkDuplicates	Written 170000000 records.
+INFO	2013-06-16 23:17:39	MarkDuplicates	Written 180000000 records.
+INFO	2013-06-16 23:21:19	MarkDuplicates	Written 190000000 records.
+INFO	2013-06-16 23:25:01	MarkDuplicates	Written 200000000 records.
+INFO	2013-06-16 23:28:43	MarkDuplicates	Written 210000000 records.
+INFO	2013-06-16 23:32:23	MarkDuplicates	Written 220000000 records.
+INFO	2013-06-16 23:36:03	MarkDuplicates	Written 230000000 records.
+INFO	2013-06-16 23:39:43	MarkDuplicates	Written 240000000 records.
+INFO	2013-06-16 23:43:20	MarkDuplicates	Written 250000000 records.
+INFO	2013-06-16 23:47:03	MarkDuplicates	Written 260000000 records.
+INFO	2013-06-16 23:50:47	MarkDuplicates	Written 270000000 records.
+INFO	2013-06-16 23:54:32	MarkDuplicates	Written 280000000 records.
+INFO	2013-06-16 23:58:11	MarkDuplicates	Written 290000000 records.
+INFO	2013-06-17 00:01:54	MarkDuplicates	Written 300000000 records.
+INFO	2013-06-17 00:05:35	MarkDuplicates	Written 310000000 records.
+INFO	2013-06-17 00:09:15	MarkDuplicates	Written 320000000 records.
+INFO	2013-06-17 00:12:53	MarkDuplicates	Written 330000000 records.
+INFO	2013-06-17 00:16:33	MarkDuplicates	Written 340000000 records.
+INFO	2013-06-17 00:20:10	MarkDuplicates	Written 350000000 records.
+INFO	2013-06-17 00:23:47	MarkDuplicates	Written 360000000 records.
+INFO	2013-06-17 00:27:30	MarkDuplicates	Written 370000000 records.
+INFO	2013-06-17 00:31:20	MarkDuplicates	Written 380000000 records.
+INFO	2013-06-17 00:35:07	MarkDuplicates	Written 390000000 records.
+INFO	2013-06-17 00:38:48	MarkDuplicates	Written 400000000 records.
+INFO	2013-06-17 00:42:26	MarkDuplicates	Written 410000000 records.
+INFO	2013-06-17 00:46:11	MarkDuplicates	Written 420000000 records.
+INFO	2013-06-17 00:49:52	MarkDuplicates	Written 430000000 records.
+INFO	2013-06-17 00:53:34	MarkDuplicates	Written 440000000 records.
+INFO	2013-06-17 00:57:18	MarkDuplicates	Written 450000000 records.
+INFO	2013-06-17 01:00:55	MarkDuplicates	Written 460000000 records.
+INFO	2013-06-17 01:06:19	MarkDuplicates	Written 470000000 records.
+INFO	2013-06-17 01:10:06	MarkDuplicates	Written 480000000 records.
+INFO	2013-06-17 01:13:48	MarkDuplicates	Written 490000000 records.
+INFO	2013-06-17 01:17:29	MarkDuplicates	Written 500000000 records.
+INFO	2013-06-17 01:21:08	MarkDuplicates	Written 510000000 records.
+INFO	2013-06-17 01:24:56	MarkDuplicates	Written 520000000 records.
+INFO	2013-06-17 01:28:42	MarkDuplicates	Written 530000000 records.
+INFO	2013-06-17 01:32:24	MarkDuplicates	Written 540000000 records.
+INFO	2013-06-17 01:36:04	MarkDuplicates	Written 550000000 records.
+INFO	2013-06-17 01:39:43	MarkDuplicates	Written 560000000 records.
+INFO	2013-06-17 01:43:21	MarkDuplicates	Written 570000000 records.
+INFO	2013-06-17 01:47:02	MarkDuplicates	Written 580000000 records.
+INFO	2013-06-17 01:50:45	MarkDuplicates	Written 590000000 records.
+INFO	2013-06-17 01:54:27	MarkDuplicates	Written 600000000 records.
+INFO	2013-06-17 01:58:07	MarkDuplicates	Written 610000000 records.
+INFO	2013-06-17 02:01:47	MarkDuplicates	Written 620000000 records.
+INFO	2013-06-17 02:05:29	MarkDuplicates	Written 630000000 records.
+INFO	2013-06-17 02:09:15	MarkDuplicates	Written 640000000 records.
+INFO	2013-06-17 02:12:56	MarkDuplicates	Written 650000000 records.
+INFO	2013-06-17 02:16:45	MarkDuplicates	Written 660000000 records.
+INFO	2013-06-17 02:20:31	MarkDuplicates	Written 670000000 records.
+INFO	2013-06-17 02:24:15	MarkDuplicates	Written 680000000 records.
+INFO	2013-06-17 02:27:56	MarkDuplicates	Written 690000000 records.
+INFO	2013-06-17 02:31:36	MarkDuplicates	Written 700000000 records.
+INFO	2013-06-17 02:35:14	MarkDuplicates	Written 710000000 records.
+INFO	2013-06-17 02:38:52	MarkDuplicates	Written 720000000 records.
+INFO	2013-06-17 02:42:32	MarkDuplicates	Written 730000000 records.
+INFO	2013-06-17 02:46:13	MarkDuplicates	Written 740000000 records.
+INFO	2013-06-17 02:49:57	MarkDuplicates	Written 750000000 records.
+INFO	2013-06-17 02:53:36	MarkDuplicates	Written 760000000 records.
+INFO	2013-06-17 02:57:24	MarkDuplicates	Written 770000000 records.
+INFO	2013-06-17 03:01:08	MarkDuplicates	Written 780000000 records.
+INFO	2013-06-17 03:04:56	MarkDuplicates	Written 790000000 records.
+INFO	2013-06-17 03:08:45	MarkDuplicates	Written 800000000 records.
+INFO	2013-06-17 03:12:34	MarkDuplicates	Written 810000000 records.
+INFO	2013-06-17 03:16:17	MarkDuplicates	Written 820000000 records.
+INFO	2013-06-17 03:20:04	MarkDuplicates	Written 830000000 records.
+INFO	2013-06-17 03:23:50	MarkDuplicates	Written 840000000 records.
+INFO	2013-06-17 03:27:35	MarkDuplicates	Written 850000000 records.
+INFO	2013-06-17 03:31:15	MarkDuplicates	Written 860000000 records.
+INFO	2013-06-17 03:34:54	MarkDuplicates	Written 870000000 records.
+INFO	2013-06-17 03:38:35	MarkDuplicates	Written 880000000 records.
+INFO	2013-06-17 03:42:16	MarkDuplicates	Written 890000000 records.
+INFO	2013-06-17 03:46:01	MarkDuplicates	Written 900000000 records.
+INFO	2013-06-17 03:49:40	MarkDuplicates	Written 910000000 records.
+INFO	2013-06-17 03:53:25	MarkDuplicates	Written 920000000 records.
+INFO	2013-06-17 03:57:10	MarkDuplicates	Written 930000000 records.
+INFO	2013-06-17 04:00:57	MarkDuplicates	Written 940000000 records.
+Ignoring SAM validation error: ERROR: Record 1069894362, Read name HSQ700642:188:C0U39ACXX:8:2309:6391:34886, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894363, Read name HSQ700642:188:C0U39ACXX:2:2305:1915:85531, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894364, Read name HSQ700642:188:C0U39ACXX:6:1109:6100:62212, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894365, Read name HSQ700642:188:C0U39ACXX:3:1213:2934:31405, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894366, Read name HSQ700642:188:C0U39ACXX:6:2207:15917:67134, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894367, Read name HSQ700642:188:C0U39ACXX:6:2102:17983:47348, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894368, Read name HSQ700642:188:C0U39ACXX:1:1107:3714:92022, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894369, Read name HSQ700642:188:C0U39ACXX:3:1202:15717:79487, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894370, Read name HSQ700642:191:D18JJACXX:7:2213:4739:78769, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894371, Read name HSQ700642:188:C0U39ACXX:5:2115:15529:30264, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894372, Read name HSQ700642:188:C0U39ACXX:3:2107:6769:46986, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894373, Read name HSQ700642:188:C0U39ACXX:8:2312:18475:4491, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894374, Read name HSQ700642:188:C0U39ACXX:6:2303:14738:63092, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894375, Read name HSQ700642:188:C0U39ACXX:6:2303:13784:53285, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894376, Read name HSQ700642:188:C0U39ACXX:7:2314:8025:86452, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894377, Read name HSQ700642:188:C0U39ACXX:2:1311:13476:23687, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894378, Read name HSQ700642:192:C13FVACXX:7:1112:19554:41894, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1069894379, Read name HSQ700642:192:C13FVACXX:7:1305:18817:67751, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070041586, Read name HSQ700642:191:D18JJACXX:7:1102:3171:21185, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070041587, Read name HSQ700642:208:D1D6WACXX:7:2112:3190:62271, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070041588, Read name HSQ700642:191:D18JJACXX:7:1214:18141:66677, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070041589, Read name HSQ700642:188:C0U39ACXX:6:2309:18525:74690, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094023, Read name HSQ700642:188:C0U39ACXX:5:1111:15878:91101, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094024, Read name HSQ700642:208:D1D6WACXX:7:1101:8450:10213, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094025, Read name HSQ700642:208:D1D6WACXX:7:1109:5398:60413, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094026, Read name HSQ700642:192:C13FVACXX:7:1114:17824:36782, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070094027, Read name HSQ700642:192:C13FVACXX:7:2202:5327:57760, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070135119, Read name HSQ700642:188:C0U39ACXX:2:2210:5921:21271, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070135120, Read name HSQ700642:188:C0U39ACXX:3:2104:11511:6787, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070135121, Read name HSQ700642:188:C0U39ACXX:3:2307:10452:50097, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070169642, Read name HSQ700642:191:D18JJACXX:7:1304:9201:55637, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070169643, Read name HSQ700642:192:C13FVACXX:7:1216:3718:77185, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070250099, Read name HSQ700642:208:D1D6WACXX:7:2314:9173:4251, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070490333, Read name HSQ700642:192:C13FVACXX:7:1113:13948:3638, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070760729, Read name HSQ700642:188:C0U39ACXX:2:1115:7323:94014, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070815437, Read name HSQ700642:188:C0U39ACXX:7:1308:4988:56625, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1070904078, Read name HSQ700642:188:C0U39ACXX:2:1310:13154:16269, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071220897, Read name HSQ700642:208:D1D6WACXX:7:1310:17023:38275, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071331490, Read name HSQ700642:188:C0U39ACXX:3:2313:8084:45068, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071552307, Read name HSQ700642:208:D1D6WACXX:7:1201:8438:59148, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716300, Read name HSQ700642:188:C0U39ACXX:6:1206:17269:89020, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716301, Read name HSQ700642:188:C0U39ACXX:3:1212:17154:29983, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716303, Read name HSQ700642:191:D18JJACXX:7:1316:20876:61720, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716304, Read name HSQ700642:191:D18JJACXX:7:2112:12961:84068, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716305, Read name HSQ700642:191:D18JJACXX:7:2114:8240:6888, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716306, Read name HSQ700642:192:C13FVACXX:7:1211:7892:82993, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716308, Read name HSQ700642:192:C13FVACXX:7:2107:13459:44613, MAPQ should be 0 for unmapped read.
+Ignoring SAM validation error: ERROR: Record 1071716309, Read name HSQ700642:192:C13FVACXX:7:2108:20956:33477, MAPQ should be 0 for unmapped read.
+INFO	2013-06-17 04:04:42	MarkDuplicates	Written 950000000 records.
+INFO	2013-06-17 04:08:14	MarkDuplicates	Written 960000000 records.
+INFO	2013-06-17 04:09:19	MarkDuplicates	Before output close freeMemory: 8826575240; totalMemory: 9216131072; maxMemory: 11453267968
+INFO	2013-06-17 04:09:21	MarkDuplicates	After output close freeMemory: 9196613088; totalMemory: 9216131072; maxMemory: 11453267968
+[Mon Jun 17 04:09:21 EDT 2013] net.sf.picard.sam.MarkDuplicates done. Elapsed time: 591.00 minutes.
+Runtime.totalMemory()=9216131072
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@flute000-179.orchestra>
+Subject: Job 528444: <java -Djava.io.tmpdir=./tmp -Xmx12g -jar MarkDuplicates.jar INPUT=neuron_6.bam OUTPUT=neuron_6.rmdup.bam METRICS_FILE=neuron_6.markdup_metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT> Done
+
+Job <java -Djava.io.tmpdir=./tmp -Xmx12g -jar MarkDuplicates.jar INPUT=neuron_6.bam OUTPUT=neuron_6.rmdup.bam METRICS_FILE=neuron_6.markdup_metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT> was submitted from host <balcony.orchestra> by user <ljl11> in cluster <hms_orchestra>.
+Job was executed on host(s) <2*flute000-179.orchestra>, in queue <long>, as user <ljl11> in cluster <hms_orchestra>.
+</home/ljl11> was used as the home directory.
+</files/CBMI/ParkLabUnreplicated/joe/neuron/bams> was used as the working directory.
+Started at Sun Jun 16 18:18:20 2013
+Results reported at Mon Jun 17 04:09:23 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+java -Djava.io.tmpdir=./tmp -Xmx12g -jar MarkDuplicates.jar INPUT=neuron_6.bam OUTPUT=neuron_6.rmdup.bam METRICS_FILE=neuron_6.markdup_metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :  34973.42 sec.
+    Max Memory :     12343 MB
+    Max Swap   :     12710 MB
+
+    Max Processes  :         3
+    Max Threads    :        17
+
+The output (if any) is above this job summary.
+
