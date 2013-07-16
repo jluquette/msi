@@ -6,3 +6,7 @@ md5sum: Input/output error.
 
 cortex_bulk.rmdup.nomapq0.sputnik.txt.gz
 neuron_2.rmdup.nomapq0.sputnik.txt.gz
+
+The version of Sputnik used is: sputnik_V6_len5.  This corresponds to a
+specific setting of the length parameter in the Sputnik code.  I don't know
+if the version of the code in this repository has that variable set to 5.
