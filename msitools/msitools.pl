@@ -7,6 +7,7 @@
 use strict;
 use warnings;
 use Getopt::Long;
+use IO::Compress::Gzip qw($GzipError);
 
 my $flank_bp = 2;
 my $short_test = 0;
@@ -102,10 +103,11 @@ print "done.\n";
 
 
 
-open (SUPPREADS, ">", "$outprefix.supporting_reads.txt");
-print SUPPREADS "chr\tstart\tend\tSTRlen\treadinfo\n";
+#open (SUPPREADS, ">", "$outprefix.supporting_reads.txt");
+my $gzsuppreads = new IO::Compress::Gzip "$outprefix.supporting_reads.txt.gz"
+    or die("IO::Compress::Gzip failed: $GzipError");
+print $gzsuppreads "chr\tstart\tend\tSTRlen\treadinfo\n";
 
-# This used to be done per chromosome.  Changed by Joe.
 print "Reading input data..\n";
 open (F, "<", $inputfile) or die;
 my $nread = 0;
@@ -155,7 +157,7 @@ while (<F>) {
                         push @{ $strandArray[$indexPos] }, $strand;
                         push @{ $mapQArray[$indexPos] }, $mapq;
                     }
-                    print SUPPREADS "$chrom\t$repeatStart[$indexPos]\t$repeatEnd[$indexPos]\t$replen\t@element\n";
+                    print $gzsuppreads "$chrom\t$repeatStart[$indexPos]\t$repeatEnd[$indexPos]\t$replen\t@element\n";
                     ++$nsupp;
                     if ($debug) {
                         print "$repeatStart[$indexPos]\t$repeatEnd[$indexPos]\t$replen\t@element\n";
@@ -194,14 +196,18 @@ while (<F>) {
 	}
 }
 close F;
+$gzsuppreads->close();
 print "done.\n";
 
 print "Writing results to $outprefix.str_summary.txt.. ";
 open (OUTPUT, ">$outprefix.str_summary.txt");
-print OUTPUT "index\tchr\tstart\tend\trepArray\n";
+print OUTPUT "index\tchr\tstart\tend\trepArray\tstrandArray\tmapQArray\n";
 for (my $i = 0; $i < $repeatno; ++$i) {
     if (exists $lenArray[$i]) {
-	    print OUTPUT "$i\t$repeatChrom[$i]\t$repeatStart[$i]\t$repeatEnd[$i]\t$lenArray[$i]\n";
+        my $lenstr = join(",", @{$lenArray[$i]});
+        my $strandstr = join(",", @{$strandArray[$i]});
+        my $mapqstr = join(",", @{$mapQArray[$i]});
+	    print OUTPUT "$i\t$repeatChrom[$i]\t$repeatStart[$i]\t$repeatEnd[$i]\t$lenstr\t$strandstr\t$mapqstr\n";
     }
 }
 close OUTPUT;
