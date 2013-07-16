@@ -55,7 +55,7 @@ foreach my $chr (keys %chrhash) {
     while (<F>) {
         my $line = $_;
         chomp $line;
-        $chrSeq{"chr$chr"} .= $line;
+        $chrSeq{$chr} .= $line;
         $nbytes += length($line);
     }
     print "$nbytes bytes.\n";
@@ -68,54 +68,52 @@ print "done.\n";
 # Build a record of all known repeats on this chromosome
 # This used to be done one chrom at a time.  Changed by Joe.
 print "Building repeat index..\n";
-my @repeatChrom = ();
-my @repeatStart = ();
-my @repeatEnd = ();
-my @repeatSeq = ();
-my @repeatFlank1 = ();
-my @repeatFlank2 = ();
-my @repeatType = ();
-my $repeatno = 0;
+my %repeatdb;
 open (F, "<", "$resource_path/WGRef_7892585MS_withGENEcategory_FINAL_withMSTYPE_hg19.txt") or die;
 while (<F>) {
-    my $line = $_;
-    chomp $line;
-    my @element = split("\t", $line); 
+    chomp;
+    my @element = split("\t");
     my $chr = $element[0];
     $chr =~ s/chr//g;  # Get rid of 'chr' if it's there
     # Only load repeats in the specified chromosome list
     if (exists $chrhash{$chr}) {
         $element[5] =~ s/\s//g;
-        $repeatChrom[$repeatno] = $element[0];
-        $repeatStart[$repeatno] = $element[1]; 
-        $repeatEnd[$repeatno] = $element[2];
-        $repeatSeq[$repeatno] = $element[4];
-        $repeatType[$repeatno] = $element[5];
-        $repeatFlank1[$repeatno] =
-            uc(substr($chrSeq{"chr".$chr}, $element[1]-$flank_bp-1, $flank_bp));
-        $repeatFlank2[$repeatno] =
-            uc(substr($chrSeq{"chr".$chr}, $element[2] , $flank_bp));
-        ++$repeatno;
+        my %rec = (
+            'chr'     => $chr,
+            'start'   => $element[1],
+            'end'     => $element[2],
+            'seq'     => $element[4],
+            'type'    => $element[5],
+            'flank1'  => uc(substr($chrSeq{$chr},
+                                   $element[1] - $flank_bp - 1,
+                                   $flank_bp)),
+            'flank2'  => uc(substr($chrSeq{$chr}, $element[2] , $flank_bp)),
+            'lens'    => [],
+            'strands' => [],
+            'mapqs'   => []
+        );
+        push @{ $repeatdb{$chr} }, { %rec };
     }
 }
 close F;
+
+while (my ($k, $v) = each(%repeatdb)) {
+    print "chr$k: " . scalar(@$v) . " repeat records\n";
+}
 print "done.\n";
 
 
 
-#open (SUPPREADS, ">", "$outprefix.supporting_reads.txt");
 my $gzsuppreads = new IO::Compress::Gzip "$outprefix.supporting_reads.txt.gz"
     or die("IO::Compress::Gzip failed: $GzipError");
 print $gzsuppreads "chr\tstart\tend\tSTRlen\treadinfo\n";
 
-print "Reading input data..\n";
-open (F, "<", $inputfile) or die;
 my $nread = 0;
 my $nsupp = 0;
-my $indexPos = 0;
-my @lenArray = ();
-my @strandArray = ();
-my @mapQArray = ();
+my $idx;
+my $last_chrom = '';
+print "Reading input data..\n";
+open (F, "<", $inputfile) or die;
 while (<F>) {
     ++$nread;
     if ($nread % 10000 == 0) {
@@ -125,12 +123,12 @@ while (<F>) {
     chomp;
     my @element = split(" "); 
     my $chrom = $element[2];
-    $chrom =~ s/chr//g;  # Get rid of 'chr' if it's there
+    $chrom =~ s/chr//g;                   # Get rid of 'chr' if it's there
+    next if not exists $chrhash{$chrom};  # Skip if not recognized
+    $idx = 0 if ($chrom ne $last_chrom);
+    my $rec_array = $repeatdb{$chrom};
+    my $direction = ""; # searching direction
 
-    # Skip if not one of our requested chromosomes
-    next if not exists $chrhash{$chrom};
-
-    my $flag_direction = ""; # searching direction
     my $startRepeat = $element[3] + $element[10];
     my $endRepeat = $element[3] + $element[11]; 
     my $strand = (int $element[1] & 0x10) == 0 ? '+' : '-';
@@ -138,56 +136,56 @@ while (<F>) {
     my $this_flank1 = substr($element[13], $element[10]-$flank_bp-1, $flank_bp);
     my $this_flank2 = substr($element[13], $element[11], $flank_bp);
     while (1) { # search all repeats for an overlapping record
-        if ($endRepeat >= $repeatStart[$indexPos] and
-            $startRepeat <= $repeatEnd[$indexPos]) {
-            if ($element[9] eq $repeatType[$indexPos]) {
-                # joe: fix the case where $element[9]-$flank_bp-1 is
-                # negative, which causes the substring to be taken from
-                # the end of the read
-                if ($repeatFlank1[$indexPos] eq $this_flank1 and
-                    $repeatFlank2[$indexPos] eq $this_flank2 and
-                    $element[10] - $flank_bp - 1 >= 0) {
-                    my $replen = scalar($element[11] - $element[10] + 1);
-                    if (not exists $lenArray[$indexPos]) {
-                        $lenArray[$indexPos] = [ $replen ];
-                        $strandArray[$indexPos] = [ $strand ];
-                        $mapQArray[$indexPos] = [ $mapq ];
-                    } else {
-                        push @{ $lenArray[$indexPos] }, $replen;
-                        push @{ $strandArray[$indexPos] }, $strand;
-                        push @{ $mapQArray[$indexPos] }, $mapq;
-                    }
-                    print $gzsuppreads "$chrom\t$repeatStart[$indexPos]\t$repeatEnd[$indexPos]\t$replen\t@element\n";
-                    ++$nsupp;
-                    if ($debug) {
-                        print "$repeatStart[$indexPos]\t$repeatEnd[$indexPos]\t$replen\t@element\n";
-                        print "$repeatFlank1[$indexPos]\t$repeatFlank2[$indexPos]\n";
-                        print "$this_flank1\t$this_flank2\n";
-                        print "repeatSeq=" . " " x $flank_bp . "$repeatSeq[$indexPos]\n";
-                        print "chrSeq=   " . uc(substr($chrSeq{"chr$chrom"}, $repeatStart[$indexPos] - $flank_bp - 1, $repeatEnd[$indexPos] - $repeatStart[$indexPos] + 2*$flank_bp)) . "\n";
-                        print "lens here: @{ $lenArray[$indexPos] }\n";
-                        print "strands here: @{ $strandArray[$indexPos] }\n";
-                        print "mapqs here: @{ $mapQArray[$indexPos] }\n";
-                        print "-" x 80 . "\n";
-                    }
+        my $record = $rec_array->[$idx];  # ref to a hash
+        if ($endRepeat >= $record->{start} and $startRepeat <= $record->{end}) {
+            # joe: fix the case where $element[9]-$flank_bp-1 is negative,
+            # which causes substr to select the end of the read
+            if ($element[9] eq $record->{type} and
+                $record->{flank1} eq $this_flank1 and
+                $record->{flank2} eq $this_flank2 and
+                $element[10] - $flank_bp - 1 >= 0) {
+                my $replen = scalar($element[11] - $element[10] + 1);
+                push @{ $record->{lens} }, $replen;
+                push @{ $record->{strands} }, $strand;
+                push @{ $record->{mapqs} }, $mapq;
+                print $gzsuppreads "$chrom\t$record->{start}\t$record->{end}\t$replen\t@element\n";
+                ++$nsupp;
+                if ($debug) {
+                    my $seq_context = 
+                        substr($chrSeq{$chrom},
+                               $record->{start} - $flank_bp - 1,
+                               $record->{end} - $record->{start} + 2*$flank_bp));
+                    print "$record->{start}\t$record->{end}\t$replen\t@element\n";
+                    print "$record->{flank1}\t$record->{flank2}\n";
+                    print "$this_flank1\t$this_flank2\n";
+                    print "repeatSeq=" . " " x $flank_bp . "$record->{seq}\n";
+                    print "chrSeq=   " . uc($seq_context) . "\n"
+                    print "lens here: @{ $record->{lens} }\n";
+                    print "strands here: @{ $record->{strands} }\n";
+                    print "mapqs here: @{ $record->{mapqs} }\n";
+                    print "-" x 80 . "\n";
                 }
             }
             last; # Don't allow a read to match multiple repeat records
-        } elsif ($startRepeat > $repeatEnd[$indexPos]) { 
+        } elsif ($startRepeat > $record->{end}) { 
             # Forward searching (Genome repeat << Read repeat)
-            if ($flag_direction eq "backward" or $indexPos >= $repeatno) {
+            # Fix by Joe: used to be $indexPos >= $repeatno, but this allows
+            # ++indexPos to be run when indexPos = repeatno - 1, which means
+            # indexPos will become repeatno, which is not a valid index to
+            # repeatStart, repeatEnd, etc. (repeatno is now scalar(@$rec_array))
+            if ($direction eq "backward" or $idx >= scalar(@$rec_array) - 1) {
                 last;
             } else {
-                $flag_direction = "forward";
-                ++$indexPos;
+                $direction = "forward";
+                ++$idx;
             } 
-        } elsif ($endRepeat < $repeatStart[$indexPos]) {
+        } elsif ($endRepeat < $record->{start}) {
             # Backward searching (Read repeat >> Genome repeat)
-            if ($flag_direction eq "forward" or $indexPos <= 0) {
+            if ($direction eq "forward" or $idx <= 0) {
                 last;
             } else {
-                $flag_direction = "backward";
-                --$indexPos;
+                $direction = "backward";
+                --$idx;
             }
         } else {
             print "ERROR: no repeat record found for read:\n";
@@ -202,12 +200,15 @@ print "done.\n";
 print "Writing results to $outprefix.str_summary.txt.. ";
 open (OUTPUT, ">$outprefix.str_summary.txt");
 print OUTPUT "index\tchr\tstart\tend\trepArray\tstrandArray\tmapQArray\n";
-for (my $i = 0; $i < $repeatno; ++$i) {
-    if (exists $lenArray[$i]) {
-        my $lenstr = join(",", @{$lenArray[$i]});
-        my $strandstr = join(",", @{$strandArray[$i]});
-        my $mapqstr = join(",", @{$mapQArray[$i]});
-        print OUTPUT "$i\t$repeatChrom[$i]\t$repeatStart[$i]\t$repeatEnd[$i]\t$lenstr\t$strandstr\t$mapqstr\n";
+# Don't loop over keys %repeatdb, this way preserves chrom order
+for my $chr (@chrarray) {  
+    for my $record (@{ $repeatdb{$chr} }) {
+        if (scalar(@{ $record->{lens} }) > 0) {
+            print OUTPUT "$chr\t$record->{start}\t$record->{end}";
+            print OUTPUT "\t" . join(",", @{ $record->{lens} });
+            print OUTPUT "\t" . join(",", @{ $record->{strands} });
+            print OUTPUT "\t" . join(",", @{ $record->{mapqs} }) . "\n";
+        }
     }
 }
 close OUTPUT;
