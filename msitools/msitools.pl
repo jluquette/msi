@@ -10,14 +10,16 @@ use Getopt::Long;
 
 my $flank_bp = 2;
 my $short_test = 0;
+my $debug = 0;
 undef my $inputfile;
 undef my $outprefix;
 undef my $resource_path;
-GetOptions("flank_bp:i" => \$flank_bp,
+GetOptions("flank_bp=i" => \$flank_bp,
            "input=s" => \$inputfile,
            "outprefix=s" => \$outprefix,
            "resource_path=s" => \$resource_path,
-           "test" => \$short_test)
+           "test" => \$short_test,
+           "debug" => \$debug)  # EXTREMELY verbose.  Do not use on large input
     or die("error parsing arguments");
 
 die "--input is required" if not defined $inputfile;
@@ -107,12 +109,15 @@ print SUPPREADS "chr\tstart\tend\tSTRlen\treadinfo\n";
 print "Reading input data..\n";
 open (F, "<", $inputfile) or die;
 my $nread = 0;
+my $nsupp = 0;
 my $indexPos = 0;
 my @lenArray = ();
+my @strandArray = ();
+my @mapQArray = ();
 while (<F>) {
     ++$nread;
     if ($nread % 10000 == 0) {
-        print "$nread lines processed\n";
+        print "$nread lines processed, $nsupp supporting reads\n";
     }
 
 	chomp;
@@ -126,6 +131,8 @@ while (<F>) {
 	my $flag_direction = ""; # searching direction
 	my $startRepeat = $element[3] + $element[10];
     my $endRepeat = $element[3] + $element[11]; 
+    my $strand = (int $element[1] & 0x10) == 0 ? '+' : '-';
+    my $mapq = int $element[4];
     my $this_flank1 = substr($element[13], $element[10]-$flank_bp-1, $flank_bp);
     my $this_flank2 = substr($element[13], $element[11], $flank_bp);
 	while (1) { # search all repeats for an overlapping record
@@ -139,12 +146,28 @@ while (<F>) {
 				    $repeatFlank2[$indexPos] eq $this_flank2 and
                     $element[10] - $flank_bp - 1 >= 0) {
                     my $replen = scalar($element[11] - $element[10] + 1);
-					if (exists $lenArray[$indexPos]) {
-                        $lenArray[$indexPos] .= ",$replen";
+					if (not exists $lenArray[$indexPos]) {
+                        $lenArray[$indexPos] = [ $replen ];
+                        $strandArray[$indexPos] = [ $strand ];
+                        $mapQArray[$indexPos] = [ $mapq ];
                     } else {
-                        $lenArray[$indexPos] .= "$replen";
+                        push @{ $lenArray[$indexPos] }, $replen;
+                        push @{ $strandArray[$indexPos] }, $strand;
+                        push @{ $mapQArray[$indexPos] }, $mapq;
                     }
                     print SUPPREADS "$chrom\t$repeatStart[$indexPos]\t$repeatEnd[$indexPos]\t$replen\t@element\n";
+                    ++$nsupp;
+                    if ($debug) {
+                        print "$repeatStart[$indexPos]\t$repeatEnd[$indexPos]\t$replen\t@element\n";
+                        print "$repeatFlank1[$indexPos]\t$repeatFlank2[$indexPos]\n";
+                        print "$this_flank1\t$this_flank2\n";
+                        print "repeatSeq=" . " " x $flank_bp . "$repeatSeq[$indexPos]\n";
+                        print "chrSeq=   " . uc(substr($chrSeq{"chr$chrom"}, $repeatStart[$indexPos] - $flank_bp - 1, $repeatEnd[$indexPos] - $repeatStart[$indexPos] + 2*$flank_bp)) . "\n";
+                        print "lens here: @{ $lenArray[$indexPos] }\n";
+                        print "strands here: @{ $strandArray[$indexPos] }\n";
+                        print "mapqs here: @{ $mapQArray[$indexPos] }\n";
+                        print "-" x 80 . "\n";
+                    }
 				}
 			}
 			last; # Don't allow a read to match multiple repeat records
