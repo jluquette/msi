@@ -48,9 +48,9 @@ print "Using " . scalar(keys %chrhash) . " chromosomes...\n";
 print "Reading chromosome sequences into RAM..\n";
 my %chrSeq;
 foreach my $chr (keys %chrhash) {
-	print "reading chromosome $chr.. ";
-	open (F, "<", "$resource_path/hg19_chromosome_seq/chr$chr.fa") or die;
-	my $null = <F>;  # strip off the first >chrXXX line
+    print "reading chromosome $chr.. ";
+    open (F, "<", "$resource_path/hg19_chromosome_seq/chr$chr.fa") or die;
+    my $null = <F>;  # strip off the first >chrXXX line
     my $nbytes = 0;
     while (<F>) {
         my $line = $_;
@@ -59,7 +59,7 @@ foreach my $chr (keys %chrhash) {
         $nbytes += length($line);
     }
     print "$nbytes bytes.\n";
-	close F; 
+    close F; 
 }
 print "done.\n";
 
@@ -79,23 +79,23 @@ my $repeatno = 0;
 open (F, "<", "$resource_path/WGRef_7892585MS_withGENEcategory_FINAL_withMSTYPE_hg19.txt") or die;
 while (<F>) {
     my $line = $_;
-	chomp $line;
+    chomp $line;
     my @element = split("\t", $line); 
     my $chr = $element[0];
     $chr =~ s/chr//g;  # Get rid of 'chr' if it's there
     # Only load repeats in the specified chromosome list
     if (exists $chrhash{$chr}) {
-	    $element[5] =~ s/\s//g;
+        $element[5] =~ s/\s//g;
         $repeatChrom[$repeatno] = $element[0];
         $repeatStart[$repeatno] = $element[1]; 
-	    $repeatEnd[$repeatno] = $element[2];
+        $repeatEnd[$repeatno] = $element[2];
         $repeatSeq[$repeatno] = $element[4];
-	    $repeatType[$repeatno] = $element[5];
-	    $repeatFlank1[$repeatno] =
+        $repeatType[$repeatno] = $element[5];
+        $repeatFlank1[$repeatno] =
             uc(substr($chrSeq{"chr".$chr}, $element[1]-$flank_bp-1, $flank_bp));
-	    $repeatFlank2[$repeatno] =
+        $repeatFlank2[$repeatno] =
             uc(substr($chrSeq{"chr".$chr}, $element[2] , $flank_bp));
-	    ++$repeatno;
+        ++$repeatno;
     }
 }
 close F;
@@ -122,7 +122,7 @@ while (<F>) {
         print "$nread lines processed, $nsupp supporting reads\n";
     }
 
-	chomp;
+    chomp;
     my @element = split(" "); 
     my $chrom = $element[2];
     $chrom =~ s/chr//g;  # Get rid of 'chr' if it's there
@@ -130,25 +130,25 @@ while (<F>) {
     # Skip if not one of our requested chromosomes
     next if not exists $chrhash{$chrom};
 
-	my $flag_direction = ""; # searching direction
-	my $startRepeat = $element[3] + $element[10];
+    my $flag_direction = ""; # searching direction
+    my $startRepeat = $element[3] + $element[10];
     my $endRepeat = $element[3] + $element[11]; 
     my $strand = (int $element[1] & 0x10) == 0 ? '+' : '-';
     my $mapq = int $element[4];
     my $this_flank1 = substr($element[13], $element[10]-$flank_bp-1, $flank_bp);
     my $this_flank2 = substr($element[13], $element[11], $flank_bp);
-	while (1) { # search all repeats for an overlapping record
-		if ($endRepeat >= $repeatStart[$indexPos] and
+    while (1) { # search all repeats for an overlapping record
+        if ($endRepeat >= $repeatStart[$indexPos] and
             $startRepeat <= $repeatEnd[$indexPos]) {
-			if ($element[9] eq $repeatType[$indexPos]) {
+            if ($element[9] eq $repeatType[$indexPos]) {
                 # joe: fix the case where $element[9]-$flank_bp-1 is
                 # negative, which causes the substring to be taken from
                 # the end of the read
-				if ($repeatFlank1[$indexPos] eq $this_flank1 and
-				    $repeatFlank2[$indexPos] eq $this_flank2 and
+                if ($repeatFlank1[$indexPos] eq $this_flank1 and
+                    $repeatFlank2[$indexPos] eq $this_flank2 and
                     $element[10] - $flank_bp - 1 >= 0) {
                     my $replen = scalar($element[11] - $element[10] + 1);
-					if (not exists $lenArray[$indexPos]) {
+                    if (not exists $lenArray[$indexPos]) {
                         $lenArray[$indexPos] = [ $replen ];
                         $strandArray[$indexPos] = [ $strand ];
                         $mapQArray[$indexPos] = [ $mapq ];
@@ -170,30 +170,30 @@ while (<F>) {
                         print "mapqs here: @{ $mapQArray[$indexPos] }\n";
                         print "-" x 80 . "\n";
                     }
-				}
-			}
-			last; # Don't allow a read to match multiple repeat records
-		} elsif ($startRepeat > $repeatEnd[$indexPos]) { 
-			# Forward searching (Genome repeat << Read repeat)
-			if ($flag_direction eq "backward" or $indexPos >= $repeatno) {
+                }
+            }
+            last; # Don't allow a read to match multiple repeat records
+        } elsif ($startRepeat > $repeatEnd[$indexPos]) { 
+            # Forward searching (Genome repeat << Read repeat)
+            if ($flag_direction eq "backward" or $indexPos >= $repeatno) {
                 last;
             } else {
-				$flag_direction = "forward";
+                $flag_direction = "forward";
                 ++$indexPos;
             } 
-		} elsif ($endRepeat < $repeatStart[$indexPos]) {
-			# Backward searching (Read repeat >> Genome repeat)
-			if ($flag_direction eq "forward" or $indexPos <= 0) {
+        } elsif ($endRepeat < $repeatStart[$indexPos]) {
+            # Backward searching (Read repeat >> Genome repeat)
+            if ($flag_direction eq "forward" or $indexPos <= 0) {
                 last;
             } else {
-				$flag_direction = "backward";
+                $flag_direction = "backward";
                 --$indexPos;
             }
-		} else {
+        } else {
             print "ERROR: no repeat record found for read:\n";
-			die("$chrom:$element[0]-$element[2]: $startRepeat-$endRepeat");
-		}
-	}
+            die("$chrom:$element[0]-$element[2]: $startRepeat-$endRepeat");
+        }
+    }
 }
 close F;
 $gzsuppreads->close();
@@ -207,7 +207,7 @@ for (my $i = 0; $i < $repeatno; ++$i) {
         my $lenstr = join(",", @{$lenArray[$i]});
         my $strandstr = join(",", @{$strandArray[$i]});
         my $mapqstr = join(",", @{$mapQArray[$i]});
-	    print OUTPUT "$i\t$repeatChrom[$i]\t$repeatStart[$i]\t$repeatEnd[$i]\t$lenstr\t$strandstr\t$mapqstr\n";
+        print OUTPUT "$i\t$repeatChrom[$i]\t$repeatStart[$i]\t$repeatEnd[$i]\t$lenstr\t$strandstr\t$mapqstr\n";
     }
 }
 close OUTPUT;
