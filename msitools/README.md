@@ -14,3 +14,11 @@ Changes to Tae-min's code:
 NOTE: the analysis was run using a version of msitools that miscomputes
 mean searches per read; it divides by the total number of lines processed
 instead of 10,000, which is the chunk each mean is computed for.
+
+DEPENDENCY!
+http://cpansearch.perl.org/src/BENBOOTH/Set-IntervalTree-0.07/lib/Set/IntervalTree.pm
+
+perl -MCPAN -e shell
+install Set::IntervalTree
+
+Must be installed in this directory under 'perllib'.
