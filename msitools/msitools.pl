@@ -111,25 +111,31 @@ print $gzsuppreads "chr\tstart\tend\tSTRlen\treadinfo\n";
 
 my $nread = 0;
 my $nsupp = 0;
+my $num_searches = 0;
 my $idx;
-my $last_chrom = '';
+my $chrom;
 print "Reading input data..\n";
 open (F, "<", $inputfile) or die;
 while (<F>) {
     ++$nread;
     if ($nread % 10000 == 0) {
-        print "$nread lines processed, $nsupp supporting reads\n";
+        print "$nread lines processed, $nsupp supporting reads, ";
+        print $num_searches / $nread . " mean searches per read.\n";
+        $num_searches = 0;
     }
 
     chomp;
     my @element = split(" "); 
-    my $chrom = $element[2];
-    $chrom =~ s/chr//g;                   # Get rid of 'chr' if it's there
+    $element[2] =~ s/chr//g;
+
+    # Optimize the search: if $chrom hasn't changed, then don't reset $idx.
+    # This will significantly increase performance when input is sorted.
+    $idx = 0 if ($chrom ne $element[2]);
+    $chrom = $element[2];
     next if not exists $chrhash{$chrom};  # Skip if not recognized
-    $idx = 0 if ($chrom ne $last_chrom);
+
     my $rec_array = $repeatdb{$chrom};
     my $direction = ""; # searching direction
-
     my $startRepeat = $element[3] + $element[10];
     my $endRepeat = $element[3] + $element[11]; 
     my $strand = (int $element[1] & 0x10) == 0 ? '+' : '-';
@@ -177,6 +183,7 @@ while (<F>) {
             } else {
                 $direction = "forward";
                 ++$idx;
+                ++$num_searches;
             } 
         } elsif ($endRepeat < $start) {
             # Backward searching (Read repeat >> Genome repeat)
@@ -185,6 +192,7 @@ while (<F>) {
             } else {
                 $direction = "backward";
                 --$idx;
+                ++$num_searches;
             }
         } else {
             print "ERROR: no repeat record found for read:\n";
