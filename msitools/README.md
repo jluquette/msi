@@ -7,3 +7,10 @@ Changes to Tae-min's code:
     * change the flank_size requirement from 2bp->10bp
     * msitools now creates a file of all reads that were used to support one
       of its calls in a file named 'SUPPORT_reads_<filename>.txt'
+    * many, many changes were made to msitools.  it is almost a complete
+      rewrite at this point.  the above features are more or less correct,
+      but do not reflect all the changes.
+
+NOTE: the analysis was run using a version of msitools that miscomputes
+mean searches per read; it divides by the total number of lines processed
+instead of 10,000, which is the chunk each mean is computed for.
