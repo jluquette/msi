@@ -1,5 +1,15 @@
 #!/usr/bin/env perl
 
+# The previous version of this program split its original input into one
+# file per chromosome and worked on a single chromosome at a time.  It also
+# required the input to be sorted for efficient lookup of repeat records.
+# This version is almost completely rewritten by Joe to neither split the
+# input nor to require the input to be sorted.
+
+# Using the ~8M repeat locus database produced by Tae-min, this program
+# requires ~11GB of RAM to store the full database and human reference
+# sequences in memory.  
+
 # TODO: TEST! compare against previous output.  will not be identical
 # due to fixing the negative flanking index bug as well as removing all
 # lines for repeats that have no supporting reads.
@@ -8,13 +18,18 @@ use strict;
 use warnings;
 use Getopt::Long;
 use IO::Compress::Gzip qw($GzipError);
+use lib 'perllib';
+use Set::IntervalTree;
+use Cwd;
+use List::Util qw(max);
+
 
 my $flank_bp = 2;
 my $short_test = 0;
 my $debug = 0;
+my $resource_path = getcwd;
 undef my $inputfile;
 undef my $outprefix;
-undef my $resource_path;
 GetOptions("flank_bp=i" => \$flank_bp,
            "input=s" => \$inputfile,
            "outprefix=s" => \$outprefix,
@@ -69,12 +84,13 @@ print "done.\n";
 # This used to be done one chrom at a time.  Changed by Joe.
 print "Building repeat index..\n";
 my %repeatdb;
+my %repeatdb_stats;
 open (F, "<", "$resource_path/WGRef_7892585MS_withGENEcategory_FINAL_withMSTYPE_hg19.txt") or die;
 while (<F>) {
     chomp;
     my @element = split("\t");
     my $chr = $element[0];
-    $chr =~ s/chr//g;  # Get rid of 'chr' if it's there
+    $chr =~ s/chr//g;
     # Only load repeats in the specified chromosome list
     if (exists $chrhash{$chr}) {
         $element[5] =~ s/\s//g;
@@ -93,13 +109,21 @@ while (<F>) {
             [],           # strands
             []            # mapqs
         ];
-        push @{ $repeatdb{$chr} }, $rec;
+        # Intervals are half open: [a, b).
+        $repeatdb{$chr} = Set::IntervalTree->new if not defined $repeatdb{$chr};
+        $repeatdb{$chr}->insert($rec, $element[1], $element[2]+1);
+
+        # The library doesn't make these values easily queryable.
+        # track the number of records and the max record high value.
+        $repeatdb_stats{$chr} = [ 0, 0 ] if not defined $repeatdb_stats{$chr};
+        ++$repeatdb_stats{$chr}[0];
+        $repeatdb_stats{$chr}[1] = max($repeatdb_stats{$chr}[1], $element[2]+1);
     }
 }
 close F;
 
 while (my ($k, $v) = each(%repeatdb)) {
-    print "chr$k: " . scalar(@$v) . " repeat records\n";
+    print "chr$k: $repeatdb_stats{$k}[0] repeat records in [0, $repeatdb_stats{$k}[1])\n";
 }
 print "done.\n";
 
@@ -112,8 +136,7 @@ print $gzsuppreads "chr\tstart\tend\tSTRlen\treadinfo\n";
 my $nread = 0;
 my $nsupp = 0;
 my $num_searches = 0;
-my $idx;
-my $chrom;
+my $num_notindb = 0;
 print "Reading input data..\n";
 open (F, "<", $inputfile) or die;
 while (<F>) {
@@ -126,25 +149,28 @@ while (<F>) {
 
     chomp;
     my @element = split(" "); 
-    $element[2] =~ s/chr//g;
+    my $chrom = $element[2];
+    $chrom =~ s/chr//g;
+    next if not exists $chrhash{$chrom};  # Skip if not in chr list
 
-    # Optimize the search: if $chrom hasn't changed, then don't reset $idx.
-    # This will significantly increase performance when input is sorted.
-    $idx = 0 if ($chrom ne $element[2]);
-    $chrom = $element[2];
-    next if not exists $chrhash{$chrom};  # Skip if not recognized
-
-    my $rec_array = $repeatdb{$chrom};
-    my $direction = ""; # searching direction
     my $startRepeat = $element[3] + $element[10];
     my $endRepeat = $element[3] + $element[11]; 
     my $strand = (int $element[1] & 0x10) == 0 ? '+' : '-';
     my $mapq = int $element[4];
     my $this_flank1 = substr($element[13], $element[10]-$flank_bp-1, $flank_bp);
     my $this_flank2 = substr($element[13], $element[11], $flank_bp);
-    while (1) { # search all repeats for an overlapping record
-        #my $record = $rec_array->[$idx];  # ref to a hash
-        my ($chr, $start, $end, $seq, $type, $flank1, $flank2, $lens, $strands, $mapqs) = @{ $rec_array->[$idx] };
+    
+    my $overlapping_repeats = $repeatdb{$chrom}->fetch($startRepeat, $endRepeat);
+    if (scalar(@$overlapping_repeats) == 0) {
+        if ($debug) {
+            print "DEBUG: not in db: $chrom:[$startRepeat, $endRepeat)\n";
+        }
+        ++$num_notindb;
+    }
+    for my $record (@$overlapping_repeats) {
+        my ($chr, $start, $end, $seq, $type, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
+
+        ++$num_searches;
         if ($endRepeat >= $start and $startRepeat <= $end) {
             # joe: fix the case where $element[9]-$flank_bp-1 is negative,
             # which causes substr to select the end of the read
@@ -160,7 +186,8 @@ while (<F>) {
                     my $seq_context = uc(substr($chrSeq{$chrom},
                                                 $start - $flank_bp - 1,
                                                 $end - $start + 2*$flank_bp));
-                    print "$start\t$end\t$replen\t@element\n";
+                    print "read: $chrom:$element[3], STR region: $startRepeat-$endRepeat\n";
+                    print "record: $start\t$end\t$replen\t@element\n";
                     print "$flank1\t$flank2\n";
                     print "$this_flank1\t$this_flank2\n";
                     print "repeatSeq=" . " " x $flank_bp . "$seq\n";
@@ -172,44 +199,28 @@ while (<F>) {
                 }
             }
             last; # Don't allow a read to match multiple repeat records
-        } elsif ($startRepeat > $end) { 
-            # Forward searching (Genome repeat << Read repeat)
-            # Fix by Joe: used to be $indexPos >= $repeatno, but this allows
-            # ++indexPos to be run when indexPos = repeatno - 1, which means
-            # indexPos will become repeatno, which is not a valid index to
-            # repeatStart, repeatEnd, etc. (repeatno is now scalar(@$rec_array))
-            if ($direction eq "backward" or $idx >= scalar(@$rec_array) - 1) {
-                last;
-            } else {
-                $direction = "forward";
-                ++$idx;
-                ++$num_searches;
-            } 
-        } elsif ($endRepeat < $start) {
-            # Backward searching (Read repeat >> Genome repeat)
-            if ($direction eq "forward" or $idx <= 0) {
-                last;
-            } else {
-                $direction = "backward";
-                --$idx;
-                ++$num_searches;
-            }
-        } else {
-            print "ERROR: no repeat record found for read:\n";
-            die("$chrom:$element[0]-$element[2]: $startRepeat-$endRepeat");
         }
     }
 }
 close F;
 $gzsuppreads->close();
 print "done.\n";
+print "$nread total reads, $nsupp placed, $num_notindb not found in repeat db.\n";
+
+
 
 print "Writing results to $outprefix.str_summary.txt.. ";
 open (OUTPUT, ">$outprefix.str_summary.txt");
 print OUTPUT "index\tchr\tstart\tend\trepArray\tstrandArray\tmapQArray\n";
 # Don't loop over keys %repeatdb, this way preserves chrom order
 for my $chr (@chrarray) {  
-    for my $record (@{ $repeatdb{$chr} }) {
+    # Hack.  The IntervalTree library does not export a method for iterating
+    # over its nodes, so we do a search that returns all possible nodes.
+    # Recall that repeatdb_stats[1] is the max upper bound.
+    my $all_recs = $repeatdb{$chr}->fetch(0, $repeatdb_stats{$chr}[1]);
+
+    # Sort output records by start and end position (all recs have the same chr)
+    for my $record (sort { $a->[1] <=> $b->[1] or $a->[2] <=> $b->[2] } @$all_recs) {
         my ($chr, $start, $end, $seq, $type, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
         print OUTPUT "$chr\t$start\t$end";
         print OUTPUT "\t" . join(",", @$lens);
