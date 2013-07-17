@@ -120,7 +120,7 @@ while (<F>) {
     ++$nread;
     if ($nread % 10000 == 0) {
         print "$nread lines processed, $nsupp supporting reads, ";
-        print $num_searches / $nread . " mean searches per read.\n";
+        print $num_searches / 10000 . " mean searches per read.\n";
         $num_searches = 0;
     }
 
