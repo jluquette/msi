@@ -211,7 +211,7 @@ print "$nread total reads, $nsupp placed, $num_notindb not found in repeat db.\n
 
 print "Writing results to $outprefix.str_summary.txt.. ";
 open (OUTPUT, ">$outprefix.str_summary.txt");
-print OUTPUT "index\tchr\tstart\tend\trepArray\tstrandArray\tmapQArray\n";
+print OUTPUT "chr\tstart\tend\trepArray\tstrandArray\tmapQArray\n";
 # Don't loop over keys %repeatdb, this way preserves chrom order
 for my $chr (@chrarray) {  
     # Hack.  The IntervalTree library does not export a method for iterating
