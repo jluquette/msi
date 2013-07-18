@@ -11,6 +11,13 @@ Changes to Tae-min's code:
       rewrite at this point.  the above features are more or less correct,
       but do not reflect all the changes.
 
+Tae-min's database contains two weird STR loci:
+    * chr2    242858713   242858723   intergenic      mo
+    * chr17   64722990    64722999    intergenic      d
+BOTH of these loci are the last loci in their respective chromosomes.  Maybe
+there was a corruption or bug when Tae-min was generating the database?  I've
+removed both lines from my version of the DB.
+
 NOTE: the analysis was run using a version of msitools that miscomputes
 mean searches per read; it divides by the total number of lines processed
 instead of 10,000, which is the chunk each mean is computed for.
