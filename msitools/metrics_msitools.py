@@ -41,6 +41,15 @@ parser.add_argument('--min-mapq', dest='min_mapq', metavar='N', default=0,
 parser.add_argument('--min-units', dest='min_units', metavar='N', default=1,
                     type=int,
                     help='Discard reference loci with < N repeat units')
+parser.add_argument('--min-supp', dest='min_supp_reads', metavar='N', default=0,
+                    type=int,
+                    help='Discard reference loci with < N supporting reads ' \
+                         'after all read filters have been applied')
+parser.add_argument('--max-ref-diff', dest='max_ref_diff', metavar='N',
+                    default=0, type=int,
+                    help='Discard reads that differ too greatly from the ' \
+                         'reference STR length.  abs(observed len - ref len) ' \
+                         '> N, for N in base pairs')
 parser.add_argument('--x-only', dest='x_only', action='store_true',
                     default=False,
                     help='Only consider reads from the X chromosome')
