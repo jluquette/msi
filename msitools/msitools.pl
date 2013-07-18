@@ -8,7 +8,10 @@
 
 # Using the ~8M repeat locus database produced by Tae-min, this program
 # requires ~11GB of RAM to store the full database and human reference
-# sequences in memory.  
+# sequences in memory.  Typical RAM usage for analyzing the data in this
+# experiment is ~50G.  One sample required as much as 52G.  If RAM is an
+# issue, add option to specify a subset of the full chrlist and then
+# merge the results in a separate script.
 
 # TODO: TEST! compare against previous output.  will not be identical
 # due to fixing the negative flanking index bug as well as removing all
@@ -101,8 +104,9 @@ while (<F>) {
             $chr,         # chr
             $element[1],  # start
             $element[2],  # end
+            $element[3],  # region (exonic, intronic, intergenic, 3utr, 5utr)
             $element[4],  # seq
-            $element[5],  # type
+            $element[5],  # unit (mono, di, tri, tetra)
             uc(substr($chrSeq{$chr}, $element[1] - $flank_bp - 1, $flank_bp)),
             uc(substr($chrSeq{$chr}, $element[2] , $flank_bp)),  # flank2
             [],           # lens
@@ -131,7 +135,7 @@ print "done.\n";
 
 my $gzsuppreads = new IO::Compress::Gzip "$outprefix.supporting_reads.txt.gz"
     or die("IO::Compress::Gzip failed: $GzipError");
-print $gzsuppreads "chr\tstart\tend\tSTRlen\treadinfo\n";
+print $gzsuppreads "chr\tstart\tend\tregion\treadinfo\n";
 
 my $nread = 0;
 my $nsupp = 0;
@@ -168,19 +172,19 @@ while (<F>) {
         ++$num_notindb;
     }
     for my $record (@$overlapping_repeats) {
-        my ($chr, $start, $end, $seq, $type, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
+        my ($chr, $start, $end, $region, $seq, $unit, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
 
         ++$num_searches;
         if ($endRepeat >= $start and $startRepeat <= $end) {
             # joe: fix the case where $element[9]-$flank_bp-1 is negative,
             # which causes substr to select the end of the read
-            if ($element[9] eq $type and $flank1 eq $this_flank1 and
+            if ($element[9] eq $unit and $flank1 eq $this_flank1 and
                 $flank2 eq $this_flank2 and $element[10] - $flank_bp - 1 >= 0) {
                 my $replen = scalar($element[11] - $element[10] + 1);
                 push @$lens, $replen;
                 push @$strands, $strand;
                 push @$mapqs, $mapq;
-                print $gzsuppreads "$chrom\t$start\t$end\t$replen\t@element\n";
+                print $gzsuppreads "$chrom\t$start\t$end\t$region\t$replen\t@element\n";
                 ++$nsupp;
                 if ($debug) {
                     my $seq_context = uc(substr($chrSeq{$chrom},
@@ -211,7 +215,7 @@ print "$nread total reads, $nsupp placed, $num_notindb not found in repeat db.\n
 
 print "Writing results to $outprefix.str_summary.txt.. ";
 open (OUTPUT, ">$outprefix.str_summary.txt");
-print OUTPUT "chr\tstart\tend\trepArray\tstrandArray\tmapQArray\n";
+print OUTPUT "chr\tstart\tend\tunit\tregion\trepArray\tstrandArray\tmapQArray\n";
 # Don't loop over keys %repeatdb, this way preserves chrom order
 for my $chr (@chrarray) {  
     # Hack.  The IntervalTree library does not export a method for iterating
@@ -221,8 +225,8 @@ for my $chr (@chrarray) {
 
     # Sort output records by start and end position (all recs have the same chr)
     for my $record (sort { $a->[1] <=> $b->[1] or $a->[2] <=> $b->[2] } @$all_recs) {
-        my ($chr, $start, $end, $seq, $type, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
-        print OUTPUT "$chr\t$start\t$end";
+        my ($chr, $start, $end, $region, $seq, $unit, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
+        print OUTPUT "$chr\t$start\t$end\t$unit\t$region";
         print OUTPUT "\t" . join(",", @$lens);
         print OUTPUT "\t" . join(",", @$strands);
         print OUTPUT "\t" . join(",", @$mapqs) . "\n";
