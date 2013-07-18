@@ -46,7 +46,7 @@ class STRLocusIterator():
         """
 
         self.f = open(filename, 'r')
-        self.header = f.readline()
+        self.header = self.f.readline()
 
         self.min_mapq = min_mapq
         self.x_only = x_only
@@ -81,8 +81,9 @@ class STRLocusIterator():
         return self
 
 
-    def next():
-        while self.f.next():
+    def next(self):
+        while True:
+            line = self.f.next()
             fields = [ x.strip() for x in line.split('\t') ]
 
             chrom = fields[0].replace('chr', '')
@@ -93,7 +94,7 @@ class STRLocusIterator():
 
             # Need to tally unfiltered totals before any filtering occurs
             self.total_loci += 1
-            raw_reads = fields[5].count(',')
+            raw_reads = fields[5].count(',') + 1 if fields[5] else 0
             self.total_reads += raw_reads
 
             if self.x_only and not chrom.endswith('X'):
@@ -108,8 +109,8 @@ class STRLocusIterator():
 
             # reference STR length in bp
             reflen = end - start + 1  
-            units = float(reflen) / unit_to_int[refunit]
-            if units < min_units:
+            units = float(reflen) / unit_to_int[ref_unit]
+            if units < self.min_units:
                 self.loci_min_units_filter += 1
                 self.reads_min_units_filter += raw_reads
                 continue
@@ -121,11 +122,11 @@ class STRLocusIterator():
                 # If raw_reads=0, there were no reads to begin with, so not an
                 # effect of this filter.
                 if raw_reads > 0:
-                    loci_mapq_filter += 1
+                    self.loci_mapq_filter += 1
                 continue
 
             # No more filters beyond this point.  Track locus statistics.
-            self.pf_loc i+= 1
+            self.pf_loci += 1
             self.pf_reads += len(reads)
             self.nsupp_hist[len(reads)] += 1
             self.chrom_hist[chrom] += len(reads)
@@ -135,13 +136,13 @@ class STRLocusIterator():
             self.region_hist[region] += 1
 
             # Track read statistics
-            for (obs, strand, mapq) in reads:
+            for (obslen, strand, mapq) in reads:
                 self.reflen_diff_hist[obslen - reflen] += 1
-                self.strand_hist[s] += 1
-                self.mapq_hist[mq] += 1
+                self.strand_hist[strand] += 1
+                self.mapq_hist[mapq] += 1
 
             # Number of unique observed alleles
-            self.nalleles_hist[len(set(obs for (obs, x, y) in reads))] += 1
+            self.nalleles_hist[len(set(obslen for (obslen, x, y) in reads))] += 1
 
             return (chrom, start, end, ref_unit, region, reads)
 
@@ -164,7 +165,7 @@ class STRLocusIterator():
         ]
 
 
-    def distn_metrics(self):
+    def hist_metrics(self):
         """Return several distributions as (description, dict) tuples."""
         return [
             ("supp reads by strand", self.strand_hist),
