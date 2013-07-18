@@ -37,7 +37,8 @@ class STRLocusIterator():
     be printed at any time.
     """
 
-    def __init__(self, filename, min_mapq=0, min_units=0, x_only=False, y_only=False):
+    def __init__(self, filename, min_mapq=0, min_units=0, max_ref_diff=0,
+                 min_supp_reads=0, x_only=False, y_only=False):
         """Filter options:
         min_mapq   -- only consider reads with mapq >= `min_mapq`
         min_units  -- only consider repeat loci with ref_units > `min_units`
@@ -52,6 +53,8 @@ class STRLocusIterator():
         self.x_only = x_only
         self.y_only = y_only
         self.min_units = min_units
+        self.min_supp_reads = min_supp_reads
+        self.max_ref_diff = max_ref_diff
 
         self.total_loci = 0
         self.total_reads = 0
@@ -65,6 +68,10 @@ class STRLocusIterator():
         self.reads_mapq_filter = 0
         self.loci_min_units_filter = 0
         self.reads_min_units_filter = 0
+        self.loci_max_ref_diff_filter = 0
+        self.reads_max_ref_diff_filter = 0
+        self.loci_min_supp_filter = 0
+        self.reads_min_supp_filter = 0
         self.chrom_hist = defaultdict(int)
         self.reflen_hist = defaultdict(int)
         self.reflen_diff_hist = defaultdict(int)
@@ -115,14 +122,32 @@ class STRLocusIterator():
                 self.reads_min_units_filter += raw_reads
                 continue
 
-            # Determine indexes of mapq=60 reads for optional filtering
-            reads = build_reads(fields[5], fields[6], fields[7], self.min_mapq)
-            self.reads_mapq_filter += raw_reads - len(reads)
+            # No reads here
+            if not raw_reads:
+                continue
+
+            # Build read tuples and filter by mapQ
+            reads_mq = build_reads(fields[5], fields[6], fields[7], self.min_mapq)
+            self.reads_mapq_filter += raw_reads - len(reads_mq)
+            if not reads_mq:
+                self.loci_mapq_filter += 1
+                continue
+
+            # Filter by difference between ref and obs alleles.  Some very
+            # large differences cannot be supported by our method; other very
+            # large differences are very low confidence.  In some cases, this
+            # will throw away real differences (e.g., big deletions).
+            reads = [ read for read in reads_mq
+                               if abs(read[0] - reflen) < self.max_ref_diff ]
+            self.reads_max_ref_diff_filter += len(reads_mq) - len(reads)
             if not reads:
-                # If raw_reads=0, there were no reads to begin with, so not an
-                # effect of this filter.
-                if raw_reads > 0:
-                    self.loci_mapq_filter += 1
+                self.loci_max_ref_diff_filter += 1
+                continue
+
+            # Filter by total supporting reads at the locus
+            if len(reads) < self.min_supp_reads:
+                self.loci_min_supp_filter += 1
+                self.reads_min_supp_filter += len(reads)
                 continue
 
             # No more filters beyond this point.  Track locus statistics.
@@ -150,18 +175,22 @@ class STRLocusIterator():
     def filter_metrics(self):
         """Return a list of filter metrics.  (pf = passing filters)"""
         return [
-            ('total_reads'            , self.total_reads),
-            ('total_loci'             , self.total_loci),
-            ('pf_reads'               , self.pf_reads),
-            ('pf_loci'                , self.pf_loci),
-            ('filter_x_only_reads'    , self.reads_x_only_filter),
-            ('filter_x_only_loci'     , self.loci_x_only_filter),
-            ('filter_y_only_reads'    , self.reads_y_only_filter),
-            ('filter_y_only_loci'     , self.loci_y_only_filter),
-            ('filter_mapq_reads'      , self.reads_mapq_filter),
-            ('filter_mapq_loci'       , self.loci_mapq_filter),
-            ('filter_min_units_reads' , self.reads_min_units_filter),
-            ('filter_min_units_loci'  , self.loci_min_units_filter)
+            ('total_reads'              , self.total_reads),
+            ('total_loci'               , self.total_loci),
+            ('pf_reads'                 , self.pf_reads),
+            ('pf_loci'                  , self.pf_loci),
+            ('filter_x_only_reads'      , self.reads_x_only_filter),
+            ('filter_x_only_loci'       , self.loci_x_only_filter),
+            ('filter_y_only_reads'      , self.reads_y_only_filter),
+            ('filter_y_only_loci'       , self.loci_y_only_filter),
+            ('filter_mapq_reads'        , self.reads_mapq_filter),
+            ('filter_mapq_loci'         , self.loci_mapq_filter),
+            ('filter_min_units_reads'   , self.reads_min_units_filter),
+            ('filter_min_units_loci'    , self.loci_min_units_filter),
+            ('filter_min_supp_reads'    , self.reads_min_supp_filter),
+            ('filter_min_supp_loci'     , self.loci_min_supp_filter),
+            ('filter_max_ref_diff_reads', self.reads_max_ref_diff_filter),
+            ('filter_max_ref_diff_loci' , self.loci_max_ref_diff_filter)
         ]
 
 
