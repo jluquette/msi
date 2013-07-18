@@ -1,2 +1,4 @@
 *.sputnik.txt.gz
 really_old/*
+*.pyc
+*.swp
