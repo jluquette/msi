@@ -14,11 +14,18 @@ interesting but require joining the original repeat database.
 """
 
 import sys
+from argparse import ArgumentParser
 from collections import defaultdict
+from operator import itemgetter
+from numpy import array
 
-if len(sys.argv) != 2:
-    print('usage: %s str_summary' % sys.argv[0])
-    exit(1)
+parser = ArgumentParser()
+parser.add_argument('str_summary', metavar='str_summary', type=str,
+                    help='STR summary file from msitools')
+parser.add_argument('--mapq60', action='store_true',
+                    help='Only consider the highest mapping quality reads (mapQ=60)')
+
+args = parser.parse_args()
 
 
 def print_sorted(title, d):
@@ -43,6 +50,7 @@ def emptysplit(x, sep):
 # same read.  So if strlen list=7,7,7,8, strand list=+,-,+,- and mapq list
 # is 60,20,30,40; then the first supporting read has an STR len of 7bp,
 # occurs on the '+' strand and has an alignment quality of 60.
+mapq60_only = args.mapq60
 n_refstrs = 0
 n_suppreads = 0
 chrom_hist = defaultdict(int)
@@ -51,22 +59,28 @@ nsupp_hist = defaultdict(int)
 nalleles_hist = defaultdict(int)
 strand_hist = defaultdict(int)
 mapq_hist = defaultdict(int)
-f = open(sys.argv[1], 'r')
+f = open(args.str_summary, 'r')
 f.readline()  # line 1 is the header
 for line in f:
     fields = [ x.strip() for x in line.split('\t') ]
     n_refstrs += 1
-    #if not fields[3]:
-        # if the read count list is empty, there are no reads supporting
-        # any repeat length allele.  skip these.
-        #continue
+
+    # Track alignment quality distribution
+    mapqs = [ int(x.strip()) for x in fields[5].split(',') if x ]
+    for mq in mapqs:
+        mapq_hist[mq] += 1
+
+    # Determine indexes of mapq=60 reads for optional filtering
+    valid_reads = [ idx for idx in range(len(mapqs))
+                            if not mapq60_only or mapqs[idx] == 60 ]
 
     # "if x": don't try to int() cast an empty string, just drop it
-    strlens = [ int(x.strip()) for x in fields[3].split(',') if x ]
+    strlens = array([ int(x.strip()) for x in fields[3].split(',') if x ])
+    strlens = strlens[valid_reads]
     n_suppreads += len(strlens)
     # How many reads support the locus?
     nsupp_hist[len(strlens)] += 1
-    # How many different STR lens are there?
+    # How many different observed alleles are there?
     nalleles_hist[len(set(strlens))] += 1
 
     # Track locus distribution across chromosomes by number of supporting
@@ -77,14 +91,10 @@ for line in f:
     replen_hist[int(fields[2]) - int(fields[1])] += len(strlens)
 
     # Track strand distribution
-    strands = [ x.strip() for x in fields[4].split(',') if x ]
+    strands = array([ x.strip() for x in fields[4].split(',') if x ])
+    strands = strands[valid_reads]
     for s in strands:
         strand_hist[s] += 1
-
-    # Track alignment quality distribution
-    mapqs = [ int(x.strip()) for x in fields[5].split(',') if x ]
-    for mq in mapqs:
-        mapq_hist[mq] += 1
 
 print("Number of reference STR loci: " + str(n_refstrs))
 print("Number of supp reads: " + str(n_suppreads))
