@@ -1,0 +1,65 @@
+/home/ljl11/.lsbatch/1373985343.890564: line 8: ./sputnik_V6_len5: No such file or directory
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@clarinet002-011.orchestra>
+Subject: Job 890564: <gunzip -c ../bams/cortex_bulk.rmdup.nomapq0.fa.gz | ./sputnik_V6_len5 /dev/stdin | gzip - > cortex_bulk.rmdup.nomapq0.sputnik.txt.gz> Done
+
+Job <gunzip -c ../bams/cortex_bulk.rmdup.nomapq0.fa.gz | ./sputnik_V6_len5 /dev/stdin | gzip - > cortex_bulk.rmdup.nomapq0.sputnik.txt.gz> was submitted from host <flute000-171.orchestra> by user <ljl11> in cluster <hms_orchestra>.
+Job was executed on host(s) <2*clarinet002-011.orchestra>, in queue <long>, as user <ljl11> in cluster <hms_orchestra>.
+</home/ljl11> was used as the home directory.
+</scratch/ljl11/neuron/sputnik> was used as the working directory.
+Started at Tue Jul 16 10:35:49 2013
+Results reported at Tue Jul 16 10:35:49 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+gunzip -c ../bams/cortex_bulk.rmdup.nomapq0.fa.gz | ./sputnik_V6_len5 /dev/stdin | gzip - > cortex_bulk.rmdup.nomapq0.sputnik.txt.gz
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      0.01 sec.
+    Max Memory :         2 MB
+    Max Swap   :        35 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) is above this job summary.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@clarinet002-090.orchestra>
+Subject: Job 890919: <gunzip -c ../bams/cortex_bulk.rmdup.nomapq0.fa.gz | ./sputnik_V6_len5 /dev/stdin | gzip - > cortex_bulk.rmdup.nomapq0.sputnik.txt.gz> Done
+
+Job <gunzip -c ../bams/cortex_bulk.rmdup.nomapq0.fa.gz | ./sputnik_V6_len5 /dev/stdin | gzip - > cortex_bulk.rmdup.nomapq0.sputnik.txt.gz> was submitted from host <flute000-171.orchestra> by user <ljl11> in cluster <hms_orchestra>.
+Job was executed on host(s) <2*clarinet002-090.orchestra>, in queue <long>, as user <ljl11> in cluster <hms_orchestra>.
+</home/ljl11> was used as the home directory.
+</scratch/ljl11/neuron/sputnik> was used as the working directory.
+Started at Tue Jul 16 10:37:53 2013
+Results reported at Thu Jul 18 02:00:20 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+gunzip -c ../bams/cortex_bulk.rmdup.nomapq0.fa.gz | ./sputnik_V6_len5 /dev/stdin | gzip - > cortex_bulk.rmdup.nomapq0.sputnik.txt.gz
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   : 142848.95 sec.
+    Max Memory :         3 MB
+    Max Swap   :        44 MB
+
+    Max Processes  :         5
+    Max Threads    :         6
+
+The output (if any) is above this job summary.
+
