@@ -37,7 +37,8 @@ class STRLocusIterator():
     be printed at any time.
     """
 
-    def __init__(self, filename, min_mapq=0, min_units=0, max_ref_diff=0,
+    def __init__(self, filename, min_mapq=0, min_units=0,
+                 max_ref_diff=float('+inf'),
                  min_supp_reads=0, x_only=False, y_only=False):
         """Filter options:
         min_mapq   -- only consider reads with mapq >= `min_mapq`
@@ -45,6 +46,9 @@ class STRLocusIterator():
         x_only     -- only consider repeat loci on the X chromosome
         y_only     -- only consider repeat loci on the Y chromosome
         """
+
+        if x_only and y_only:
+            raise RuntimeError('only one of x_only and y_only my be specified')
 
         self.f = open(filename, 'r')
         self.header = self.f.readline()
@@ -82,6 +86,34 @@ class STRLocusIterator():
         self.region_hist = defaultdict(int)
         self.unit_hist = defaultdict(int)
         self.n_units_hist = defaultdict(int)
+
+
+    @staticmethod
+    def add_parser_args(parser):
+        """Add options understood by __init__ to `parser`."""
+        parser.add_argument('filename', metavar='str_summary', type=str,
+            help='STR summary file from msitools')
+        parser.add_argument('--min-mapq', dest='min_mapq', metavar='N',
+            default=0, type=int,
+            help='Discard reads with mapping quality < N')
+        parser.add_argument('--min-units', dest='min_units', metavar='N',
+            default=1, type=int,
+            help='Discard reference loci with < N repeat units')
+        parser.add_argument('--min-supp', dest='min_supp_reads', metavar='N',
+            default=0, type=int,
+            help='Discard reference loci with < N supporting reads ' \
+                 'after all read filters have been applied')
+        parser.add_argument('--max-ref-diff', dest='max_ref_diff', metavar='N',
+            default=float('+inf'), type=int,
+            help='Discard reads that differ too greatly from the ' \
+                 'reference STR length.  abs(observed len - ref len) ' \
+                 '> N, for N in base pairs')
+        parser.add_argument('--x-only', dest='x_only', action='store_true',
+            default=False,
+            help='Only consider reads from the X chromosome')
+        parser.add_argument('--y-only', dest='y_only', action='store_true',
+            default=False,
+            help='Only consider reads from the Y chromosome')
 
 
     def __iter__(self):
