@@ -36,4 +36,3 @@ for (chrom, start, end, unit, region, reads) in locus_f:
     # Don't do anything, just accumulate metrics
     allele_summary = summarize_reads(reads)
     print "\t".join([ chrom, str(start), str(end), unit, region, allele_summary])
-    exit(1)
