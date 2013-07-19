@@ -79,13 +79,17 @@ for line in f:
     # By intersecting the PCR and MDA brain calls, we hope to remove alleles
     # that arose only under one amplification.  This could control for PCR
     # stutter alleles as well as allele dropout in MDA.
+    # seg_alleles is now the set of alleles that appear to not be artifacts
+    # of either PCR or MDA and appear to segregate the two tissue types.
     seg_alleles &= brain_pcr_and_mda
 
-    #print('heart: ' + str(heart_alleles))
-    #print('cortex: ' + str(cortex_alleles))
-    #print('100neuron: ' + str(neurons100_alleles))
-    #print('single neurons: ' + str(neuron_alleles))
-    #print('segregating: ' + str(alleles))
+    '''
+    print('heart: ' + str(heart_alleles))
+    print('cortex: ' + str(cortex_alleles))
+    print('100neuron: ' + str(neurons100_alleles))
+    print('single neurons: ' + str(neuron_alleles))
+    print('segregating: ' + str(seg_alleles))
+    '''
     
     if len(seg_alleles) == 0:
         continue
@@ -99,10 +103,21 @@ for line in f:
     neuron_calls = reduce(lambda x, y: x | y,
                           [ parse_genotype(gt)
                             for gt in itemgetter(*neuron_call_idxs)(fields) ])
-    print(heart_calls)
-    print(cortex_calls)
-    print(neurons100_calls)
-    print(neuron_calls)
-    
-    sys.stdout.write(line)
-    exit(1)
+ 
+    # Now get the set of segregating CALLED alleles
+    called_alleles = heart_calls.symmetric_difference(cortex_calls | neurons100_calls | neuron_calls)
+
+    # Intersect the segregating, called alleles with the set of alleles with
+    # consistent evidence from PCR and MDA samples.
+    called_alleles &= seg_alleles
+
+    '''
+    print('heart: ' + str(heart_calls))
+    print('cortex: ' + str(cortex_calls))
+    print('neurons100: ' + str(neurons100_calls))
+    print('single neurons: ' + str(neuron_calls))
+    print('called: ' + str(called_alleles))
+    '''
+
+    if len(called_alleles) > 0:
+        sys.stdout.write(line)
