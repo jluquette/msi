@@ -52,7 +52,7 @@ def genotype(alleles, total_err=0.01):
     gts = list(combinations_with_replacement(alleles.keys(), 2))
 
     def hap_prob(x, Nalleles, haptype, err):
-        return 1 - err if x == haptype else err/Nalleles
+        return 1 - err if x == haptype else err/(Nalleles - 1)
 
     def dip_prob(alleles, hapA, hapB, err):
         return prod([ (hap_prob(k, len(alleles), hapA, err)/2 + \
