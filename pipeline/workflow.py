@@ -1,5 +1,7 @@
-from cosmos.contrib.ezflow.dag import DAG, add_, sequence_
+from cosmos.contrib.ezflow.dag import DAG, add_, sequence_, map_, reduce_
 from cosmos.contrib.ezflow.tool import INPUT
+
+import tools
 
 def gen_inputs(inputs):
     """Create a list of INPUT()s from the command line arguments."""
@@ -10,5 +12,7 @@ def build_dag(input_fastqs, chrs=[]):
     """Build a DAG to handle a FASTQ->polymorphic STR loci."""
 
     return DAG().sequence_(
-        add_(gen_inputs(input_fastqs))
+        add_(gen_inputs(input_fastqs)),
+        reduce_([ 'sample', 'readgroup', 'chunk' ], tools.align),
+        reduce_([ 'sample' ], tools.remdup)
     )

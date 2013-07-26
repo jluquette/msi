@@ -179,8 +179,11 @@ if __name__ == "__main__":
         default='/dev/stdout', help='Write the config file to this path.')
     args = parser.parse_args()
 
+
     # Get a list of all files/paths that must exist in specified paths
     config = get_path_dependencies(vars(args))
+
+    config['name'] = args.name
 
     # We only have an STR database for hg19
     config['genome_version'] = 'hg19'
