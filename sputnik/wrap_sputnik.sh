@@ -6,16 +6,15 @@
 # encode Sputnik's repeat sensing.  Reads which do not contain STRs will
 # be not be included in the final BAM.
 
-if [ $# != 2 ]; then
-    echo "usage: $0 input_bam output_bam"
+if [ $# -lt 2 ]; then
+    echo "usage: $0 input_bam output_bam [region]"
     exit 1
 fi
 
 input=$1
 output=$2
-
-# The header goes out unmodified
-samtools view -H $input > /dev/null
+region=${3:-}
+echo "input=$input, output=$output, region=$region"
 
 # Sputnik expects a FASTA style input file.  Input is two lines per read,
 # one description line starting with > and then a line containing the read
@@ -50,7 +49,7 @@ samtools view -H $input > /dev/null
 #     ru=repeat unit, rs=repeat start, re=repeat end, ss=Sputnik score.
 #     (The SAM v1.4 spec says that all lower case tag names are reserved
 #     for end users.)
-(samtools view -H $input; samtools view $input \
+(samtools view -H $input; samtools view $input $region \
     | awk '{ print ">" $0; print $10; }' \
     | ./sputnik_V6_len5 /dev/stdin \
     | perl -lan -F/\\t/ -e 'my @sput=split(" ", $F[$#F]); print substr($F[0], 1) . "\t" . join("\t", @F[1 .. ($#F - 1)]) . "\t$sput[0]\tru:Z:$sput[1]\trs:i:$sput[2]\tre:i:$sput[3]\tss:i:$sput[4]"') \
