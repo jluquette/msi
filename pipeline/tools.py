@@ -12,7 +12,7 @@ class align(Tool):
         return """{s[bwa_binary]} mem
                     -M
                     -v 2
-                    -t {self.cpu_req}
+                    -t 2
                     -R '@RG\tID:{p[readgroup]}\tSM:{p[sample]}\tPL:ILLUMINA'
                     {s[reference_genome]}
                     {i[fastq.gz][0]}
@@ -21,10 +21,9 @@ class align(Tool):
                         -Xmx10g
                         -Djava.io.tmpdir={s[tmpdir]}
                         -jar {s[picard_home]}/SortSam.jar
-                        I=/dev/stdin
-                        O=/dev/stdout
                         SORT_ORDER=coordinate
-                    | samtools view -bSo $OUT.bam -"""
+                        I=/dev/stdin
+                        O=$OUT.bam"""
 
 
 class remdup(Tool):
@@ -32,7 +31,7 @@ class remdup(Tool):
     outputs = [ 'bam', 'markdup_metrics.txt' ]
     mem_req = 20480
     cpu_req = 1
-    time_req = 12*60
+    time_req = 24*60
     name = 'Remove PCR duplicates'
 
     def cmd(self, i, s, p):
@@ -46,3 +45,30 @@ class remdup(Tool):
                     O=$OUT.bam
                     %s
                     METRICS_FILE=$OUT.markdup_metrics.txt""" % inlist
+
+
+class index_bam(Tool):
+    inputs = [ 'bam' ]
+    forward_input = True
+    mem_req = 1024
+    cpu_req = 1
+    time_req = 12*60
+    name = "Index BAM"
+
+    def cmd(self, i, s, p):
+        return """{s[samtools_binary]} index {i[bam][0]} {i[bam][0]}.bai"""
+
+
+class sputnik(Tool):
+    inputs = [ 'bam' ]
+    outputs = [ 'bam' ]
+    mem_req = 1024
+    cpu_req = 2
+    time_req = 12*60
+    name = 'Sputnik'
+
+    def cmd(self, i, s, p):
+        return """{s[sputnik_wrapper]}
+                    {i[bam][0]}
+                    $OUT.bam
+                    {p[chrom]}"""

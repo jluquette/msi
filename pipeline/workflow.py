@@ -1,4 +1,4 @@
-from cosmos.contrib.ezflow.dag import DAG, add_, sequence_, map_, reduce_
+from cosmos.contrib.ezflow.dag import DAG, add_, sequence_, map_, reduce_, split_
 from cosmos.contrib.ezflow.tool import INPUT
 
 import tools
@@ -14,5 +14,7 @@ def build_dag(input_fastqs, chrs=[]):
     return DAG().sequence_(
         add_(gen_inputs(input_fastqs)),
         reduce_([ 'sample', 'readgroup', 'chunk' ], tools.align),
-        reduce_([ 'sample' ], tools.remdup)
+        reduce_([ 'sample' ], tools.remdup),
+        map_(tools.index_bam),
+        split_([ ('chrom', chrs) ], tools.sputnik)
     )
