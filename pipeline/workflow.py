@@ -16,5 +16,6 @@ def build_dag(input_fastqs, chrs=[]):
         reduce_([ 'sample', 'readgroup', 'chunk' ], tools.align),
         reduce_([ 'sample' ], tools.remdup),
         map_(tools.index_bam),
-        split_([ ('chrom', chrs) ], tools.sputnik)
+        split_([ ('chrom', chrs) ], tools.sputnik),
+        map_(tools.index_bam, stage_name='Index Sputnik BAMs')
     )
