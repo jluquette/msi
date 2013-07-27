@@ -55,6 +55,6 @@ echo "input=$input, output=$output, region=$region"
  echo \@PG$'\t'ID:sputnik$'\t'PN:sputnik$'\t'CL:$sputnik$'\t'VN:$(md5sum $sputnik|cut -f1 -d\ );
  samtools view $input $region \
     | awk '{ print ">" $0; print $10; }' \
-    | ./$sputnik /dev/stdin \
+    | $sputnik /dev/stdin \
     | perl -lan -F/\\t/ -e 'my @sput=split(" ", $F[$#F]); print substr($F[0], 1) . "\t" . join("\t", @F[1 .. ($#F - 1)]) . "\t$sput[0]\tru:Z:$sput[1]\trs:i:$sput[2]\tre:i:$sput[3]\tss:i:$sput[4]"') \
     | samtools view -bSo $output -
