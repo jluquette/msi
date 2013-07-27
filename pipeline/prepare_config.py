@@ -45,7 +45,8 @@ def get_path_dependencies(config):
         # Scripts and compiled programs used by various tools
         'java_binary': '/usr/bin/java',
         'bwa_binary': os.path.join(dep_path, 'bwa-0.7.5a', 'bwa'),
-        #'samtools_binary': os.path.join(dep_path, 'samtools', 'samtools'),
+        'samtools_binary': os.path.join(dep_path, 'samtools-0.1.19', 'samtools'),
+        'sputnik_wrapper': os.path.join(base_path, 'sputnik', 'wrap_sputnik.sh'),
 
         # Miscellany
         'picard_home': os.path.join(dep_path, 'picard-tools-1.95'),
@@ -130,7 +131,7 @@ def get_chrs(config, split_chr, chr22):
                 chrom = fields['SN'].replace('chr', '').upper()
                 if is_int(chrom) or chrom in [ 'X', 'Y' ]:
                     if not chr22 or chrom == '22':
-                        seqs += [ (chrom, int(fields['LN'])) ]
+                        seqs += [ (fields['SN'], int(fields['LN'])) ]
 
     config['chr'] = [ x[0] for x in seqs ]
 
