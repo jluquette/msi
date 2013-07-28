@@ -31,13 +31,14 @@ my $flank_bp = 2;
 my $short_test = 0;
 my $debug = 0;
 my $resource_path = getcwd;
+my @chrarray = qw(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 X Y);
 undef my $inputfile;
 undef my $outprefix;
 GetOptions("flank_bp=i" => \$flank_bp,
            "input=s" => \$inputfile,
            "outprefix=s" => \$outprefix,
            "resource_path=s" => \$resource_path,
-           "test" => \$short_test,
+           "chr=s" => sub { @chrarray = map { s/chr//; $_; } split(",", $_[1]) },
            "debug" => \$debug)  # EXTREMELY verbose.  Do not use on large input
     or die("error parsing arguments");
 
@@ -50,10 +51,7 @@ print "input=$inputfile\n";
 print "output prefix=$outprefix\n";
 
 # Build a hash of accepted chromosomes
-my @chrarray = qw(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 X Y);
-if ($short_test) {
-    @chrarray = qw(1 Y);
-}
+print "chroms=" . join(", ", @chrarray) . "\n";
 my %chrhash;
 foreach my $chr (@chrarray) {
     $chrhash{$chr} = 1;
@@ -67,7 +65,7 @@ print "Reading chromosome sequences into RAM..\n";
 my %chrSeq;
 foreach my $chr (keys %chrhash) {
     print "reading chromosome $chr.. ";
-    open (F, "<", "$resource_path/hg19_chromosome_seq/chr$chr.fa") or die;
+    open (F, "<", "$resource_path/chr$chr.fa") or die;
     my $null = <F>;  # strip off the first >chrXXX line
     my $nbytes = 0;
     while (<F>) {
