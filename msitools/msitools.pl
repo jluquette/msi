@@ -9,18 +9,19 @@
 # Using the ~8M repeat locus database produced by Tae-min, this program
 # requires ~11GB of RAM to store the full database and human reference
 # sequences in memory.  Typical RAM usage for analyzing the data in this
-# experiment is ~50G.  One sample required as much as 52G.  If RAM is an
-# issue, add option to specify a subset of the full chrlist and then
-# merge the results in a separate script.
+# experiment is ~50G.  One sample required as much as 52G.  It is usually
+# more practical to split your analysis by chromosome, using the --chr
+# option.
 
 # TODO: TEST! compare against previous output.  will not be identical
 # due to fixing the negative flanking index bug as well as removing all
 # lines for repeats that have no supporting reads.
 
+# NOTE: This program standardizes on chromosomes strings withOUT "chr".
+
 use strict;
 use warnings;
 use Getopt::Long;
-use IO::Compress::Gzip qw($GzipError);
 use lib 'perllib';
 use Set::IntervalTree;
 use Cwd;
@@ -32,7 +33,7 @@ my $short_test = 0;
 my $debug = 0;
 my $resource_path = getcwd;
 my @chrarray = qw(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 X Y);
-undef my $inputfile;
+my $inputfile = '/dev/stdin';
 undef my $outprefix;
 GetOptions("flank_bp=i" => \$flank_bp,
            "input=s" => \$inputfile,
@@ -46,25 +47,26 @@ die "--input is required" if not defined $inputfile;
 die "--outprefix is required" if not defined $outprefix;
 die "--resource_path is required" if not defined $resource_path;
 
-print "flank_bp=$flank_bp\n";
-print "input=$inputfile\n";
-print "output prefix=$outprefix\n";
+print STDERR "reading SAM records from $inputfile\n";
+print STDERR "flank_bp=$flank_bp\n";
+print STDERR "input=$inputfile\n";
+print STDERR "output prefix=$outprefix\n";
 
 # Build a hash of accepted chromosomes
-print "chroms=" . join(", ", @chrarray) . "\n";
+print STDERR "chroms=" . join(", ", @chrarray) . "\n";
 my %chrhash;
 foreach my $chr (@chrarray) {
     $chrhash{$chr} = 1;
 }
-print "Using " . scalar(keys %chrhash) . " chromosomes...\n";
+print STDERR "Using " . scalar(keys %chrhash) . " chromosomes...\n";
 
 
 
 # Reads the full set of human reference sequences into memory
-print "Reading chromosome sequences into RAM..\n";
+print STDERR "Reading chromosome sequences into RAM..\n";
 my %chrSeq;
-foreach my $chr (keys %chrhash) {
-    print "reading chromosome $chr.. ";
+foreach my $chr (@chrarray) {
+    print STDERR "reading chromosome $chr.. ";
     open (F, "<", "$resource_path/chr$chr.fa") or die;
     my $null = <F>;  # strip off the first >chrXXX line
     my $nbytes = 0;
@@ -74,16 +76,16 @@ foreach my $chr (keys %chrhash) {
         $chrSeq{$chr} .= $line;
         $nbytes += length($line);
     }
-    print "$nbytes bytes.\n";
+    print STDERR "$nbytes bytes.\n";
     close F; 
 }
-print "done.\n";
+print STDERR "done.\n";
 
 
 
 # Build a record of all known repeats on this chromosome
 # This used to be done one chrom at a time.  Changed by Joe.
-print "Building repeat index..\n";
+print STDERR "Building repeat index..\n";
 my %repeatdb;
 my %repeatdb_stats;
 open (F, "<", "$resource_path/WGRef_7892585MS_withGENEcategory_FINAL_withMSTYPE_hg19.txt") or die;
@@ -125,27 +127,25 @@ while (<F>) {
 close F;
 
 while (my ($k, $v) = each(%repeatdb)) {
-    print "chr$k: $repeatdb_stats{$k}[0] repeat records in [0, $repeatdb_stats{$k}[1])\n";
+    print STDERR "chr$k: $repeatdb_stats{$k}[0] repeat records in [0, $repeatdb_stats{$k}[1])\n";
 }
-print "done.\n";
+print STDERR "done.\n";
 
 
-
-my $gzsuppreads = new IO::Compress::Gzip "$outprefix.supporting_reads.txt.gz"
-    or die("IO::Compress::Gzip failed: $GzipError");
-print $gzsuppreads "chr\tstart\tend\tregion\treadinfo\n";
+# FIXME: remove
+print "chr\tstart\tend\tregion\treadinfo\n";
 
 my $nread = 0;
 my $nsupp = 0;
 my $num_searches = 0;
 my $num_notindb = 0;
-print "Reading input data..\n";
+print STDERR "Reading input data..\n";
 open (F, "<", $inputfile) or die;
 while (<F>) {
     ++$nread;
     if ($nread % 10000 == 0) {
-        print "$nread lines processed, $nsupp supporting reads, ";
-        print $num_searches / 10000 . " mean searches per read.\n";
+        print STDERR "$nread lines processed, $nsupp supporting reads, ";
+        print STDERR $num_searches / 10000 . " mean searches per read.\n";
         $num_searches = 0;
     }
 
@@ -165,7 +165,7 @@ while (<F>) {
     my $overlapping_repeats = $repeatdb{$chrom}->fetch($startRepeat, $endRepeat);
     if (scalar(@$overlapping_repeats) == 0) {
         if ($debug) {
-            print "DEBUG: not in db: $chrom:[$startRepeat, $endRepeat)\n";
+            print STDERR "DEBUG: not in db: $chrom:[$startRepeat, $endRepeat)\n";
         }
         ++$num_notindb;
     }
@@ -182,22 +182,23 @@ while (<F>) {
                 push @$lens, $replen;
                 push @$strands, $strand;
                 push @$mapqs, $mapq;
-                print $gzsuppreads "$chrom\t$start\t$end\t$region\t$replen\t@element\n";
+                # XXX: fixme, pass along sam record with new tags
+                print "$chrom\t$start\t$end\t$region\t$replen\t@element\n";
                 ++$nsupp;
                 if ($debug) {
                     my $seq_context = uc(substr($chrSeq{$chrom},
                                                 $start - $flank_bp - 1,
                                                 $end - $start + 2*$flank_bp));
-                    print "read: $chrom:$element[3], STR region: $startRepeat-$endRepeat\n";
-                    print "record: $start\t$end\t$replen\t@element\n";
-                    print "$flank1\t$flank2\n";
-                    print "$this_flank1\t$this_flank2\n";
-                    print "repeatSeq=" . " " x $flank_bp . "$seq\n";
-                    print "chrSeq=   $seq_context\n";
-                    print "lens here: @$lens\n";
-                    print "strands here: @$strands\n";
-                    print "mapqs here: @$mapqs\n";
-                    print "-" x 80 . "\n";
+                    print STDERR "read: $chrom:$element[3], STR region: $startRepeat-$endRepeat\n";
+                    print STDERR "record: $start\t$end\t$replen\t@element\n";
+                    print STDERR "$flank1\t$flank2\n";
+                    print STDERR "$this_flank1\t$this_flank2\n";
+                    print STDERR "repeatSeq=" . " " x $flank_bp . "$seq\n";
+                    print STDERR "chrSeq=   $seq_context\n";
+                    print STDERR "lens here: @$lens\n";
+                    print STDERR "strands here: @$strands\n";
+                    print STDERR "mapqs here: @$mapqs\n";
+                    print STDERR "-" x 80 . "\n";
                 }
             }
             last; # Don't allow a read to match multiple repeat records
@@ -205,13 +206,12 @@ while (<F>) {
     }
 }
 close F;
-$gzsuppreads->close();
-print "done.\n";
-print "$nread total reads, $nsupp placed, $num_notindb not found in repeat db.\n";
+print STDERR "done.\n";
+print STDERR "$nread total reads, $nsupp placed, $num_notindb not found in repeat db.\n";
 
 
 
-print "Writing results to $outprefix.str_summary.txt.. ";
+print STDERR "Writing summary to $outprefix.str_summary.txt.. ";
 open (OUTPUT, ">$outprefix.str_summary.txt");
 print OUTPUT "chr\tstart\tend\tunit\tregion\trepArray\tstrandArray\tmapQArray\n";
 # Don't loop over keys %repeatdb, this way preserves chrom order
@@ -231,4 +231,4 @@ for my $chr (@chrarray) {
     }
 }
 close OUTPUT;
-print "done.\n";
+print STDERR "done.\n";
