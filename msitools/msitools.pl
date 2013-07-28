@@ -27,6 +27,7 @@ use Set::IntervalTree;
 use Cwd;
 use List::Util qw(max);
 
+my $cmdline = "$0 " . join(" ", @ARGV);
 
 my $flank_bp = 2;
 my $short_test = 0;
@@ -34,23 +35,22 @@ my $debug = 0;
 my $resource_path = getcwd;
 my @chrarray = qw(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 X Y);
 my $inputfile = '/dev/stdin';
-undef my $outprefix;
+undef my $summary;
 GetOptions("flank_bp=i" => \$flank_bp,
            "input=s" => \$inputfile,
-           "outprefix=s" => \$outprefix,
+           "summary=s" => \$summary,
            "resource_path=s" => \$resource_path,
            "chr=s" => sub { @chrarray = map { s/chr//; $_; } split(",", $_[1]) },
            "debug" => \$debug)  # EXTREMELY verbose.  Do not use on large input
     or die("error parsing arguments");
 
 die "--input is required" if not defined $inputfile;
-die "--outprefix is required" if not defined $outprefix;
+die "--summary is required" if not defined $summary;
 die "--resource_path is required" if not defined $resource_path;
 
 print STDERR "reading SAM records from $inputfile\n";
 print STDERR "flank_bp=$flank_bp\n";
-print STDERR "input=$inputfile\n";
-print STDERR "output prefix=$outprefix\n";
+print STDERR "summary file=$summary\n";
 
 # Build a hash of accepted chromosomes
 print STDERR "chroms=" . join(", ", @chrarray) . "\n";
@@ -113,28 +113,50 @@ while (<F>) {
             [],           # strands
             []            # mapqs
         ];
-        # Intervals are half open: [a, b).
-        $repeatdb{$chr} = Set::IntervalTree->new if not defined $repeatdb{$chr};
-        $repeatdb{$chr}->insert($rec, $element[1], $element[2]+1);
 
         # The library doesn't make these values easily queryable.
         # track the number of records and the max record high value.
-        $repeatdb_stats{$chr} = [ 0, 0 ] if not defined $repeatdb_stats{$chr};
+        $repeatdb_stats{$chr} = [ 0, 0, 0 ] if not defined $repeatdb_stats{$chr};
         ++$repeatdb_stats{$chr}[0];
         $repeatdb_stats{$chr}[1] = max($repeatdb_stats{$chr}[1], $element[2]+1);
+
+        # If either flank sequence is a subsequence of the repeat, discard the
+        # locus.  We have to do extra work to correctly assign supporting reads
+        # to these loci.  For now it's easier to just ignore them.
+        if ($rec->[4] =~ $rec->[6] or $rec->[4] =~ $rec->[7]) {
+            if ($debug) {
+                print STDERR "flank matched repeat sequence, discarding locus:\n";
+                print STDERR "chr=$rec->[0], start=$rec->[1], end=$rec->[2]\n";
+                print STDERR "flank1=$rec->[6]\n";
+                print STDERR "flank2=$rec->[7]\n";
+                print STDERR "seq=$rec->[4]\n";
+                print STDERR "marked=$rec->[6]|$rec->[4]|$rec->[7]\n";
+                print STDERR "complete seq=";
+                print STDERR uc(substr($chrSeq{$chr},
+                                       $element[1] - $flank_bp - 1,
+                                       $element[2] - $element[1] + 1 + 2*$flank_bp));
+                print STDERR "\n";
+            }
+            ++$repeatdb_stats{$chr}[2];
+        } else {
+            # Intervals are half open: [a, b).
+            $repeatdb{$chr} = Set::IntervalTree->new if not defined $repeatdb{$chr};
+            $repeatdb{$chr}->insert($rec, $element[1], $element[2]+1);
+        }
+
     }
 }
 close F;
 
 while (my ($k, $v) = each(%repeatdb)) {
-    print STDERR "chr$k: $repeatdb_stats{$k}[0] repeat records in [0, $repeatdb_stats{$k}[1])\n";
+    print STDERR "chr$k: $repeatdb_stats{$k}[0] repeat records in [0, $repeatdb_stats{$k}[1]), $repeatdb_stats{$k}[2] loci dropped since they contained flanking sequence\n";
 }
 print STDERR "done.\n";
 
 
-# FIXME: remove
-print "chr\tstart\tend\tregion\treadinfo\n";
 
+my $sputnik_in_header = 0;
+my $inheader = 1;
 my $nread = 0;
 my $nsupp = 0;
 my $num_searches = 0;
@@ -142,6 +164,32 @@ my $num_notindb = 0;
 print STDERR "Reading input data..\n";
 open (F, "<", $inputfile) or die;
 while (<F>) {
+    # Always print out SAM header lines
+    if (/^@/) {
+        print $_;
+        if (/PN:sputnik/) {
+            $sputnik_in_header = 1;
+        }
+        next;
+    } elsif ($inheader) {
+        if (!$sputnik_in_header) {
+            print STDERR "ERROR: This SAM does not have a Sputnik \@PG tag ";
+            print STDERR "in its header.  Aborting.\n";
+            exit 1;
+        }
+        # The first non-header line.  Before possibly printing anything else,
+        # add a @PG tag for msitools.
+        $inheader = 0;
+        my @md5sum = split " ", `md5sum $0`;
+        print "\@PG\tID:msitools\tPN:msitools\tCL:$cmdline\tVN:$md5sum[0]\n";
+        print "\@CO\tTG:ls\tTY:i\tDS:Reference repeat locus start coordinate\n";
+        print "\@CO\tTG:le\tTY:i\tDS:Reference repeat locus end coordinate\n";
+        print "\@CO\tTG:lr\tTY:Z\tDS:Reference repeat locus region: one of intergenic, intronic, 3utr, 5utr, or exonic\n";
+        print "\@CO\tTG:f1\tTY:Z\tDS:Left flanking sequence, length depends on --flank_bp parameter to msitools\n";
+        print "\@CO\tTG:f2\tTY:Z\tDS:Right flanking sequence, length depends on --flank_bp parameter to msitools\n";
+        print "\@CO\tTG:ln\tTY:Z\tDS:Reference repeat locus nucleotide sequence\n";
+    }
+
     ++$nread;
     if ($nread % 10000 == 0) {
         print STDERR "$nread lines processed, $nsupp supporting reads, ";
@@ -150,17 +198,35 @@ while (<F>) {
     }
 
     chomp;
-    my @element = split(" "); 
+    my @element = split("\t"); 
     my $chrom = $element[2];
     $chrom =~ s/chr//g;
     next if not exists $chrhash{$chrom};  # Skip if not in chr list
 
-    my $startRepeat = $element[3] + $element[10];
-    my $endRepeat = $element[3] + $element[11]; 
+    # Parse the optional SAM tags (which start at element 11) for the
+    # Sputnik repeat tags.  All 3 tags must be present.
+    undef my $repunit;
+    undef my $repstart;
+    undef my $repend;
+    for (@element[11 .. $#element]) {
+        if (/^ru:Z:(.+)/) {
+            $repunit = $1;
+        } elsif (/^rs:i:(.+)/) {
+            $repstart = $1;
+        } elsif (/^re:i:(.+)/) {
+            $repend = $1;
+        }
+    }
+    die("Required tag 'ru' not found in SAM record") unless defined $repunit;
+    die("Required tag 'rs' not found in SAM record") unless defined $repstart;
+    die("Required tag 're' not found in SAM record") unless defined $repend;
+
+    my $startRepeat = $element[3] + $repstart - 1;
+    my $endRepeat = $element[3] + $repend - 1;
     my $strand = (int $element[1] & 0x10) == 0 ? '+' : '-';
     my $mapq = int $element[4];
-    my $this_flank1 = substr($element[13], $element[10]-$flank_bp-1, $flank_bp);
-    my $this_flank2 = substr($element[13], $element[11], $flank_bp);
+    my $this_flank1 = substr($element[9], $repstart-$flank_bp-1, $flank_bp);
+    my $this_flank2 = substr($element[9], $repend, $flank_bp);
     
     my $overlapping_repeats = $repeatdb{$chrom}->fetch($startRepeat, $endRepeat);
     if (scalar(@$overlapping_repeats) == 0) {
@@ -173,34 +239,35 @@ while (<F>) {
         my ($chr, $start, $end, $region, $seq, $unit, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
 
         ++$num_searches;
-        if ($endRepeat >= $start and $startRepeat <= $end) {
-            # joe: fix the case where $element[9]-$flank_bp-1 is negative,
-            # which causes substr to select the end of the read
-            if ($element[9] eq $unit and $flank1 eq $this_flank1 and
-                $flank2 eq $this_flank2 and $element[10] - $flank_bp - 1 >= 0) {
-                my $replen = scalar($element[11] - $element[10] + 1);
-                push @$lens, $replen;
-                push @$strands, $strand;
-                push @$mapqs, $mapq;
-                # XXX: fixme, pass along sam record with new tags
-                print "$chrom\t$start\t$end\t$region\t$replen\t@element\n";
-                ++$nsupp;
-                if ($debug) {
-                    my $seq_context = uc(substr($chrSeq{$chrom},
-                                                $start - $flank_bp - 1,
-                                                $end - $start + 2*$flank_bp));
-                    print STDERR "read: $chrom:$element[3], STR region: $startRepeat-$endRepeat\n";
-                    print STDERR "record: $start\t$end\t$replen\t@element\n";
-                    print STDERR "$flank1\t$flank2\n";
-                    print STDERR "$this_flank1\t$this_flank2\n";
-                    print STDERR "repeatSeq=" . " " x $flank_bp . "$seq\n";
-                    print STDERR "chrSeq=   $seq_context\n";
-                    print STDERR "lens here: @$lens\n";
-                    print STDERR "strands here: @$strands\n";
-                    print STDERR "mapqs here: @$mapqs\n";
-                    print STDERR "-" x 80 . "\n";
-                }
+        # joe: fix the case where $element[9]-$flank_bp-1 is negative,
+        # which causes substr to select the end of the read
+        if ($repunit eq $unit and $flank1 eq $this_flank1 and
+            $flank2 eq $this_flank2 and $repstart - $flank_bp - 1 >= 0) {
+            my $replen = scalar($repend - $repstart + 1);
+            push @$lens, $replen;
+            push @$strands, $strand;
+            push @$mapqs, $mapq;
+            # Print out a valid SAM record with 6 new tags describing the
+            # repeat locus matching this read.
+            print "$_\tls:i:$start\tle:i:$end\tlr:Z:$region\t";
+            print "f1:Z:$flank1\tf2:Z:$flank2\tln:Z:$seq\n";
+            ++$nsupp;
+            if ($debug) {
+                my $seq_context = uc(substr($chrSeq{$chrom},
+                                            $start - $flank_bp - 1,
+                                            $end - $start + 2*$flank_bp + 1));
+                print STDERR "read: $chrom:$element[3], STR region: $startRepeat-$endRepeat\n";
+                print STDERR "record: $start\t$end\t$replen\t@element\n";
+                print STDERR "$flank1\t$flank2\n";
+                print STDERR "$this_flank1\t$this_flank2\n";
+                print STDERR "repeatSeq=" . " " x $flank_bp . "$seq\n";
+                print STDERR "chrSeq=   $seq_context\n";
+                print STDERR "lens here: @$lens\n";
+                print STDERR "strands here: @$strands\n";
+                print STDERR "mapqs here: @$mapqs\n";
+                print STDERR "-" x 80 . "\n";
             }
+            exit 1;
             last; # Don't allow a read to match multiple repeat records
         }
     }
@@ -211,8 +278,8 @@ print STDERR "$nread total reads, $nsupp placed, $num_notindb not found in repea
 
 
 
-print STDERR "Writing summary to $outprefix.str_summary.txt.. ";
-open (OUTPUT, ">$outprefix.str_summary.txt");
+print STDERR "Writing summary to $summary.. ";
+open (OUTPUT, ">$summary");
 print OUTPUT "chr\tstart\tend\tunit\tregion\trepArray\tstrandArray\tmapQArray\n";
 # Don't loop over keys %repeatdb, this way preserves chrom order
 for my $chr (@chrarray) {  
