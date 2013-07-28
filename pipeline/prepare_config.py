@@ -47,6 +47,7 @@ def get_path_dependencies(config):
         'bwa_binary': os.path.join(dep_path, 'bwa-0.7.5a', 'bwa'),
         'samtools_binary': os.path.join(dep_path, 'samtools-0.1.19', 'samtools'),
         'sputnik_wrapper': os.path.join(base_path, 'sputnik', 'wrap_sputnik.sh'),
+        'msitools_script': os.path.join(base_path, 'msitools', 'msitools.pl'),
 
         # Miscellany
         'picard_home': os.path.join(dep_path, 'picard-tools-1.95'),
