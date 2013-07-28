@@ -17,15 +17,21 @@
 # due to fixing the negative flanking index bug as well as removing all
 # lines for repeats that have no supporting reads.
 
-# NOTE: This program standardizes on chromosomes strings withOUT "chr".
+# NOTE: This program standardizes on chromosome strings withOUT "chr".
 
 use strict;
 use warnings;
 use Getopt::Long;
-use lib 'perllib';
-use Set::IntervalTree;
-use Cwd;
+use Cwd qw(getcwd abs_path);
 use List::Util qw(max);
+
+my $script_dir;
+BEGIN {
+    $script_dir = abs_path($0);
+    $script_dir =~ s/msitools.pl//g;
+}
+use lib $script_dir . 'perllib';
+use Set::IntervalTree;
 
 my $cmdline = "$0 " . join(" ", @ARGV);
 
