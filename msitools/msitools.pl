@@ -286,7 +286,7 @@ print STDERR "$nread total reads, $nsupp placed, $num_notindb not found in repea
 
 print STDERR "Writing summary to $summary.. ";
 open (OUTPUT, ">$summary");
-print OUTPUT "chr\tstart\tend\tunit\tregion\trepArray\tstrandArray\tmapQArray\n";
+print OUTPUT "chr\tstart\tend\tunit\tregion\tflank1\tflank2\tsequence\trepArray\tstrandArray\tmapQArray\n";
 # Don't loop over keys %repeatdb, this way preserves chrom order
 for my $chr (@chrarray) {  
     # Hack.  The IntervalTree library does not export a method for iterating
@@ -297,7 +297,7 @@ for my $chr (@chrarray) {
     # Sort output records by start and end position (all recs have the same chr)
     for my $record (sort { $a->[1] <=> $b->[1] or $a->[2] <=> $b->[2] } @$all_recs) {
         my ($chr, $start, $end, $region, $seq, $unit, $flank1, $flank2, $lens, $strands, $mapqs) = @$record;
-        print OUTPUT "$chr\t$start\t$end\t$unit\t$region";
+        print OUTPUT "$chr\t$start\t$end\t$unit\t$region\t$flank1\t$flank2\t$seq";
         print OUTPUT "\t" . join(",", @$lens);
         print OUTPUT "\t" . join(",", @$strands);
         print OUTPUT "\t" . join(",", @$mapqs) . "\n";
