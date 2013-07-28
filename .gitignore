@@ -2,3 +2,4 @@
 really_old/*
 *.pyc
 *.swp
+*.o
