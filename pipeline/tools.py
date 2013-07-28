@@ -63,7 +63,7 @@ class sputnik(Tool):
     inputs = [ 'bam' ]
     outputs = [ 'bam' ]
     mem_req = 1024
-    cpu_req = 2
+    cpu_req = 1
     time_req = 12*60
     name = 'sputnik'
 
