@@ -31,7 +31,7 @@ class remdup(Tool):
     outputs = [ 'bam', 'markdup_metrics.txt' ]
     mem_req = 20480
     cpu_req = 1
-    time_req = 24*60
+    time_req = 48*60
     name = 'Remove PCR duplicates'
 
     def cmd(self, i, s, p):
@@ -65,10 +65,28 @@ class sputnik(Tool):
     mem_req = 1024
     cpu_req = 2
     time_req = 12*60
-    name = 'Sputnik'
+    name = 'sputnik'
 
     def cmd(self, i, s, p):
         return """{s[sputnik_wrapper]}
                     {i[bam][0]}
                     $OUT.bam
                     {p[chrom]}"""
+
+
+class msitools(Tool):
+    inputs = [ 'bam' ]
+    outputs = [ 'bam', 'str_summary.txt' ]
+    mem_req = 20480
+    cpu_req = 1
+    time_req = 12*60
+    name = 'msitools'
+
+    def cmd(self, i, s, p):
+        return """samtools view -h {i[bam][0]}
+                  | {s[msitools_script]}
+                    --resource_path {s[resource_path]}
+                    --summary $OUT.str_summary.txt
+                    --flank_bp 10
+                    --chr {p[chrom]}
+                  | samtools view -bSo $OUT.bam -"""
