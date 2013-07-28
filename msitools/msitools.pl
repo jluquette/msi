@@ -247,6 +247,7 @@ while (<F>) {
             push @$lens, $replen;
             push @$strands, $strand;
             push @$mapqs, $mapq;
+
             # Print out a valid SAM record with 6 new tags describing the
             # repeat locus matching this read.
             print "$_\tls:i:$start\tle:i:$end\tlr:Z:$region\t";
@@ -267,7 +268,6 @@ while (<F>) {
                 print STDERR "mapqs here: @$mapqs\n";
                 print STDERR "-" x 80 . "\n";
             }
-            exit 1;
             last; # Don't allow a read to match multiple repeat records
         }
     }
