@@ -53,6 +53,10 @@ echo "input=$input, output=$output, region=$region"
 #     for end users.)
 (samtools view -H $input;
  echo \@PG$'\t'ID:sputnik$'\t'PN:sputnik$'\t'CL:$sputnik$'\t'VN:$(md5sum $sputnik|cut -f1 -d\ );
+ echo \@CO$'\t'TG:ru$'\t'TY:Z$'\t'DS:Repeat unit: mono, di, tri or tetra ;
+ echo \@CO$'\t'TG:rs$'\t'TY:i$'\t'DS:Repeat start: start of repeat run in read sequence ;
+ echo \@CO$'\t'TG:re$'\t'TY:i$'\t'DS:Repeat end: end of repeat run in read sequence. ;
+ echo \@CO$'\t'TG:ss$'\t'TY:i$'\t'DS:Sputnik score: score for the repeat run between rs and re. ;
  samtools view $input $region \
     | awk '{ print ">" $0; print $10; }' \
     | $sputnik /dev/stdin \
