@@ -53,16 +53,14 @@ def profile_error_distn(lw_params, is_single_cell=False):
     estimate_error if `is_single_cell`=True."""
     errors = defaultdict(lambda: defaultdict(lambda: array([0, 0, 0, 0])))
 
-    with STRLocusIterator(**lw_params) as locus_f:
+    with STRLocusIterator(hemizygous_only=True, **lw_params) as locus_f:
         for (chrom, start, end, reflen, unit, region, flank1, flank2, seq, reads) in locus_f:
-            c = chrom.replace('chr', '').upper()
-            if c == 'X'  or c == 'Y':
-                summaries = summarize_alleles(reads, reflen)
-                errors[unit][reflen] += \
-                    estimate_error(summaries, use_binom=not is_single_cell)
+            summaries = summarize_alleles(reads, reflen)
+            errors[unit][reflen] += \
+                estimate_error(summaries, use_binom=not is_single_cell)
 
-    # Values: unit -> reflen ->
-    # (total reads, likely erroneous reads, total loci, likely erroneous loci)
+    # dict(unit -> dict(reflen ->
+    # (total reads, likely erroneous reads, total loci, likely erroneous loci)))
     return errors
 
 
@@ -72,16 +70,16 @@ def get_error_estimate(errors, unit, reflen, default=0.01):
         return default
 
     if reflen in errors[unit].keys():
-        profile = errors[unit][reflen][0:2]
+        profile = errors[unit][reflen]
     else:
         # We may not have seen any instances of a particular reference length
         # when profiling the sex chromosomes.  Use the nearest reference length.
         diffs = [ abs(reflen - l) for l in errors[unit].keys() ]
         m = min(diffs)
         nearest = [ l for l in errors[unit].keys() if abs(reflen - l) == m ]
-        profile = errors[unit][nearest][0:2]
+        profile = errors[unit][nearest]
 
-    tot_reads, err_reads = profile[unit][reflen][0:2]
+    tot_reads, err_reads = profile[0:2]
     return max(default, float(err_reads)/tot_reads)
 
 
@@ -118,7 +116,7 @@ def summarize_alleles(reads, reflen):
                 for k, (n, nforward, summapq) in metrics.iteritems())
 
 
-def genotype(alleles, err=0.01):
+def genotype_locus(alleles, err=0.01):
     """`err` is probability of an STR polymorphism error in a single read,
     conditioned on the repeat unit length (mono, di, ...) and the reference
     length of the STR.  Shorter repeat units and longer reference lengths
@@ -146,6 +144,34 @@ def genotype(alleles, err=0.01):
         call = 'het'
 
     return (call, max(probs), str(best[0]) + "/" + str(best[1]))
+
+
+def genotype(lw_params, filter_metrics_file, errors):
+    """Genotype all loci in the STR locus file specified by lw_params.  Write
+    the results to standard output and optionally write the filter metrics to
+    `filter_metrics_file`."""
+
+    with STRLocusIterator(**lw_params) as locus_f:
+        print("chr\tstart\tend\tref_len\tunit\tregion\tflank1\tflank2\tsequence\traw_alleles\tcall\tgenotype\tpval\tallele_summaries")
+        for (chrom, start, end, reflen, unit, region, flank1, flank2, seq, reads) in locus_f:
+            summaries = summarize_alleles(reads, reflen)
+            alleles = " ".join("%d:%d,%.2f,%.2f" % ((k,) + v)
+                               for k, v in summaries.items())
+            err = get_error_estimate(errors, unit, reflen)
+            call, pval, gt = genotype_locus(summaries, err=err)
+            print("%s\t%d\t%d\t%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%.5g\t%s" %
+                  (chrom, start, end, reflen, unit, region, flank1, flank2,
+                   seq, len(summaries), call, gt, pval, alleles))
+
+        if filter_metrics_file:
+            with open(filter_metrics_file, 'w') as f:
+                for (description, value) in locus_f.filter_metrics():
+                    f.write("%s\t%d\n" % (description, value))
+
+                for (description, hist) in locus_f.hist_metrics():
+                    f.write(description + "\n")
+                    for k in sorted(hist.keys()):
+                        f.write("%s\t%d\n" % (k, hist[k]))
 
 
 def estimate_error(summaries, use_binom=False, binom_threshold=0.05):
@@ -182,17 +208,19 @@ if __name__ == "__main__":
     parser.add_argument('--error-distn-file', metavar='file', type=str,
         required=True,
         help="File to which STR polymorphism error rates will be written.")
+    parser.add_argument('--filter-metrics-file', metavar='file', type=str,
+        help='File to store metrics related to locus and read filtering.')
     parser.add_argument('--single-cell', action='store_true', default=False,
         help="Library was generated from a single cell.  Disables the " \
              "binomial model for >1 primary alleles.")
     STRLocusIterator.add_parser_args(parser)
     args = parser.parse_args()
 
-    # All args other than the error distribution file are STRLocusWalker
-    # parameters.
-    lw_params = vars(args)
+    # Many of the command line args are STRLocusWalker parameters
+    lw_params = dict(vars(args))
     del(lw_params['error_distn_file'])
     del(lw_params['single_cell'])
+    del(lw_params['filter_metrics_file'])
 
     # Step 1. Generate an STR length polymorphism error profile and save it.
     errors = profile_error_distn(lw_params, is_single_cell=args.single_cell)
@@ -200,15 +228,4 @@ if __name__ == "__main__":
 
     # Step 2. Now that we have an empirical distribution of STR polymorphism
     # error rates, genotype the loci.  The results are printed to stdout.
-    with STRLocusIterator(**lw_params) as locus_f:
-        print("chr\tstart\tend\tref_len\tunit\tregion\tflank1\tflank2\tsequence\traw_alleles\tcall\tgenotype\tpval\tallele_summaries")
-        for (chrom, start, end, reflen, unit, region, flank1, flank2, seq, reads) in locus_f:
-            summaries = summarize_alleles(reads, reflen)
-            alleles = " ".join("%d:%d,%.2f,%.2f" % ((k,) + v)
-                               for k, v in summaries.items())
-            # Get the per-read empirical error rate; do not allow err=0
-            err = get_error_estimate(errors, unit, reflen)
-            call, pval, gt = genotype(summaries, err=err)
-            print("%s\t%d\t%d\t%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%.5g\t%s" %
-                  (chrom, start, end, reflen, unit, region, flank1, flank2,
-                   seq, len(summaries), call, gt, pval, alleles))
+    genotype(lw_params, args.filter_metrics_file, errors)

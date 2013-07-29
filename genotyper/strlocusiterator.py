@@ -40,43 +40,35 @@ class STRLocusIterator():
 
     def __init__(self, filename, min_mapq=0, min_units=0,
                  max_ref_diff=float('+inf'),
-                 min_supp_reads=0, x_only=False, y_only=False):
+                 min_depth=0, hemizygous_only=False):
         """Filter options:
         min_mapq   -- only consider reads with mapq >= `min_mapq`
         min_units  -- only consider repeat loci with ref_units > `min_units`
-        x_only     -- only consider repeat loci on the X chromosome
-        y_only     -- only consider repeat loci on the Y chromosome
         """
-
-        if x_only and y_only:
-            raise RuntimeError('only one of x_only and y_only my be specified')
 
         self.f = open(filename, 'r')
         self.header = self.f.readline()
 
         self.min_mapq = min_mapq
-        self.x_only = x_only
-        self.y_only = y_only
+        self.hemizygous_only = hemizygous_only
         self.min_units = min_units
-        self.min_supp_reads = min_supp_reads
+        self.min_depth = min_depth
         self.max_ref_diff = max_ref_diff
 
         self.total_loci = 0
         self.total_reads = 0
         self.pf_loci = 0
         self.pf_reads = 0
-        self.loci_x_only_filter = 0
-        self.reads_x_only_filter = 0
-        self.loci_y_only_filter = 0
-        self.reads_y_only_filter = 0
+        self.loci_hemizygous_only_filter = 0
+        self.reads_hemizygous_only_filter = 0
         self.loci_mapq_filter = 0
         self.reads_mapq_filter = 0
         self.loci_min_units_filter = 0
         self.reads_min_units_filter = 0
         self.loci_max_ref_diff_filter = 0
         self.reads_max_ref_diff_filter = 0
-        self.loci_min_supp_filter = 0
-        self.reads_min_supp_filter = 0
+        self.loci_min_depth_filter = 0
+        self.reads_min_depth_filter = 0
         self.chrom_hist = defaultdict(int)
         self.reflen_hist = defaultdict(int)
         self.reflen_diff_hist = defaultdict(int)
@@ -100,7 +92,7 @@ class STRLocusIterator():
         parser.add_argument('--min-units', dest='min_units', metavar='N',
             default=1, type=int,
             help='Discard reference loci with < N repeat units')
-        parser.add_argument('--min-supp', dest='min_supp_reads', metavar='N',
+        parser.add_argument('--min-depth', dest='min_depth', metavar='N',
             default=0, type=int,
             help='Discard reference loci with < N supporting reads ' \
                  'after all read filters have been applied')
@@ -109,13 +101,6 @@ class STRLocusIterator():
             help='Discard reads that differ too greatly from the ' \
                  'reference STR length.  abs(observed len - ref len) ' \
                  '> N, for N in base pairs')
-        parser.add_argument('--x-only', dest='x_only', action='store_true',
-            default=False,
-            help='Only consider reads from the X chromosome')
-        parser.add_argument('--y-only', dest='y_only', action='store_true',
-            default=False,
-            help='Only consider reads from the Y chromosome')
-
 
     def __iter__(self):
         return self
@@ -141,14 +126,10 @@ class STRLocusIterator():
             raw_reads = fields[8].count(',') + 1 if fields[8] else 0
             self.total_reads += raw_reads
 
-            if self.x_only and not chrom.endswith('X'):
-                self.loci_x_only_filter += 1
-                self.reads_x_only_filter += raw_reads
-                continue
-
-            if self.y_only and not chrom.endswith('Y'):
-                self.loci_y_only_filter += 1
-                self.reads_y_only_filter += raw_reads
+            if self.hemizygous_only and \
+               not chrom.endswith('X') and not chrom.endswith('Y'):
+                self.loci_hemizygous_only_filter += 1
+                self.reads_hemizygous_only_filter += raw_reads
                 continue
 
             # reference STR length in bp
@@ -182,9 +163,9 @@ class STRLocusIterator():
                 continue
 
             # Filter by total supporting reads at the locus
-            if len(reads) < self.min_supp_reads:
-                self.loci_min_supp_filter += 1
-                self.reads_min_supp_filter += len(reads)
+            if len(reads) < self.min_depth:
+                self.loci_min_depth_filter += 1
+                self.reads_min_depth_filter += len(reads)
                 continue
 
             # No more filters beyond this point.  Track locus statistics.
@@ -213,22 +194,20 @@ class STRLocusIterator():
     def filter_metrics(self):
         """Return a list of filter metrics.  (pf = passing filters)"""
         return [
-            ('total_reads'              , self.total_reads),
-            ('total_loci'               , self.total_loci),
-            ('pf_reads'                 , self.pf_reads),
-            ('pf_loci'                  , self.pf_loci),
-            ('filter_x_only_reads'      , self.reads_x_only_filter),
-            ('filter_x_only_loci'       , self.loci_x_only_filter),
-            ('filter_y_only_reads'      , self.reads_y_only_filter),
-            ('filter_y_only_loci'       , self.loci_y_only_filter),
-            ('filter_mapq_reads'        , self.reads_mapq_filter),
-            ('filter_mapq_loci'         , self.loci_mapq_filter),
-            ('filter_min_units_reads'   , self.reads_min_units_filter),
-            ('filter_min_units_loci'    , self.loci_min_units_filter),
-            ('filter_min_supp_reads'    , self.reads_min_supp_filter),
-            ('filter_min_supp_loci'     , self.loci_min_supp_filter),
-            ('filter_max_ref_diff_reads', self.reads_max_ref_diff_filter),
-            ('filter_max_ref_diff_loci' , self.loci_max_ref_diff_filter)
+            ('total_reads'                 , self.total_reads),
+            ('total_loci'                  , self.total_loci),
+            ('pf_reads'                    , self.pf_reads),
+            ('pf_loci'                     , self.pf_loci),
+            ('filter_hemizygous_only_reads', self.reads_hemizygous_only_filter),
+            ('filter_hemizygous_only_loci' , self.loci_hemizygous_only_filter),
+            ('filter_mapq_reads'           , self.reads_mapq_filter),
+            ('filter_mapq_loci'            , self.loci_mapq_filter),
+            ('filter_min_units_reads'      , self.reads_min_units_filter),
+            ('filter_min_units_loci'       , self.loci_min_units_filter),
+            ('filter_min_depth'            , self.reads_min_depth_filter),
+            ('filter_min_depth_loci'       , self.loci_min_depth_filter),
+            ('filter_max_ref_diff_reads'   , self.reads_max_ref_diff_filter),
+            ('filter_max_ref_diff_loci'    , self.loci_max_ref_diff_filter)
         ]
 
 
