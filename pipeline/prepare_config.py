@@ -48,6 +48,7 @@ def get_path_dependencies(config):
         'samtools_binary': os.path.join(dep_path, 'samtools-0.1.19', 'samtools'),
         'sputnik_wrapper': os.path.join(base_path, 'sputnik', 'wrap_sputnik.sh'),
         'msitools_script': os.path.join(base_path, 'msitools', 'msitools.pl'),
+        'genotyper_script': os.path.join(base_path, 'genotyper', 'genotyper.py'),
 
         # Miscellany
         'picard_home': os.path.join(dep_path, 'picard-tools-1.95'),
@@ -78,10 +79,13 @@ def handle_input(fastq_files):
         fields = os.path.basename(f).rstrip('.gz').rstrip('.fastq').split('_')
         try:
             sample, readgroup, mate, chunk = [ x.strip() for x in fields ]
+            # This is a crappy way to do things, but easy
+            sc = False if ('bulk' in sample or '100' in sample) else True
             result[f] = { 'sample': sample,
                           'readgroup': readgroup,
                           'mate': mate,
                           'chunk': chunk,
+                          'single_cell': sc,
                           'size': os.path.getsize(f) }
         except KeyError:
             sys.stderr.out('Error parsing FASTQ file name:\n')
@@ -193,6 +197,7 @@ if __name__ == "__main__":
     # Parse input files and determine additional characteristics
     config['input'] = handle_input(args.FASTQ_files)
     config['samples'] = list(set(v['sample'] for v in config['input'].values()))
+    config['single_cell'] = list(set(v['sample'] for v in config['input'].values() if v['single_cell']))
 
     # Get a list of chromosomes for parallelization.  Also a list of subchrom
     # segments if any part of the analysis ever wants a subchrom split.

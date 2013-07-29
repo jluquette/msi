@@ -67,6 +67,7 @@ class sputnik(Tool):
     time_req = 12*60
     name = 'sputnik'
 
+    # FIXME: sputnik_wrapper uses the global version of samtools
     def cmd(self, i, s, p):
         return """{s[sputnik_wrapper]}
                     {i[bam][0]}
@@ -83,10 +84,51 @@ class msitools(Tool):
     name = 'msitools'
 
     def cmd(self, i, s, p):
-        return """samtools view -h {i[bam][0]}
+        return """{s[samtools_binary]} view -h {i[bam][0]} {p[chrom]}
                   | {s[msitools_script]}
                     --resource_path {s[resource_path]}
                     --summary $OUT.str_summary.txt
                     --flank_bp 10
                     --chr {p[chrom]}
-                  | samtools view -bSo $OUT.bam -"""
+                  | {s[samtools_binary]} view -bSo $OUT.bam -"""
+
+
+class combine_summaries(Tool):
+    """Combine per-chromosome summary files in reference order."""
+    inputs = [ 'str_summary.txt' ]
+    outputs = [ 'str_summary.txt' ]
+    mem_req = 128
+    cpu_req = 1
+    time_req = 60
+    name = 'combine summaries'
+
+    def cmd(self, i, s, p):
+        """Assumes s[chr] is in reference order."""
+        # Order the files by s['chr'].  To do this, look at the 'chrom' tag
+        # of the task that produced each file.
+        chr_to_input = dict((tf.task.tags['chrom'], str(tf))
+                            for tf in i['str_summary.txt'])
+        ilist = ' '.join(chr_to_input[chrom] for chrom in s['chr'])
+
+        # Headers should all match; use the first one.
+        return """(head -1 {i[str_summary.txt][0]};
+                   tail --quiet -n +2 %s) > $OUT.str_summary.txt""" % ilist
+
+
+class genotyper(Tool):
+    inputs = [ 'str_summary.txt' ]
+    outputs = [ 'calls.txt', 'filter_metrics.txt', 'error_profile.txt']
+    mem_req = 2048
+    cpu_req = 1
+    time_req = 60
+    name = 'genotyper'
+
+    def cmd(self, i, s, p):
+        single_cell = '--single-cell' if p['sample'] in s['single_cell'] else ''
+        return """{s[genotyper_script]}
+                    --error-distn-file $OUT.error_profile.txt
+                    --filter-metrics-file $OUT.filter_metrics.txt
+                    --min-mapq 30
+                    --min-depth 10
+                    %s
+                    {i[str_summary.txt][0]} > $OUT.calls.txt""" % single_cell

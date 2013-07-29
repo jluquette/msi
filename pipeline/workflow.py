@@ -18,5 +18,7 @@ def build_dag(input_fastqs, chrs=[]):
         map_(tools.index_bam),
         split_([ ('chrom', chrs) ], tools.sputnik),
         map_(tools.index_bam, stage_name='Index Sputnik BAMs'),
-        map_(tools.msitools)
+        map_(tools.msitools),
+        reduce_([ 'sample' ], tools.combine_summaries),
+        map_(tools.genotyper)
     )
