@@ -76,7 +76,7 @@ def get_error_estimate(errors, unit, reflen, default=0.01):
         # when profiling the sex chromosomes.  Use the nearest reference length.
         diffs = [ abs(reflen - l) for l in errors[unit].keys() ]
         m = min(diffs)
-        nearest = [ l for l in errors[unit].keys() if abs(reflen - l) == m ]
+        nearest = [ l for l in errors[unit].keys() if abs(reflen - l) == m ][0]
         profile = errors[unit][nearest]
 
     tot_reads, err_reads = profile[0:2]
@@ -194,11 +194,8 @@ def estimate_error(summaries, use_binom=False, binom_threshold=0.05):
                 likely_stutter += obs2    # obs1 is never considered stutter
                 #print("stutter: " + summaries)
     else:
-        # Assume EVERYTHING but the primary allele is due to polymerase
-        # stutter.  NOTE: even on hemizygous sex chromosomes, this assumption
-        # can be invalid for, e.g., bulk PCR samples that profile several
-        # individual cells, each of which may have its own allele.
-        likely_stutter += nreads[1]
+        if len(nreads) > 1:
+            likely_stutter += nreads[1]
 
     return array([ sum(nreads), likely_stutter, 1, 1 if likely_stutter else 0 ])
 
